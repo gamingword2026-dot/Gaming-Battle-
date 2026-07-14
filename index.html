@@ -4,481 +4,733 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gaming Battle MLBB Cup</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
     <style>
-        /* ===== RESET ===== */
+        /* =========================================
+           GAMING WORLD - STYLE.CSS
+        ========================================= */
+
+        :root {
+            --bg: #050816;
+            --card: rgba(18, 24, 45, .70);
+            --blue: #2EC5FF;
+            --purple: #7B2EFF;
+            --gold: #FFD34D;
+            --white: #F4F8FF;
+            --text: #C8D3E8;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* ===== CORES ===== */
-        :root {
-            --roxo: #8822C2;
-            --dourado: #EDC838;
-            --cinza-escuro: #1a1a1a;
-            --cinza-claro: #2a2a2a;
-            --branco: #f0f0f0;
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: var(--cinza-escuro);
-            color: var(--branco);
+            font-family: "Poppins", sans-serif;
+            background: #000;
+            color: var(--white);
+            overflow-x: hidden;
+            position: relative;
             min-height: 100vh;
+        }
+
+        /* ===========================
+           FUNDO
+        =========================== */
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background:
+                linear-gradient(rgba(0, 0, 0, .55), rgba(0, 0, 0, .75)),
+                url("images/fundogaming.png");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            transform: scale(1.08);
+            animation: bgMove 20s ease-in-out infinite alternate;
+            z-index: -3;
+        }
+
+        @keyframes bgMove {
+            0% {
+                transform: scale(1.08) translateY(0px);
+            }
+            100% {
+                transform: scale(1.12) translateY(-20px);
+            }
+        }
+
+        .background-overlay {
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(circle at top, rgba(46, 197, 255, .18), transparent 60%),
+                radial-gradient(circle at bottom, rgba(123, 46, 255, .15), transparent 70%);
+            pointer-events: none;
+            z-index: -2;
+        }
+
+        /* ===========================
+           ESTRELAS
+        =========================== */
+
+        .stars {
+            position: fixed;
+            inset: 0;
+            background-image:
+                radial-gradient(#ffffff 1px, transparent 1px),
+                radial-gradient(#69d8ff 1px, transparent 1px),
+                radial-gradient(#ffffff 1px, transparent 1px);
+            background-size:
+                140px 140px,
+                220px 220px,
+                300px 300px;
+            animation: starsMove 80s linear infinite;
+            opacity: .45;
+            z-index: -1;
+        }
+
+        @keyframes starsMove {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(-600px);
+            }
+        }
+
+        /* ===========================
+           HERO
+        =========================== */
+
+        .hero {
+            max-width: 1100px;
+            margin: auto;
+            padding: 60px 20px 30px;
+            text-align: center;
+        }
+
+        /* ===========================
+           LOGO - COM FALLBACK EM TEXTO
+        =========================== */
+
+        .logo-container {
             display: flex;
             justify-content: center;
-            padding: 20px;
+            align-items: center;
+            margin-bottom: 10px;
         }
 
-        .container {
-            max-width: 900px;
-            width: 100%;
-            background: var(--cinza-claro);
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 10px 40px rgba(136, 34, 194, 0.3);
-            border: 1px solid var(--roxo);
-            margin: 20px 0;
+        .logo {
+            width: min(90%, 520px);
+            display: block;
+            margin: auto;
+            filter:
+                drop-shadow(0 0 15px #00c3ff)
+                drop-shadow(0 0 35px #7b2eff);
+            animation:
+                logoFloat 5s ease-in-out infinite,
+                logoGlow 3s ease-in-out infinite;
         }
 
-        /* ===== CABEÇALHO ===== */
-        .header {
-            text-align: center;
-            padding-bottom: 20px;
-            border-bottom: 2px solid var(--dourado);
-            margin-bottom: 30px;
-        }
-
-        .header .gaming {
-            font-size: 3.5rem;
+        /* Fallback: se a imagem não carregar, mostra o texto */
+        .logo-text-fallback {
+            display: none;
+            font-family: "Orbitron", sans-serif;
+            font-size: clamp(2rem, 5vw, 4rem);
             font-weight: 900;
-            color: var(--dourado);
-            letter-spacing: 5px;
-            text-shadow: 0 0 20px rgba(237, 200, 56, 0.3);
-        }
-
-        .header .world {
-            font-size: 3.5rem;
-            font-weight: 900;
-            color: var(--roxo);
-            letter-spacing: 5px;
-            text-shadow: 0 0 20px rgba(136, 34, 194, 0.3);
-        }
-
-        .header .slogan {
-            color: var(--dourado);
-            font-size: 1.1rem;
-            margin-top: 5px;
-            letter-spacing: 3px;
-        }
-
-        .header .nivaliere {
-            font-size: 2.8rem;
-            font-weight: 900;
-            color: var(--roxo);
-            margin-top: 10px;
-            text-shadow: 0 0 30px rgba(136, 34, 194, 0.4);
-            letter-spacing: 8px;
-        }
-
-        .header .meta {
-            color: var(--roxo);
-            font-size: 0.8rem;
-            opacity: 0.6;
-            margin-top: 5px;
-        }
-
-        /* ===== TÍTULO TORNEIO ===== */
-        .titulo-torneio {
-            text-align: center;
-            font-size: 2.2rem;
-            font-weight: 900;
-            color: var(--dourado);
-            background: linear-gradient(135deg, var(--roxo), var(--dourado));
+            background: linear-gradient(90deg, #00d9ff, #ffffff, #7b2eff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            padding: 15px 0;
-            margin-bottom: 25px;
-            border-radius: 10px;
-            border: 1px solid var(--roxo);
+            text-shadow: 0 0 30px rgba(0, 180, 255, .5);
+            animation: logoFloat 5s ease-in-out infinite;
         }
 
-        /* ===== SEÇÕES ===== */
-        .secao {
-            background: rgba(26, 26, 26, 0.8);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-left: 4px solid var(--dourado);
+        /* Se a imagem falhar, mostra o fallback */
+        .logo.error + .logo-text-fallback {
+            display: block;
         }
 
-        .secao h2 {
-            color: var(--dourado);
-            font-size: 1.4rem;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        .logo.error {
+            display: none;
         }
 
-        .secao h2 .icon {
-            font-size: 1.6rem;
+        @keyframes logoFloat {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-14px);
+            }
+            100% {
+                transform: translateY(0);
+            }
         }
 
-        .secao p,
-        .secao li {
-            color: #ccc;
-            line-height: 1.8;
+        @keyframes logoGlow {
+            0% {
+                filter:
+                    drop-shadow(0 0 10px #00bfff)
+                    drop-shadow(0 0 20px #7b2eff);
+            }
+            50% {
+                filter:
+                    drop-shadow(0 0 28px #00d9ff)
+                    drop-shadow(0 0 55px #7b2eff);
+            }
+            100% {
+                filter:
+                    drop-shadow(0 0 10px #00bfff)
+                    drop-shadow(0 0 20px #7b2eff);
+            }
+        }
+
+        /* ===========================
+           TEXTOS
+        =========================== */
+
+        .subtitle {
+            margin-top: 20px;
+            color: #89dcff;
             font-size: 1rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
         }
 
-        .secao ul {
-            list-style: none;
-            padding-left: 10px;
-        }
-
-        .secao ul li::before {
-            content: "▸ ";
-            color: var(--dourado);
-            font-weight: bold;
-        }
-
-        .secao .destaque {
-            color: var(--dourado);
-            font-weight: bold;
-        }
-
-        /* ===== REGRA DO EMPATE ===== */
-        .regra-empate {
-            background: linear-gradient(135deg, rgba(136, 34, 194, 0.2), rgba(237, 200, 56, 0.1));
-            border: 1px solid var(--dourado);
-            border-radius: 10px;
-            padding: 15px;
-            margin: 10px 0;
-        }
-
-        .regra-empate .brawl {
-            font-size: 1.8rem;
+        .title {
+            margin-top: 18px;
+            font-family: "Orbitron", sans-serif;
+            font-size: clamp(2rem, 5vw, 4rem);
             font-weight: 900;
-            color: var(--dourado);
+            background: linear-gradient(90deg, #00d9ff, #ffffff, #7b2eff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(0, 180, 255, .5);
         }
 
-        /* ===== CHAT PROIBIDO ===== */
-        .chat-proibido {
-            background: rgba(255, 0, 0, 0.1);
-            border: 1px solid #ff4444;
-            border-radius: 10px;
-            padding: 15px;
-            margin: 10px 0;
+        .description {
+            max-width: 760px;
+            margin: 25px auto;
+            color: var(--text);
+            font-size: 1.08rem;
+            line-height: 1.8;
         }
 
-        .chat-proibido .proibido {
-            color: #ff4444;
-            font-weight: bold;
-            font-size: 1.2rem;
+        /* ===========================
+           BOTÃO PARTIDAS
+        =========================== */
+
+        .playButton {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 35px;
+            padding: 18px 45px;
+            font-family: "Orbitron", sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-decoration: none;
+            text-transform: uppercase;
+            color: #fff;
+            background: linear-gradient(135deg, #00BFFF, #7B2EFF);
+            border: 2px solid rgba(255, 255, 255, .15);
+            border-radius: 60px;
+            box-shadow:
+                0 0 20px rgba(0, 191, 255, .45),
+                0 0 45px rgba(123, 46, 255, .35);
+            transition: .35s;
+            animation: buttonPulse 2.5s infinite ease-in-out;
         }
 
-        .chat-proibido .liberado {
-            color: #44ff88;
-            font-weight: bold;
+        .playButton:hover {
+            transform: translateY(-4px) scale(1.04);
+            box-shadow:
+                0 0 25px #00BFFF,
+                0 0 55px #7B2EFF;
         }
 
-        /* ===== TABELA ===== */
-        .tabela-rodadas {
+        .playButton:active {
+            transform: scale(.97);
+        }
+
+        @keyframes buttonPulse {
+            0% {
+                box-shadow:
+                    0 0 15px rgba(0, 191, 255, .35),
+                    0 0 35px rgba(123, 46, 255, .25);
+            }
+            50% {
+                box-shadow:
+                    0 0 28px rgba(0, 191, 255, .75),
+                    0 0 60px rgba(123, 46, 255, .55);
+            }
+            100% {
+                box-shadow:
+                    0 0 15px rgba(0, 191, 255, .35),
+                    0 0 35px rgba(123, 46, 255, .25);
+            }
+        }
+
+        /* ===========================
+           CONTAINER
+        =========================== */
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* ===========================
+           CARDS
+        =========================== */
+
+        .card {
+            background: var(--card);
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 22px;
+            padding: 30px;
+            margin-bottom: 28px;
+            box-shadow:
+                0 0 25px rgba(0, 0, 0, .35);
+            transition: .35s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: var(--blue);
+            box-shadow:
+                0 0 30px rgba(46, 197, 255, .35);
+        }
+
+        .card h2 {
+            font-family: "Orbitron", sans-serif;
+            color: var(--blue);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .card p,
+        .card li {
+            color: var(--text);
+            font-size: 1rem;
+            line-height: 1.9;
+        }
+
+        .card ul {
+            padding-left: 22px;
+        }
+
+        /* ===========================
+           TABELA
+        =========================== */
+
+        .tableBox {
+            overflow-x: auto;
+        }
+
+        table {
             width: 100%;
             border-collapse: collapse;
-            margin: 10px 0;
+            margin-top: 10px;
         }
 
-        .tabela-rodadas th {
-            background: var(--roxo);
-            color: var(--dourado);
-            padding: 10px;
-            text-align: left;
-            font-weight: bold;
+        th {
+            background: #15284b;
+            color: var(--gold);
+            padding: 16px;
+            font-family: "Orbitron", sans-serif;
         }
 
-        .tabela-rodadas td {
-            padding: 10px;
-            border-bottom: 1px solid #333;
-            color: #ccc;
+        td {
+            padding: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+            color: var(--text);
         }
 
-        .tabela-rodadas tr:hover td {
-            background: rgba(136, 34, 194, 0.1);
+        tr:hover {
+            background: rgba(46, 197, 255, .08);
         }
 
-        /* ===== PREMIAÇÃO ===== */
-        .premio {
+        /* ===========================
+           PREMIAÇÃO
+        =========================== */
+
+        .awards {
             display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
             justify-content: center;
-            margin: 10px 0;
+            align-items: stretch;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-top: 25px;
         }
 
-        .premio-item {
-            background: var(--cinza-escuro);
-            border-radius: 12px;
-            padding: 15px 25px;
-            text-align: center;
+        .award {
             flex: 1;
-            min-width: 150px;
-            border: 1px solid var(--dourado);
-            transition: transform 0.3s;
+            min-width: 240px;
+            max-width: 320px;
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 22px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: .4s;
+            backdrop-filter: blur(20px);
         }
 
-        .premio-item:hover {
-            transform: scale(1.05);
+        .award:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow:
+                0 0 30px rgba(46, 197, 255, .35);
         }
 
-        .premio-item .colocacao {
+        .award span {
+            font-size: 3.2rem;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .award h3 {
+            font-family: "Orbitron", sans-serif;
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-bottom: 12px;
+        }
+
+        .award p {
+            color: var(--text);
+            margin: 8px 0;
+        }
+
+        .first {
+            border: 2px solid var(--gold);
+            box-shadow:
+                0 0 25px rgba(255, 211, 77, .25);
+        }
+
+        .second {
+            border: 2px solid var(--blue);
+        }
+
+        /* ===========================
+           FOOTER
+        =========================== */
+
+        footer {
+            margin-top: 70px;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, .08);
+            background: rgba(0, 0, 0, .35);
+            backdrop-filter: blur(15px);
+        }
+
+        .footerLogo {
+            width: 220px;
+            margin-bottom: 18px;
+            filter:
+                drop-shadow(0 0 15px #00BFFF);
+        }
+
+        /* Fallback para footer */
+        .footer-text-fallback {
+            display: none;
+            font-family: "Orbitron", sans-serif;
             font-size: 2rem;
             font-weight: 900;
-            color: var(--dourado);
+            background: linear-gradient(90deg, #00d9ff, #ffffff, #7b2eff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 18px;
         }
 
-        .premio-item .descricao {
-            color: #aaa;
-            font-size: 0.9rem;
-            margin-top: 5px;
-        }
-
-        .premio-item.dourado {
-            border-color: var(--dourado);
-            box-shadow: 0 0 20px rgba(237, 200, 56, 0.2);
-        }
-
-        .premio-item.dourado .colocacao {
-            color: var(--dourado);
-        }
-
-        /* ===== BOTÃO BAIXAR PDF ===== */
-        .btn-pdf {
+        .footerLogo.error + .footer-text-fallback {
             display: block;
-            width: 100%;
-            max-width: 400px;
-            margin: 30px auto 10px;
-            padding: 18px 30px;
-            background: linear-gradient(135deg, var(--roxo), #6a1b96);
-            color: var(--dourado);
-            border: 2px solid var(--dourado);
-            border-radius: 50px;
-            font-size: 1.3rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
-            text-decoration: none;
-            letter-spacing: 2px;
-            box-shadow: 0 0 30px rgba(136, 34, 194, 0.3);
         }
 
-        .btn-pdf:hover {
-            transform: scale(1.05);
-            background: linear-gradient(135deg, var(--dourado), var(--roxo));
-            color: var(--cinza-escuro);
-            box-shadow: 0 0 50px rgba(237, 200, 56, 0.4);
+        .footerLogo.error {
+            display: none;
         }
 
-        .btn-pdf:active {
-            transform: scale(0.95);
+        footer p {
+            font-family: "Orbitron", sans-serif;
+            font-size: 1.2rem;
+            color: var(--white);
+            margin-bottom: 8px;
         }
 
-        /* ===== INFO EXTRA ===== */
-        .info-extra {
-            text-align: center;
-            color: #666;
-            font-size: 0.8rem;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid #333;
+        footer span {
+            color: #88cfff;
+            font-size: .95rem;
         }
 
-        .info-extra span {
-            color: var(--roxo);
+        /* ===========================
+           ANIMAÇÃO DOS CARDS
+        =========================== */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px);
+            transition:
+                opacity .8s ease,
+                transform .8s ease;
         }
 
-        /* ===== RESPONSIVO ===== */
-        @media (max-width: 600px) {
-            .container {
-                padding: 15px;
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===========================
+           RESPONSIVO
+        =========================== */
+
+        @media(max-width: 768px) {
+            .hero {
+                padding: 40px 20px;
             }
 
-            .header .gaming,
-            .header .world {
+            .logo {
+                width: 92%;
+            }
+
+            .title {
                 font-size: 2.2rem;
             }
 
-            .header .nivaliere {
-                font-size: 1.8rem;
-                letter-spacing: 4px;
+            .subtitle {
+                font-size: .85rem;
+                letter-spacing: 2px;
             }
 
-            .titulo-torneio {
-                font-size: 1.4rem;
+            .description {
+                font-size: .95rem;
+                line-height: 1.7;
             }
 
-            .secao h2 {
-                font-size: 1.1rem;
-            }
-
-            .premio-item {
-                min-width: 100%;
-            }
-
-            .btn-pdf {
+            .playButton {
+                width: 100%;
+                padding: 18px;
                 font-size: 1rem;
-                padding: 14px 20px;
+            }
+
+            .card {
+                padding: 22px;
+            }
+
+            .card h2 {
+                font-size: 1.2rem;
+            }
+
+            .awards {
+                flex-direction: column;
+            }
+
+            .award {
+                max-width: 100%;
+            }
+
+            .footerLogo {
+                width: 170px;
             }
         }
     </style>
 </head>
+
 <body>
 
-    <div class="container">
+    <div class="background-overlay"></div>
+    <div class="stars"></div>
 
-        <!-- ===== CABEÇALHO ===== -->
-        <div class="header">
-            <div class="gaming">GAMING</div>
-            <div class="world">WORLD</div>
-            <div class="slogan">A COMUNIDADE GAMER ESTÁ DE VOLTA</div>
-            <div class="nivaliere">NIVALIERE</div>
-            <div class="meta">AD · MAIS IIPIANIZACBO · UMA KOAITHA</div>
-            <div class="meta" style="margin-top:0;">MetaAI</div>
+    <!-- ========== HEADER ========== -->
+    <header class="hero">
+        <div class="logo-container">
+            <img 
+                src="images/txtgaming.png" 
+                class="logo" 
+                alt="Gaming World" 
+                onerror="this.classList.add('error')"
+            />
+            <div class="logo-text-fallback">GAMING WORLD</div>
         </div>
+        <h2 class="subtitle">A COMUNIDADE GAMER ESTÁ DE VOLTA</h2>
+        <h1 class="title">GAMING BATTLE MLBB CUP</h1>
+        <p class="description">
+            O campeonato oficial da comunidade Gaming World para jogadores de Mobile Legends.
+            Prepare sua equipe e dispute o título de campeão.
+        </p>
+        <a href="partidas.html" class="playButton">⚔ PARTIDAS</a>
+    </header>
 
-        <!-- ===== TÍTULO ===== -->
-        <div class="titulo-torneio">🏆 GAMING BATTLE MLBB CUP</div>
+    <!-- ========== CONTEÚDO ========== -->
+    <main class="container">
 
-        <!-- ===== INFORMAÇÕES GERAIS ===== -->
-        <div class="secao">
-            <h2><span class="icon">📋</span> INFORMAÇÕES GERAIS</h2>
+        <section class="card reveal">
+            <h2>📋 Informações Gerais</h2>
             <ul>
-                <li><span class="destaque">Nome:</span> Gaming Battle MLBB Cup</li>
-                <li><span class="destaque">Organização:</span> Comunidade Nivaliere</li>
-                <li><span class="destaque">Número de equipes:</span> 10 (fechado)</li>
-                <li><span class="destaque">Formato:</span> 5v5, eliminação simples</li>
+                <li><strong>Organização:</strong> Gaming World</li>
+                <li><strong>Jogo:</strong> Mobile Legends Bang Bang</li>
+                <li><strong>Formato:</strong> 5x5</li>
+                <li><strong>Times:</strong> 10 Equipes</li>
+                <li><strong>Sistema:</strong> Fase de grupos + Eliminatórias</li>
             </ul>
-        </div>
+        </section>
 
-        <!-- ===== SISTEMA DE PARTIDAS ===== -->
-        <div class="secao">
-            <h2><span class="icon">⚔️</span> SISTEMA DE PARTIDAS</h2>
-            <ul>
-                <li><span class="destaque">Fase de grupos:</span> 2 grupos com 5 equipes cada</li>
-                <li>Cada equipe joga <span class="destaque">2 partidas por rodada</span> (contra adversários diferentes)</li>
-                <li><span class="destaque">Classificação:</span> Os 2 melhores de cada grupo avançam pras semifinais (total de 4 equipes)</li>
-            </ul>
-        </div>
+        <section class="card reveal">
+            <h2>⚔ Sistema do Campeonato</h2>
+            <p>
+                Cada grupo terá cinco equipes. Todos jogam entre si. Os dois melhores avançam para a semifinal.
+                As semifinais serão disputadas em MD3. A grande final também será MD3.
+            </p>
+        </section>
 
-        <!-- ===== REGRA DO EMPATE ===== -->
-        <div class="secao">
-            <h2><span class="icon">🔄</span> REGRA DO EMPATE</h2>
-            <div class="regra-empate">
-                <p>Se a partida terminar em <span class="destaque">empate</span> (ex: 1-1 na soma ou jogo único empatado):</p>
-                <p style="margin-top:10px;">
-                    ⚔️ Vai para o <span class="brawl">MODO RIXA (BRAWL)</span> – partida decisiva em estilo Brawl
-                </p>
-                <p>Quem vencer o Brawl leva a vitória da rodada.</p>
+        <section class="card reveal">
+            <h2>🔄 Regra de Empate</h2>
+            <p>
+                Caso ocorra empate, a decisão acontecerá no <strong>Modo Rixa (Brawl)</strong>.
+                O vencedor será considerado o ganhador oficial da partida.
+            </p>
+        </section>
+
+        <section class="card reveal">
+            <h2>🚫 Regras do Chat</h2>
+            <p>
+                É proibido utilizar chat durante as partidas. Somente o sistema de PING é permitido.
+                Qualquer infração poderá resultar em advertência ou derrota por WO.
+            </p>
+        </section>
+
+        <section class="card reveal">
+            <h2>📊 Estrutura das Rodadas</h2>
+            <div class="tableBox">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fase</th>
+                            <th>Formato</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Fase de Grupos</td>
+                            <td>Todos contra todos</td>
+                        </tr>
+                        <tr>
+                            <td>Semifinal</td>
+                            <td>MD3</td>
+                        </tr>
+                        <tr>
+                            <td>Final</td>
+                            <td>MD3</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-        </div>
+        </section>
 
-        <!-- ===== REGRA DO CHAT ===== -->
-        <div class="secao">
-            <h2><span class="icon">🚫</span> REGRA DO CHAT</h2>
-            <div class="chat-proibido">
-                <p class="proibido">❌ CHAT COMPLETAMENTE PROIBIDO</p>
-                <p>Durante as partidas (dentro e fora do jogo entre os times):</p>
-                <p>✅ Só pode usar <span class="liberado">PING</span> (sinais rápidos do jogo)</p>
-                <p>❌ Nada de texto, voz ou emojis no chat</p>
-                <p style="margin-top:10px; color:#ffaa00;">⚠️ Infração = advertência → na 2ª vez, derrota automática na partida</p>
-            </div>
-        </div>
-
-        <!-- ===== ESTRUTURA DAS RODADAS ===== -->
-        <div class="secao">
-            <h2><span class="icon">📊</span> ESTRUTURA DAS RODADAS</h2>
-            <table class="tabela-rodadas">
-                <thead>
-                    <tr>
-                        <th>Fase</th>
-                        <th>Formato</th>
-                        <th>Partidas por rodada</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Grupos (5 times)</td>
-                        <td>Todos contra todos</td>
-                        <td>2 por rodada</td>
-                    </tr>
-                    <tr>
-                        <td>Semifinal</td>
-                        <td>MD3 (melhor de 3)</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td>Final</td>
-                        <td>MD3</td>
-                        <td>-</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- ===== PRAZOS E WO ===== -->
-        <div class="secao">
-            <h2><span class="icon">⏰</span> PRAZOS E WO</h2>
+        <section class="card reveal">
+            <h2>⏰ Prazos</h2>
             <ul>
-                <li>Atraso superior a <span class="destaque">10 minutos</span> = WO e derrota</li>
-                <li>Cada time tem direito a <span class="destaque">1 pause técnica</span> por partida (3 min máx.)</li>
+                <li>Atraso máximo permitido: <strong>10 minutos.</strong></li>
+                <li>Após esse tempo será aplicado WO.</li>
+                <li>Cada equipe possui uma pausa técnica de até 3 minutos.</li>
             </ul>
-        </div>
+        </section>
 
-        <!-- ===== PREMIAÇÃO ===== -->
-        <div class="secao">
-            <h2><span class="icon">🎁</span> PREMIAÇÃO</h2>
-            <div class="premio">
-                <div class="premio-item dourado">
-                    <div class="colocacao">🥇 1º Lugar</div>
-                    <div class="descricao">Troféu virtual<br/>Cargo "Campeão Gaming Battle"<br/>Destaque na comunidade</div>
+        <section class="card reveal">
+            <h2>🏆 Premiação</h2>
+            <div class="awards">
+                <div class="award first">
+                    <span>🥇</span>
+                    <h3>Campeão</h3>
+                    <p>Troféu Virtual</p>
+                    <p>Cargo exclusivo</p>
+                    <p>Destaque na Gaming World</p>
                 </div>
-                <div class="premio-item">
-                    <div class="colocacao">🥈 2º Lugar</div>
-                    <div class="descricao">Menção honrosa</div>
+                <div class="award second">
+                    <span>🥈</span>
+                    <h3>Vice-Campeão</h3>
+                    <p>Menção Honrosa</p>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- ===== BOTÃO BAIXAR PDF ===== -->
-        <button class="btn-pdf" onclick="baixarPDF()">
-            📥 BAIXAR ART EM PDF
-        </button>
+        <section class="card reveal">
+            <h2>📢 Aviso</h2>
+            <p>
+                Todas as equipes devem respeitar as regras do campeonato.
+                O objetivo é promover partidas competitivas, organizadas e com respeito entre todos os participantes.
+            </p>
+        </section>
 
-        <!-- ===== INFO EXTRA ===== -->
-        <div class="info-extra">
-            Comunidade <span>Nivaliere</span> | Organized by <span>Gaming World</span><br/>
-            MLBB Mobile Legends - Torneio Oficial da Comunidade
-        </div>
+    </main>
 
-    </div>
+    <!-- ========== FOOTER ========== -->
+    <footer>
+        <img 
+            src="images/txtgaming.png" 
+            class="footerLogo" 
+            alt="Gaming World"
+            onerror="this.classList.add('error')"
+        />
+        <div class="footer-text-fallback">GAMING WORLD</div>
+        <p>Gaming World © 2026</p>
+        <span>Mobile Legends Bang Bang • Campeonato Oficial</span>
+    </footer>
 
-    <!-- ===== SCRIPT ===== -->
     <script>
-        function baixarPDF() {
-            // Cria um link temporário para baixar o PDF
-            const link = document.createElement('a');
-            link.href = 'Gaming_Battle_Art.pdf';
-            link.download = 'Gaming_Battle_Art.pdf';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+        // ========== REVELAÇÃO DE CARDS AO ROLAR ==========
+        const revealElements = document.querySelectorAll('.reveal');
 
-            // Mensagem de feedback
-            alert('📥 O download do PDF será iniciado!\n\nSe não baixar, o arquivo ainda não foi gerado.\nRode o script Python no Termux para gerar o PDF.');
+        function checkReveal() {
+            const windowHeight = window.innerHeight;
+            const revealThreshold = 120;
+
+            revealElements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                const isVisible = rect.top < windowHeight - revealThreshold;
+                if (isVisible) {
+                    el.classList.add('active');
+                }
+            });
         }
+
+        window.addEventListener('load', checkReveal);
+        window.addEventListener('scroll', checkReveal);
+        window.addEventListener('resize', checkReveal);
+
+        // ========== PARALAX NAS ESTRELAS ==========
+        document.addEventListener('scroll', function() {
+            const stars = document.querySelector('.stars');
+            const scrollY = window.scrollY;
+            stars.style.transform = 'translateY(' + scrollY * 0.02 + 'px)';
+        });
+
+        // ========== CLIQUE NO BOTÃO ==========
+        const btn = document.querySelector('.playButton');
+        if (btn) {
+            btn.addEventListener('click', function(e) {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        }
+
+        console.log('🔥 Gaming Battle MLBB Cup carregado!');
     </script>
 
 </body>

@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ADM - Gaming Battle MLBB</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+    <style>
+        /* =========================================
+           ESTILOS - ADM
+        ========================================= */
+
+        :root {
+            --bg: #050816;
+            --card: rgba(18, 24, 45, .85);
+            --blue: #2EC5FF;
+            --purple: #7B2EFF;
+            --gold: #FFD34D;
+            --white: #F4F8FF;
+            --text: #C8D3E8;
+            --red: #ff4757;
+            --green: #2ed573;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            background: #000;
+            color: var(--white);
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* ========== FUNDO ========== */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background:
+                linear-gradient(rgba(0, 0, 0, .75), rgba(0, 0, 0, .85)),
+                url("images/fundogaming.png");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: -3;
+        }
+
+        .background-overlay {
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(circle at top, rgba(46, 197, 255, .10), transparent 60%),
+                radial-gradient(circle at bottom, rgba(123, 46, 255, .10), transparent 70%);
+            pointer-events: none;
+            z-index: -2;
+        }
+
+        .stars {
+            position: fixed;
+            inset: 0;
+            background-image:
+                radial-gradient(#ffffff 1px, transparent 1px),
+                radial-gradient(#69d8ff 1px, transparent 1px),
+                radial-gradient(#ffffff 1px, transparent 1px);
+            background-size: 140px 140px, 220px 220px, 300px 300px;
+            animation: starsMove 80s linear infinite;
+            opacity: .3;
+            z-index: -1;
+        }
+
+        @keyframes starsMove {
+            from { transform: translateY(0); }
+            to { transform: translateY(-600px); }
+        }
+
+        /* ========== LOGIN ========== */
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .login-box {
+            background: var(--card);
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 24px;
+            padding: 50px 40px;
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 0 60px rgba(123, 46, 255, .15);
+        }
+
+        .login-box h1 {
+            font-family: "Orbitron", sans-serif;
+            font-size: 1.8rem;
+            background: linear-gradient(90deg, #00d9ff, #ffffff, #7b2eff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .login-box .sub {
+            color: var(--text);
+            font-size: 0.9rem;
+            opacity: .6;
+            margin-bottom: 30px;
+        }
+
+        .login-box input {
+            width: 100%;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 1rem;
+            transition: .3s;
+            outline: none;
+            margin-bottom: 20px;
+        }
+
+        .login-box input:focus {
+            border-color: var(--blue);
+            box-shadow: 0 0 20px rgba(46, 197, 255, .15);
+        }
+
+        .login-box input::placeholder {
+            color: rgba(255, 255, 255, .3);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #00BFFF, #7B2EFF);
+            border: none;
+            border-radius: 12px;
+            color: #fff;
+            font-family: "Orbitron", sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: .3s;
+            letter-spacing: 1px;
+        }
+
+        .login-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 30px rgba(123, 46, 255, .4);
+        }
+
+        .login-error {
+            color: var(--red);
+            font-size: 0.85rem;
+            margin-top: 12px;
+            display: none;
+        }
+
+        /* ========== PAINEL ADM ========== */
+        .adm-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px 60px;
+            display: none;
+        }
+
+        .adm-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+        }
+
+        .adm-header h1 {
+            font-family: "Orbitron", sans-serif;
+            font-size: 1.6rem;
+            background: linear-gradient(90deg, #00d9ff, #ffffff, #7b2eff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .adm-header .logout-btn {
+            padding: 10px 25px;
+            background: rgba(255, 71, 87, .15);
+            border: 1px solid rgba(255, 71, 87, .3);
+            border-radius: 30px;
+            color: var(--red);
+            font-family: "Orbitron", sans-serif;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .adm-header .logout-btn:hover {
+            background: rgba(255, 71, 87, .25);
+        }
+
+        /* ========== GRID DO ADM ========== */
+        .adm-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 24px;
+        }
+
+        .adm-card {
+            background: var(--card);
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, .06);
+            border-radius: 20px;
+            padding: 24px;
+            transition: .3s;
+        }
+
+        .adm-card:hover {
+            border-color: var(--blue);
+        }
+
+        .adm-card h2 {
+            font-family: "Orbitron", sans-serif;
+            font-size: 1rem;
+            color: var(--blue);
+            margin-bottom: 16px;
+            letter-spacing: 1px;
+        }
+
+        .adm-card label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text);
+            margin-bottom: 6px;
+            margin-top: 12px;
+        }
+
+        .adm-card label:first-of-type {
+            margin-top: 0;
+        }
+
+        .adm-card input,
+        .adm-card select {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 0.95rem;
+            transition: .3s;
+            outline: none;
+        }
+
+        .adm-card input:focus,
+        .adm-card select:focus {
+            border-color: var(--blue);
+            box-shadow: 0 0 15px rgba(46, 197, 255, .1);
+        }
+
+        .adm-card input[type="file"] {
+            padding: 10px;
+            background: rgba(255, 255, 255, .03);
+        }
+
+        .adm-card input[type="file"]::file-selector-button {
+            padding: 8px 16px;
+            background: rgba(46, 197, 255, .15);
+            border: 1px solid rgba(46, 197, 255, .3);
+            border-radius: 8px;
+            color: var(--blue);
+            cursor: pointer;
+            font-family: "Poppins", sans-serif;
+            transition: .3s;
+        }
+
+        .adm-card input[type="file"]::file-selector-button:hover {
+            background: rgba(46, 197, 255, .25);
+        }
+
+        .adm-card .save-btn {
+            width: 100%;
+            margin-top: 18px;
+            padding: 14px;
+            background: linear-gradient(135deg, #00BFFF, #7B2EFF);
+            border: none;
+            border-radius: 12px;
+            color: #fff;
+            font-family: "Orbitron", sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: .3s;
+            letter-spacing: 1px;
+        }
+
+        .adm-card .save-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 30px rgba(123, 46, 255, .3);
+        }
+
+        .adm-card .save-btn.green {
+            background: linear-gradient(135deg, #2ed573, #26de81);
+        }
+
+        .adm-card .save-btn.red {
+            background: linear-gradient(135deg, #ff4757, #ff6b81);
+        }
+
+        .preview-img {
+            max-width: 100%;
+            max-height: 120px;
+            border-radius: 12px;
+            margin-top: 10px;
+            border: 1px solid rgba(255, 255, 255, .06);
+            display: none;
+        }
+
+        .preview-img.show {
+            display: block;
+        }
+
+        /* ========== TIMES ========== */
+        .times-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .time-tag {
+            background: rgba(46, 197, 255, .1);
+            border: 1px solid rgba(46, 197, 255, .2);
+            border-radius: 20px;
+            padding: 4px 16px;
+            font-size: 0.8rem;
+            color: var(--text);
+        }
+
+        /* ========== CONFRONTOS EDITÁVEIS ========== */
+        .confronto-edit {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr auto;
+            gap: 8px;
+            align-items: center;
+            background: rgba(255, 255, 255, .03);
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 8px;
+        }
+
+        .confronto-edit select,
+        .confronto-edit input {
+            padding: 6px 10px;
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 0.85rem;
+            outline: none;
+            width: 100%;
+        }
+
+        .confronto-edit .vs-text {
+            color: var(--purple);
+            font-family: "Orbitron", sans-serif;
+            font-size: 0.7rem;
+            padding: 0 4px;
+        }
+
+        .confronto-edit .remove-btn {
+            background: rgba(255, 71, 87, .15);
+            border: 1px solid rgba(255, 71, 87, .2);
+            border-radius: 8px;
+            color: var(--red);
+            padding: 6px 12px;
+            cursor: pointer;
+            font-size: 0.7rem;
+            transition: .3s;
+        }
+
+        .confronto-edit .remove-btn:hover {
+            background: rgba(255, 71, 87, .25);
+        }
+
+        .add-confronto-btn {
+            padding: 10px;
+            background: rgba(46, 197, 255, .1);
+            border: 1px dashed rgba(46, 197, 255, .3);
+            border-radius: 10px;
+            color: var(--blue);
+            cursor: pointer;
+            width: 100%;
+            font-family: "Poppins", sans-serif;
+            transition: .3s;
+            margin-top: 6px;
+        }
+
+        .add-confronto-btn:hover {
+            background: rgba(46, 197, 255, .15);
+        }
+
+        /* ========== RESPONSIVO ========== */
+        @media(max-width: 768px) {
+            .adm-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .login-box {
+                padding: 30px 20px;
+            }
+
+            .adm-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .confronto-edit {
+                grid-template-columns: 1fr 1fr;
+                gap: 6px;
+            }
+
+            .confronto-edit .vs-text {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="background-overlay"></div>
+    <div class="stars"></div>
+
+    <!-- ========== LOGIN ========== -->
+    <div class="login-container" id="loginContainer">
+        <div class="login-box">
+            <h1>🔐 ADM</h1>
+            <p class="sub">Painel Administrativo</p>
+            <input type="password" id="senhaInput" placeholder="Digite a senha..." />
+            <button class="login-btn" onclick="fazerLogin()">ENTRAR</button>
+            <p class="login-error" id="loginError">Senha incorreta! Tente novamente.</p>
+        </div>
+    </div>
+
+    <!-- ========== PAINEL ADM ========== -->
+    <div class="adm-container" id="admContainer">
+
+        <header class="adm-header">
+            <h1>⚙️ PAINEL ADMINISTRATIVO</h1>
+            <button class="logout-btn" onclick="logout()">SAIR</button>
+        </header>
+
+        <div class="adm-grid">
+
+            <!-- ===== CARD 1: LOGOTIPO ===== -->
+            <div class="adm-card">
+                <h2>🏷️ LOGOTIPO DO CLÃ</h2>
+                <label>Imagem do logotipo:</label>
+                <input type="file" id="logoInput" accept="image/*" onchange="previewLogo(event)" />
+                <img id="logoPreview" class="preview-img" alt="Preview" />
+                <button class="save-btn" onclick="salvarLogo()">SALVAR LOGOTIPO</button>
+            </div>
+
+            <!-- ===== CARD 2: CONFIGURAÇÕES ===== -->
+            <div class="adm-card">
+                <h2>⚙️ CONFIGURAÇÕES</h2>
+                <label>Quantidade de Equipes:</label>
+                <select id="qtdEquipes">
+                    <option value="4">4 Equipes</option>
+                    <option value="6">6 Equipes</option>
+                    <option value="8">8 Equipes</option>
+                    <option value="10" selected>10 Equipes</option>
+                    <option value="12">12 Equipes</option>
+                    <option value="16">16 Equipes</option>
+                </select>
+                <label>Confrontos por Rodada:</label>
+                <select id="confrontosPorRodada">
+                    <option value="2">2 Confrontos</option>
+                    <option value="3">3 Confrontos</option>
+                    <option value="4">4 Confrontos</option>
+                    <option value="5" selected>5 Confrontos</option>
+                    <option value="6">6 Confrontos</option>
+                    <option value="8">8 Confrontos</option>
+                </select>
+                <button class="save-btn green" onclick="salvarConfiguracoes()">REGERAR CAMPEONATO</button>
+            </div>
+
+            <!-- ===== CARD 3: RODADAS E CONFRONTOS ===== -->
+            <div class="adm-card">
+                <h2>📅 RODADAS E CONFRONTOS</h2>
+                <label>Selecione a Rodada:</label>
+                <select id="selectRodada" onchange="carregarConfrontos()"></select>
+                <div id="confrontosContainer"></div>
+                <button class="add-confronto-btn" onclick="adicionarConfronto()">+ ADICIONAR CONFRONTO</button>
+                <button class="save-btn" onclick="salvarConfrontos()" style="margin-top:12px;">SALVAR CONFRONTOS</button>
+            </div>
+
+            <!-- ===== CARD 4: TABELA / CLASSIFICAÇÃO ===== -->
+            <div class="adm-card">
+                <h2>📊 CLASSIFICAÇÃO</h2>
+                <div id="tabelaAdmContainer">
+                    <!-- Gerado por JS -->
+                </div>
+                <button class="save-btn" onclick="salvarTabela()">SALVAR CLASSIFICAÇÃO</button>
+            </div>
+
+            <!-- ===== CARD 5: FOTOS DAS EQUIPES ===== -->
+            <div class="adm-card">
+                <h2>🖼️ FOTOS DAS EQUIPES</h2>
+                <div id="fotosEquipesContainer">
+                    <!-- Gerado por JS -->
+                </div>
+                <button class="save-btn" onclick="salvarFotos()">SALVAR FOTOS</button>
+            </div>
+
+            <!-- ===== CARD 6: SINCERONIZAR ===== -->
+            <div class="adm-card">
+                <h2>🔄 SINCERONIZAR</h2>
+                <p style="color:var(--text); font-size:0.9rem; opacity:.7; margin-bottom:12px;">
+                    Publica todas as alterações no site principal (partidas.html)
+                </p>
+                <button class="save-btn green" onclick="sincronizar()">📤 PUBLICAR ALTERAÇÕES</button>
+                <p id="syncStatus" style="margin-top:10px; font-size:0.85rem; color:var(--green);"></p>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // =========================================
+        // CONFIGURAÇÕES E DADOS
+        // =========================================
+
+        const SENHA = '123qweasdzxcZ';
+        const STORAGE_KEY = 'gaming_battle_data';
+
+        // Dados padrão
+        let dados = {
+            logotipo: null,
+            equipes: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'],
+            confrontosPorRodada: 5,
+            rodadas: [],
+            classificacao: [],
+            fotos: {}
+        };
+
+        // =========================================
+        // LOGIN
+        // =========================================
+
+        function fazerLogin() {
+            const senha = document.getElementById('senhaInput').value;
+            const error = document.getElementById('loginError');
+
+            if (senha === SENHA) {
+                document.getElementById('loginContainer').style.display = 'none';
+                document.getElementById('admContainer').style.display = 'block';
+                error.style.display = 'none';
+                carregarDados();
+                inicializarAdm();
+            } else {
+                error.style.display = 'block';
+                document.getElementById('senhaInput').value = '';
+                document.getElementById('senhaInput').focus();
+            }
+        }
+
+        document.getElementById('senhaInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') fazerLogin();
+        });
+
+        function logout() {
+            document.getElementById('loginContainer').style.display = 'flex';
+            document.getElementById('admContainer').style.display = 'none';
+            document.getElementById('senhaInput').value = '';
+            document.getElementById('loginError').style.display = 'none';
+        }
+
+        // =========================================
+        // CARREGAR / SALVAR DADOS
+        // =========================================
+
+        function carregarDados() {
+            const stored = localStorage.getItem(STORAGE_KEY);
+            if (stored) {
+                try {
+                    const parsed = JSON.parse(stored);
+                    dados = { ...dados, ...parsed };
+                } catch (e) {
+                    console.log('Erro ao carregar dados, usando padrão');
+                }
+            }
+        }
+
+        function salvarDados() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(dados));
+        }
+
+        // =========================================
+        // INICIALIZAR ADM
+        // =========================================
+
+        function inicializarAdm() {
+            document.getElementById('qtdEquipes').value = dados.equipes.length;
+            document.getElementById('confrontosPorRodada').value = dados.confrontosPorRodada;
+
+            // Preview do logo
+            if (dados.logotipo) {
+                const preview = document.getElementById('logoPreview');
+                preview.src = dados.logotipo;
+                preview.classList.add('show');
+            }
+
+            carregarRodadasSelect();
+            carregarConfrontos();
+            renderTabelaAdm();
+            renderFotosEquipes();
+        }
+
+        // =========================================
+        // LOGOTIPO
+        // =========================================
+
+        function previewLogo(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const preview = document.getElementById('logoPreview');
+                    preview.src = e.target.result;
+                    preview.classList.add('show');
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function salvarLogo() {
+            const preview = document.getElementById('logoPreview');
+            if (preview.src && preview.classList.contains('show')) {
+                dados.logotipo = preview.src;
+                salvarDados();
+                alert('✅ Logotipo salvo com sucesso!');
+            } else {
+                alert('⚠️ Selecione uma imagem primeiro!');
+            }
+        }
+
+        // =========================================
+        // CONFIGURAÇÕES - REGERAR CAMPEONATO
+        // =========================================
+
+        function salvarConfiguracoes() {
+            const qtd = parseInt(document.getElementById('qtdEquipes').value);
+            const cpr = parseInt(document.getElementById('confrontosPorRodada').value);
+
+            // Gerar equipes (A, B, C, ...)
+            const novasEquipes = [];
+            for (let i = 0; i < qtd; i++) {
+                novasEquipes.push(String.fromCharCode(65 + i));
+            }
+
+            dados.equipes = novasEquipes;
+            dados.confrontosPorRodada = cpr;
+
+            // Regerar rodadas
+            dados.rodadas = gerarRodadas(novasEquipes, cpr);
+            dados.classificacao = gerarClassificacao(dados.rodadas, novasEquipes);
+
+            salvarDados();
+            inicializarAdm();
+            alert(`✅ Campeonato regerado com ${qtd} equipes e ${cpr} confrontos por rodada!`);
+        }
+
+        // =========================================
+        // GERAR RODADAS
+        // =========================================
+
+        function gerarRodadas(equipes, cpr) {
+            const total = equipes.length;
+            let confrontos = [];
+
+            for (let i = 0; i < total; i++) {
+                for (let j = i + 1; j < total; j++) {
+                    confrontos.push([equipes[i], equipes[j]]);
+                }
+            }
+
+            // Embaralhar
+            for (let i = confrontos.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [confrontos[i], confrontos[j]] = [confrontos[j], confrontos[i]];
+            }
+
+            const rodadas = [];
+            let rodadaIndex = 0;
+
+            while (confrontos.length > 0) {
+                const rodadaAtual = [];
+                const timesUsados = new Set();
+
+                for (let i = 0; i < confrontos.length && rodadaAtual.length < cpr; i++) {
+                    const [t1, t2] = confrontos[i];
+                    if (!timesUsados.has(t1) && !timesUsados.has(t2)) {
+                        rodadaAtual.push({
+                            time1: t1,
+                            time2: t2,
+                            placar1: Math.floor(Math.random() * 3),
+                            placar2: Math.floor(Math.random() * 3),
+                            data: `${String(5 + rodadaIndex).padStart(2, '0')}/08/2025`,
+                            hora: '20:00'
+                        });
+                        timesUsados.add(t1);
+                        timesUsados.add(t2);
+                        confrontos.splice(i, 1);
+                        i--;
+                    }
+                }
+
+                if (rodadaAtual.length > 0) {
+                    rodadas.push({
+                        numero: rodadaIndex + 1,
+                        confrontos: rodadaAtual
+                    });
+                    rodadaIndex++;
+                }
+            }
+
+            return rodadas;
+        }
+
+        // =========================================
+        // GERAR CLASSIFICAÇÃO
+        // =========================================
+
+        function gerarClassificacao(rodadas, equipes) {
+            const stats = {};
+            equipes.forEach(e => {
+                stats[e] = { p: 0, sj: 0, sv: 0, se: 0, sp: 0, pj: 0, pv: 0, pp: 0 };
+            });
+
+            rodadas.forEach(r => {
+                r.confrontos.forEach(c => {
+                    const t1 = c.time1;
+                    const t2 = c.time2;
+                    const p1 = c.placar1;
+                    const p2 = c.placar2;
+
+                    stats[t1].sj++;
+                    stats[t2].sj++;
+                    stats[t1].pj += 2;
+                    stats[t2].pj += 2;
+
+                    if (p1 > p2) {
+                        stats[t1].p += 3;
+                        stats[t1].sv++;
+                        stats[t1].pv += 2;
+                        stats[t2].sp++;
+                        stats[t2].pp += 2;
+                    } else if (p2 > p1) {
+                        stats[t2].p += 3;
+                        stats[t2].sv++;
+                        stats[t2].pv += 2;
+                        stats[t1].sp++;
+                        stats[t1].pp += 2;
+                    } else {
+                        stats[t1].p += 1;
+                        stats[t2].p += 1;
+                        stats[t1].se++;
+                        stats[t2].se++;
+                        stats[t1].pv += 1;
+                        stats[t2].pv += 1;
+                        stats[t1].pp += 1;
+                        stats[t2].pp += 1;
+                    }
+                });
+            });
+
+            const resultado = Object.keys(stats).map(time => ({ time, ...stats[time] }));
+            resultado.sort((a, b) => b.p - a.p || b.sv - a.sv);
+
+            return resultado.map((item, index) => ({ posicao: index + 1, ...item }));
+        }
+
+        // =========================================
+        // RODADAS SELECT
+        // =========================================
+
+        function carregarRodadasSelect() {
+            const select = document.getElementById('selectRodada');
+            select.innerHTML = '';
+            dados.rodadas.forEach((r, i) => {
+                const option = document.createElement('option');
+                option.value = i;
+                option.textContent = `Rodada ${r.numero} (${r.confrontos.length} confrontos)`;
+                select.appendChild(option);
+            });
+        }
+
+        // =========================================
+        // CONFRONTOS (EDITÁVEL)
+        // =========================================
+
+        function carregarConfrontos() {
+            const select = document.getElementById('selectRodada');
+            const index = parseInt(select.value);
+            const container = document.getElementById('confrontosContainer');
+
+            if (isNaN(index) || !dados.rodadas[index]) {
+                container.innerHTML = '<p style="color:var(--text); opacity:.5;">Selecione uma rodada</p>';
+                return;
+            }
+
+            const rodada = dados.rodadas[index];
+            container.innerHTML = '';
+
+            rodada.confrontos.forEach((c, i) => {
+                const div = document.createElement('div');
+                div.className = 'confronto-edit';
+                div.innerHTML = `
+                    <select class="edit-time1">
+                        ${dados.equipes.map(e => `<option value="${e}" ${e === c.time1 ? 'selected' : ''}>Equipe ${e}</option>`).join('')}
+                    </select>
+                    <span class="vs-text">VS</span>
+                    <select class="edit-time2">
+                        ${dados.equipes.map(e => `<option value="${e}" ${e === c.time2 ? 'selected' : ''}>Equipe ${e}</option>`).join('')}
+                    </select>
+                    <input type="number" class="edit-placar1" value="${c.placar1}" min="0" max="3" style="width:50px;" />
+                    <span class="vs-text">-</span>
+                    <input type="number" class="edit-placar2" value="${c.placar2}" min="0" max="3" style="width:50px;" />
+                    <button class="remove-btn" onclick="removerConfronto(${index}, ${i})">✕</button>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function adicionarConfronto() {
+            const select = document.getElementById('selectRodada');
+            const index = parseInt(select.value);
+
+            if (isNaN(index) || !dados.rodadas[index]) {
+                alert('⚠️ Selecione uma rodada primeiro!');
+                return;
+            }
+
+            // Pega dois times disponíveis
+            const timesUsados = dados.rodadas[index].confrontos.flatMap(c => [c.time1, c.time2]);
+            const disponiveis = dados.equipes.filter(e => !timesUsados.includes(e));
+
+            if (disponiveis.length < 2) {
+                alert('⚠️ Não há times disponíveis para criar mais confrontos!');
+                return;
+            }
+
+            dados.rodadas[index].confrontos.push({
+                time1: disponiveis[0],
+                time2: disponiveis[1],
+                placar1: 0,
+                placar2: 0,
+                data: '05/08/2025',
+                hora: '20:00'
+            });
+
+            salvarDados();
+            carregarConfrontos();
+            carregarRodadasSelect();
+        }
+
+        function removerConfronto(rodadaIndex, confrontoIndex) {
+            if (confirm('Remover este confronto?')) {
+                dados.rodadas[rodadaIndex].confrontos.splice(confrontoIndex, 1);
+                salvarDados();
+                carregarConfrontos();
+                carregarRodadasSelect();
+            }
+        }
+
+        function salvarConfrontos() {
+            const select = document.getElementById('selectRodada');
+            const index = parseInt(select.value);
+            const container = document.getElementById('confrontosContainer');
+            const items = container.querySelectorAll('.confronto-edit');
+
+            items.forEach((item, i) => {
+                const time1 = item.querySelector('.edit-time1').value;
+                const time2 = item.querySelector('.edit-time2').value;
+                const placar1 = parseInt(item.querySelector('.edit-placar1').value) || 0;
+                const placar2 = parseInt(item.querySelector('.edit-placar2').value) || 0;
+
+                dados.rodadas[index].confrontos[i] = {
+                    ...dados.rodadas[index].confrontos[i],
+                    time1,
+                    time2,
+                    placar1,
+                    placar2
+                };
+            });
+
+            // Recalcular classificação
+            dados.classificacao = gerarClassificacao(dados.rodadas, dados.equipes);
+
+            salvarDados();
+            renderTabelaAdm();
+            alert('✅ Confrontos salvos com sucesso!');
+        }
+
+        // =========================================
+        // TABELA ADM
+        // =========================================
+
+        function renderTabelaAdm() {
+            const container = document.getElementById('tabelaAdmContainer');
+            if (!dados.classificacao || dados.classificacao.length === 0) {
+                container.innerHTML = '<p style="color:var(--text); opacity:.5;">Nenhum dado disponível</p>';
+                return;
+            }
+
+            let html = `
+                <div class="tableBox">
+                    <table style="width:100%; font-size:0.8rem;">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Equipe</th>
+                                <th>P</th>
+                                <th>V</th>
+                                <th>E</th>
+                                <th>D</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+            `;
+
+            dados.classificacao.forEach(item => {
+                html += `
+                    <tr>
+                        <td>${item.posicao}</td>
+                        <td><strong>Equipe ${item.time}</strong></td>
+                        <td style="color:var(--gold); font-weight:700;">${item.p}</td>
+                        <td>${item.sv}</td>
+                        <td>${item.se}</td>
+                        <td>${item.sp}</td>
+                    </tr>
+                `;
+            });
+
+            html += `</tbody></table></div>`;
+            container.innerHTML = html;
+        }
+
+        function salvarTabela() {
+            // A classificação já é salva junto com os confrontos
+            // Mas podemos forçar o recálculo
+            dados.classificacao = gerarClassificacao(dados.rodadas, dados.equipes);
+            salvarDados();
+            renderTabelaAdm();
+            alert('✅ Classificação atualizada!');
+        }
+
+        // =========================================
+        // FOTOS DAS EQUIPES
+        // =========================================
+
+        function renderFotosEquipes() {
+            const container = document.getElementById('fotosEquipesContainer');
+            container.innerHTML = '';
+
+            dados.equipes.forEach(equipe => {
+                const div = document.createElement('div');
+                div.style.cssText = `
+                    display:flex; align-items:center; gap:12px; 
+                    padding:8px 0; border-bottom:1px solid rgba(255,255,255,.05);
+                `;
+
+                const label = document.createElement('label');
+                label.textContent = `Equipe ${equipe}:`;
+                label.style.cssText = 'font-size:0.85rem; color:var(--text); min-width:100px;';
+
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = 'image/*';
+                input.dataset.equipe = equipe;
+                input.style.cssText = 'flex:1; padding:6px; background:rgba(255,255,255,.03); border-radius:8px;';
+                input.onchange = function(e) {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function(ev) {
+                            dados.fotos[equipe] = ev.target.result;
+                            // Atualizar preview
+                            const preview = div.querySelector('.foto-preview');
+                            if (preview) {
+                                preview.src = ev.target.result;
+                                preview.classList.add('show');
+                            }
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                };
+
+                const preview = document.createElement('img');
+                preview.className = 'foto-preview';
+                preview.style.cssText = 'width:40px; height:40px; border-radius:50%; object-fit:cover; border:1px solid rgba(255,255,255,.1); display:none;';
+                if (dados.fotos[equipe]) {
+                    preview.src = dados.fotos[equipe];
+                    preview.classList.add('show');
+                    preview.style.display = 'block';
+                }
+
+                div.appendChild(label);
+                div.appendChild(input);
+                div.appendChild(preview);
+                container.appendChild(div);
+            });
+        }
+
+        function salvarFotos() {
+            // As fotos já são salvas via onchange
+            salvarDados();
+            alert('✅ Fotos salvas com sucesso!');
+        }
+
+        // =========================================
+        // SINCERONIZAR
+        // =========================================
+
+        function sincronizar() {
+            const status = document.getElementById('syncStatus');
+
+            // Salvar tudo antes de sincronizar
+            salvarDados();
+
+            // Gerar o código para partidas.html
+            const codigoPartidas = gerarCodigoPartidas();
+
+            // Copiar para o clipboard
+            navigator.clipboard.writeText(codigoPartidas).then(() => {
+                status.textContent = '✅ Dados sincronizados! Código copiado para o clipboard.';
+                status.style.color = 'var(--green)';
+            }).catch(() => {
+                // Fallback: mostrar em um alert
+                status.textContent = '⚠️ Não foi possível copiar. Use o botão abaixo.';
+                status.style.color = 'var(--gold)';
+
+                // Mostrar botão para copiar manualmente
+                const btnManual = document.createElement('button');
+                btnManual.textContent = '📋 COPIAR CÓDIGO MANUALMENTE';
+                btnManual.style.cssText = `
+                    display:block; width:100%; margin-top:10px; 
+                    padding:12px; background:rgba(46,197,255,.15); 
+                    border:1px solid rgba(46,197,255,.3); border-radius:10px;
+                    color:var(--blue); font-family:"Orbitron",sans-serif; 
+                    font-size:0.8rem; cursor:pointer;
+                `;
+                btnManual.onclick = function() {
+                    const textarea = document.createElement('textarea');
+                    textarea.value = codigoPartidas;
+                    document.body.appendChild(textarea);
+                    textarea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textarea);
+                    status.textContent = '✅ Código copiado!';
+                    status.style.color = 'var(--green)';
+                    this.remove();
+                };
+                status.parentNode.appendChild(btnManual);
+            });
+
+            status.textContent = '📤 Sincronizando...';
+        }
+
+        // =========================================
+        // GERAR CÓDIGO PARTIDAS.HTML
+        // =========================================
+
+        function gerarCodigoPartidas() {
+            // Escapar dados para JSON
+            const dadosStr = JSON.stringify(dados);
+
+            return `<!DOCTYPE html>
+        <html lang="pt-BR">
+        <head>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <title>Partidas - Gaming Battle MLBB Cup</title>
+            <link rel="preconnect" href="https://fonts.googleapis.com" />
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+            <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+            <style>
+                /* =========================================
+                   ESTILOS - PARTIDAS
+                ========================================= */
+                :root {
+                    --bg: #050816;
+                    --card: rgba(18, 24, 45, .70);
+                    --blue: #2EC5FF;
+                    --purple: #7B2EFF;
+                    --gold: #FFD34D;
+                    --white: #F4F8FF;
+                    --text: #C8D3E8;
+                }
+                * { margin:0; padding:0; box-sizing:border-box; }
+                body { font-family:"Poppins",sans-serif; background:#000; color:var(--white); min-height:100vh; position:relative; }
+                body::before {
+                    content:""; position:fixed; inset:0;
+                    background: linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.75)), url("images/fundogaming.png");
+                    background-size:cover; background-position:center; background-repeat:no-repeat;
+                    transform:scale(1.08); animation:bgMove 20s ease-in-out infinite alternate; z-index:-3;
+                }
+                @keyframes bgMove { 0%{transform:scale(1.08) translateY(0px);} 100%{transform:scale(1.12) translateY(-20px);} }
+                .background-overlay {
+                    position:fixed; inset:0;
+                    background: radial-gradient(circle at top, rgba(46,197,255,.18), transparent 60%), radial-gradient(circle at bottom, rgba(123,46,255,.15), transparent 70%);
+                    pointer-events:none; z-index:-2;
+                }
+                .stars {
+                    position:fixed; inset:0;
+                    background-image: radial-gradient(#ffffff 1px,transparent 1px), radial-gradient(#69d8ff 1px,transparent 1px), radial-gradient(#ffffff 1px,transparent 1px);
+                    background-size: 140px 140px, 220px 220px, 300px 300px;
+                    animation:starsMove 80s linear infinite; opacity:.45; z-index:-1;
+                }
+                @keyframes starsMove { from{transform:translateY(0);} to{transform:translateY(-600px);} }
+
+                /* HEADER */
+                .header { max-width:1100px; margin:auto; padding:30px 20px 10px; text-align:center; }
+                .back-button {
+                    display:inline-flex; align-items:center; gap:10px; color:var(--blue);
+                    text-decoration:none; font-family:"Orbitron",sans-serif; font-size:0.9rem;
+                    padding:10px 25px; border:1px solid rgba(46,197,255,.3); border-radius:30px; transition:.3s; margin-bottom:20px;
+                }
+                .back-button:hover { background:rgba(46,197,255,.15); box-shadow:0 0 30px rgba(46,197,255,.2); }
+                .page-title {
+                    font-family:"Orbitron",sans-serif; font-size:clamp(1.8rem,4vw,3rem); font-weight:900;
+                    background:linear-gradient(90deg,#00d9ff,#ffffff,#7b2eff); -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+                }
+                .logo-header { max-width:200px; margin-bottom:10px; display:block; margin-left:auto; margin-right:auto; }
+                .logo-header.hidden { display:none; }
+
+                /* NAVEGAÇÃO */
+                .nav-tabs {
+                    display:flex; justify-content:center; gap:10px; flex-wrap:wrap; padding:20px 20px 0; max-width:1100px; margin:auto;
+                }
+                .nav-tab {
+                    padding:12px 28px; font-family:"Orbitron",sans-serif; font-size:0.85rem; font-weight:600;
+                    color:var(--text); background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08);
+                    border-radius:30px; cursor:pointer; transition:.3s; text-transform:uppercase; letter-spacing:1px;
+                }
+                .nav-tab:hover { background:rgba(46,197,255,.1); border-color:var(--blue); }
+                .nav-tab.active { background:linear-gradient(135deg,rgba(0,191,255,.2),rgba(123,46,255,.2)); border-color:var(--blue); color:#fff; box-shadow:0 0 30px rgba(46,197,255,.15); }
+
+                /* CONTEÚDO */
+                .container { max-width:1100px; margin:30px auto; padding:0 20px 40px; }
+                .tab-content { display:none; animation:fadeIn .5s ease; }
+                .tab-content.active { display:block; }
+                @keyframes fadeIn { from{opacity:0; transform:translateY(20px);} to{opacity:1; transform:translateY(0);} }
+
+                /* CARDS */
+                .card {
+                    background:var(--card); backdrop-filter:blur(18px); border:1px solid rgba(255,255,255,.08);
+                    border-radius:22px; padding:30px; margin-bottom:28px; box-shadow:0 0 25px rgba(0,0,0,.35); transition:.35s;
+                }
+                .card:hover { border-color:var(--blue); box-shadow:0 0 30px rgba(46,197,255,.15); }
+                .card h2 { font-family:"Orbitron",sans-serif; color:var(--blue); margin-bottom:20px; font-size:1.3rem; }
+
+                /* RODADAS */
+                .rodadas-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:16px; }
+                .rodada-btn {
+                    padding:20px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08);
+                    border-radius:16px; text-align:center; cursor:pointer; transition:.3s;
+                    color:var(--text); font-family:"Orbitron",sans-serif; font-size:0.9rem;
+                }
+                .rodada-btn:hover { background:rgba(46,197,255,.1); border-color:var(--blue); transform:translateY(-4px); box-shadow:0 8px 25px rgba(46,197,255,.1); }
+                .rodada-btn .sub { font-family:"Poppins",sans-serif; font-size:0.7rem; color:var(--text); opacity:.6; display:block; margin-top:5px; }
+
+                /* CONFRONTOS */
+                .confronto { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:15px; }
+                .confronto-item {
+                    background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.06); border-radius:16px;
+                    padding:20px; text-align:center; cursor:pointer; transition:.3s;
+                }
+                .confronto-item:hover { background:rgba(46,197,255,.06); border-color:var(--blue); transform:scale(1.02); }
+                .confronto-item .time { font-weight:600; font-size:1.1rem; color:#fff; display:flex; align-items:center; justify-content:center; gap:10px; }
+                .confronto-item .time img { width:30px; height:30px; border-radius:50%; object-fit:cover; border:1px solid rgba(255,255,255,.1); }
+                .confronto-item .vs { color:var(--purple); font-family:"Orbitron",sans-serif; font-size:0.8rem; margin:8px 0; }
+                .confronto-item .info { font-size:0.8rem; color:var(--text); opacity:.7; }
+                .confronto-item .placar { color:var(--gold); font-weight:700; font-size:1.1rem; }
+
+                /* DETALHES */
+                .partida-detalhes { background:rgba(255,255,255,.03); border-radius:16px; padding:25px; text-align:center; }
+                .partida-detalhes .times { display:flex; justify-content:center; align-items:center; gap:30px; font-size:1.4rem; font-weight:700; flex-wrap:wrap; }
+                .partida-detalhes .times .time-item { display:flex; align-items:center; gap:10px; }
+                .partida-detalhes .times .time-item img { width:40px; height:40px; border-radius:50%; object-fit:cover; border:2px solid rgba(255,255,255,.1); }
+                .partida-detalhes .times .placar { color:var(--gold); font-family:"Orbitron",sans-serif; font-size:2rem; }
+                .partida-detalhes .info { margin-top:15px; color:var(--text); font-size:0.9rem; }
+                .voltar-btn {
+                    display:inline-block; margin-top:20px; padding:10px 30px; background:rgba(46,197,255,.15);
+                    border:1px solid rgba(46,197,255,.3); border-radius:30px; color:var(--blue); cursor:pointer;
+                    font-family:"Orbitron",sans-serif; font-size:0.8rem; transition:.3s;
+                }
+                .voltar-btn:hover { background:rgba(46,197,255,.25); }
+
+                /* TABELA */
+                .tableBox { overflow-x:auto; }
+                table { width:100%; border-collapse:collapse; font-size:0.85rem; }
+                th { background:rgba(46,197,255,.15); color:var(--gold); padding:14px 10px; font-family:"Orbitron",sans-serif; font-size:0.7rem; text-transform:uppercase; letter-spacing:1px; text-align:center; }
+                td { padding:12px 10px; border-bottom:1px solid rgba(255,255,255,.05); color:var(--text); text-align:center; }
+                tr:hover td { background:rgba(46,197,255,.05); }
+                .posicao { font-weight:700; color:#fff; }
+                .posicao-1 { color:var(--gold); }
+                .posicao-2 { color:#C0C0C0; }
+                .posicao-3 { color:#CD7F32; }
+                .time-nome { font-weight:600; color:#fff; text-align:left; }
+                .time-nome img { width:24px; height:24px; border-radius:50%; object-fit:cover; vertical-align:middle; margin-right:8px; border:1px solid rgba(255,255,255,.1); }
+
+                /* RESPONSIVO */
+                @media(max-width:768px) {
+                    .confronto { grid-template-columns:1fr; }
+                    .nav-tab { font-size:0.7rem; padding:8px 16px; }
+                    .partida-detalhes .times { font-size:1rem; gap:15px; }
+                    .partida-detalhes .times .placar { font-size:1.5rem; }
+                    .card { padding:20px; }
+                    table { font-size:0.7rem; }
+                    th, td { padding:8px 6px; }
+                }
+                @media(max-width:480px) {
+                    .rodadas-grid { grid-template-columns:1fr 1fr; }
+                    .nav-tabs { gap:6px; }
+                    .nav-tab { font-size:0.6rem; padding:6px 12px; }
+                }
+            </style>
+        </head>
+        <body>
+            <div class="background-overlay"></div>
+            <div class="stars"></div>
+
+            <header class="header">
+                <a href="index.html" class="back-button">← VOLTAR</a>
+                <img id="logoHeader" class="logo-header hidden" alt="Logotipo" />
+                <h1 class="page-title">⚔ PARTIDAS</h1>
+            </header>
+
+            <nav class="nav-tabs">
+                <button class="nav-tab active" data-tab="rodadas">📅 Rodadas</button>
+                <button class="nav-tab" data-tab="tabela">📊 Classificação</button>
+            </nav>
+
+            <main class="container">
+                <!-- ABA: RODADAS -->
+                <div class="tab-content active" id="tab-rodadas">
+                    <div id="nivel-rodadas">
+                        <div class="card">
+                            <h2>📅 FASE DE GRUPOS</h2>
+                            <p style="color:var(--text); margin-bottom:20px;">Selecione uma rodada para ver os confrontos:</p>
+                            <div class="rodadas-grid" id="rodadasGrid"></div>
+                        </div>
+                    </div>
+                    <div id="nivel-confrontos" style="display:none;">
+                        <div class="card">
+                            <button class="voltar-btn" onclick="voltarRodadas()">← VOLTAR PARA RODADAS</button>
+                            <h2 id="rodadaTitulo" style="margin-top:15px;">Rodada 1</h2>
+                            <div class="confronto" id="confrontosGrid"></div>
+                        </div>
+                    </div>
+                    <div id="nivel-partida" style="display:none;">
+                        <div class="card">
+                            <button class="voltar-btn" onclick="voltarConfrontos()">← VOLTAR PARA CONFRONTOS</button>
+                            <div id="partidaDetalhes"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ABA: TABELA -->
+                <div class="tab-content" id="tab-tabela">
+                    <div class="card">
+                        <h2>📊 CLASSIFICAÇÃO - FASE DE GRUPOS</h2>
+                        <div class="tableBox">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th style="text-align:left;">Equipe</th>
+                                        <th>P</th>
+                                        <th>SJ</th>
+                                        <th>SV</th>
+                                        <th>SE</th>
+                                        <th>SP</th>
+                                        <th>PJ</th>
+                                        <th>PV</th>
+                                        <th>PP</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tabelaBody"></tbody>
+                            </table>
+                        </div>
+                        <p style="color:var(--text); font-size:0.8rem; margin-top:15px; opacity:.6;">
+                            <strong>Legenda:</strong> P = Pontos | SJ = Séries Jogadas | SV = Séries Vencidas | SE = Séries Empatadas | SP = Séries Perdidas | PJ = Partidas Jogadas | PV = Partidas Vencidas | PP = Partidas Perdidas
+                        </p>
+                    </div>
+                </div>
+            </main>
+
+            <script>
+                // =========================================
+                // DADOS SINCERONIZADOS
+                // =========================================
+
+                const dados = ${dadosStr};
+
+                // =========================================
+                // FUNÇÕES
+                // =========================================
+
+                let rodadaAtual = 0;
+                let confrontoAtual = 0;
+
+                // Logo
+                if (dados.logotipo) {
+                    const logo = document.getElementById('logoHeader');
+                    logo.src = dados.logotipo;
+                    logo.classList.remove('hidden');
+                }
+
+                // Navegação entre abas
+                document.querySelectorAll('.nav-tab').forEach(tab => {
+                    tab.addEventListener('click', function() {
+                        document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                        this.classList.add('active');
+                        const tabId = this.dataset.tab;
+                        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                        document.getElementById('tab-' + tabId).classList.add('active');
+                        if (tabId === 'tabela') renderTabela();
+                    });
+                });
+
+                // Renderizar Rodadas
+                function renderRodadas() {
+                    const grid = document.getElementById('rodadasGrid');
+                    grid.innerHTML = '';
+                    dados.rodadas.forEach((r, index) => {
+                        const div = document.createElement('div');
+                        div.className = 'rodada-btn';
+                        div.innerHTML = \`
+                            Rodada \${r.numero}
+                            <span class="sub">\${r.confrontos.length} confrontos</span>
+                        \`;
+                        div.onclick = () => mostrarConfrontos(index);
+                        grid.appendChild(div);
+                    });
+                }
+
+                // Mostrar Confrontos
+                function mostrarConfrontos(index) {
+                    rodadaAtual = index;
+                    const rodada = dados.rodadas[index];
+                    document.getElementById('nivel-rodadas').style.display = 'none';
+                    document.getElementById('nivel-confrontos').style.display = 'block';
+                    document.getElementById('nivel-partida').style.display = 'none';
+                    document.getElementById('rodadaTitulo').textContent = \`Rodada \${rodada.numero}\`;
+
+                    const grid = document.getElementById('confrontosGrid');
+                    grid.innerHTML = '';
+                    rodada.confrontos.forEach((conf, i) => {
+                        const div = document.createElement('div');
+                        div.className = 'confronto-item';
+
+                        const foto1 = dados.fotos && dados.fotos[conf.time1] ? \`<img src="\${dados.fotos[conf.time1]}" />\` : '';
+                        const foto2 = dados.fotos && dados.fotos[conf.time2] ? \`<img src="\${dados.fotos[conf.time2]}" />\` : '';
+
+                        div.innerHTML = \`
+                            <div class="time">\${foto1} Equipe \${conf.time1}</div>
+                            <div class="vs">VS</div>
+                            <div class="time">\${foto2} Equipe \${conf.time2}</div>
+                            <div class="placar">\${conf.placar1} - \${conf.placar2}</div>
+                            <div class="info">\${conf.data} • \${conf.hora} BRT</div>
+                        \`;
+                        div.onclick = () => mostrarPartida(index, i);
+                        grid.appendChild(div);
+                    });
+                }
+
+                // Mostrar Partida
+                function mostrarPartida(rodadaIndex, confrontoIndex) {
+                    confrontoAtual = confrontoIndex;
+                    const conf = dados.rodadas[rodadaIndex].confrontos[confrontoIndex];
+                    document.getElementById('nivel-rodadas').style.display = 'none';
+                    document.getElementById('nivel-confrontos').style.display = 'none';
+                    document.getElementById('nivel-partida').style.display = 'block';
+
+                    const foto1 = dados.fotos && dados.fotos[conf.time1] ? \`<img src="\${dados.fotos[conf.time1]}" />\` : '';
+                    const foto2 = dados.fotos && dados.fotos[conf.time2] ? \`<img src="\${dados.fotos[conf.time2]}" />\` : '';
+
+                    const container = document.getElementById('partidaDetalhes');
+                    container.innerHTML = \`
+                        <div class="partida-detalhes">
+                            <h3 style="color:var(--blue); font-family:Orbitron; font-size:1.2rem; margin-bottom:20px;">
+                                🏆 Equipe \${conf.time1} vs Equipe \${conf.time2}
+                            </h3>
+                            <div class="times">
+                                <div class="time-item">\${foto1} Equipe \${conf.time1}</div>
+                                <span class="placar">\${conf.placar1} - \${conf.placar2}</span>
+                                <div class="time-item">\${foto2} Equipe \${conf.time2}</div>
+                            </div>
+                            <div class="info">📅 \${conf.data} • ⏰ \${conf.hora} BRT</div>
+                            <div class="info" style="margin-top:10px; opacity:.5;">Série MD3 • 2 partidas jogadas</div>
+                        </div>
+                    \`;
+                }
+
+                // Voltar
+                function voltarRodadas() {
+                    document.getElementById('nivel-rodadas').style.display = 'block';
+                    document.getElementById('nivel-confrontos').style.display = 'none';
+                    document.getElementById('nivel-partida').style.display = 'none';
+                }
+
+                function voltarConfrontos() {
+                    document.getElementById('nivel-rodadas').style.display = 'none';
+                    document.getElementById('nivel-confrontos').style.display = 'block';
+                    document.getElementById('nivel-partida').style.display = 'none';
+                    mostrarConfrontos(rodadaAtual);
+                }
+
+                // Renderizar Tabela
+                function renderTabela() {
+                    const tbody = document.getElementById('tabelaBody');
+                    tbody.innerHTML = '';
+                    dados.classificacao.forEach(item => {
+                        const tr = document.createElement('tr');
+                        const posClass = item.posicao <= 3 ? \`posicao-\${item.posicao}\` : '';
+                        const foto = dados.fotos && dados.fotos[item.time] ? \`<img src="\${dados.fotos[item.time]}" />\` : '';
+                        tr.innerHTML = \`
+                            <td class="posicao \${posClass}">\${item.posicao}</td>
+                            <td class="time-nome">\${foto} Equipe \${item.time}</td>
+                            <td>\${item.p}</td>
+                            <td>\${item.sj}</td>
+                            <td>\${item.sv}</td>
+                            <td>\${item.se}</td>
+                            <td>\${item.sp}</td>
+                            <td>\${item.pj}</td>
+                            <td>\${item.pv}</td>
+                            <td>\${item.pp}</td>
+                        \`;
+                        tbody.appendChild(tr);
+                    });
+                }
+
+                // Inicializar
+                renderRodadas();
+                console.log('⚔ Partidas carregadas com sucesso!');
+            </script>
+        </body>
+        </html>`;
+        }
+
+        // =========================================
+        // INICIALIZAR
+        // =========================================
+
+        // Verificar se já está logado (recarregar)
+        console.log('🔐 ADM - Gaming Battle MLBB');
+    </script>
+
+</body>
+</html>
