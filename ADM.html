@@ -82,98 +82,11 @@
             to { transform: translateY(-600px); }
         }
 
-        /* ========== LOGIN ========== */
-        .login-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        .login-box {
-            background: var(--card);
-            backdrop-filter: blur(18px);
-            border: 1px solid rgba(255, 255, 255, .08);
-            border-radius: 24px;
-            padding: 50px 40px;
-            max-width: 420px;
-            width: 100%;
-            text-align: center;
-            box-shadow: 0 0 60px rgba(123, 46, 255, .15);
-        }
-
-        .login-box h1 {
-            font-family: "Orbitron", sans-serif;
-            font-size: 1.8rem;
-            background: linear-gradient(90deg, #00d9ff, #ffffff, #7b2eff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 8px;
-        }
-
-        .login-box .sub {
-            color: var(--text);
-            font-size: 0.9rem;
-            opacity: .6;
-            margin-bottom: 30px;
-        }
-
-        .login-box input {
-            width: 100%;
-            padding: 16px 20px;
-            background: rgba(255, 255, 255, .05);
-            border: 1px solid rgba(255, 255, 255, .1);
-            border-radius: 12px;
-            color: #fff;
-            font-size: 1rem;
-            transition: .3s;
-            outline: none;
-            margin-bottom: 20px;
-        }
-
-        .login-box input:focus {
-            border-color: var(--blue);
-            box-shadow: 0 0 20px rgba(46, 197, 255, .15);
-        }
-
-        .login-box input::placeholder {
-            color: rgba(255, 255, 255, .3);
-        }
-
-        .login-btn {
-            width: 100%;
-            padding: 16px;
-            background: linear-gradient(135deg, #00BFFF, #7B2EFF);
-            border: none;
-            border-radius: 12px;
-            color: #fff;
-            font-family: "Orbitron", sans-serif;
-            font-size: 1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: .3s;
-            letter-spacing: 1px;
-        }
-
-        .login-btn:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 30px rgba(123, 46, 255, .4);
-        }
-
-        .login-error {
-            color: var(--red);
-            font-size: 0.85rem;
-            margin-top: 12px;
-            display: none;
-        }
-
         /* ========== PAINEL ADM ========== */
         .adm-container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 30px 20px 60px;
-            display: none;
         }
 
         .adm-header {
@@ -195,20 +108,10 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .adm-header .logout-btn {
-            padding: 10px 25px;
-            background: rgba(255, 71, 87, .15);
-            border: 1px solid rgba(255, 71, 87, .3);
-            border-radius: 30px;
-            color: var(--red);
-            font-family: "Orbitron", sans-serif;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: .3s;
-        }
-
-        .adm-header .logout-btn:hover {
-            background: rgba(255, 71, 87, .25);
+        .adm-header .info {
+            color: var(--text);
+            font-size: 0.85rem;
+            opacity: .5;
         }
 
         /* ========== GRID DO ADM ========== */
@@ -330,23 +233,6 @@
 
         .preview-img.show {
             display: block;
-        }
-
-        /* ========== TIMES ========== */
-        .times-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 10px;
-        }
-
-        .time-tag {
-            background: rgba(46, 197, 255, .1);
-            border: 1px solid rgba(46, 197, 255, .2);
-            border-radius: 20px;
-            padding: 4px 16px;
-            font-size: 0.8rem;
-            color: var(--text);
         }
 
         /* ========== CONFRONTOS EDITÁVEIS ========== */
@@ -510,10 +396,6 @@
                 grid-template-columns: 1fr;
             }
 
-            .login-box {
-                padding: 30px 20px;
-            }
-
             .adm-header {
                 flex-direction: column;
                 text-align: center;
@@ -536,23 +418,12 @@
     <div class="background-overlay"></div>
     <div class="stars"></div>
 
-    <!-- ========== LOGIN ========== -->
-    <div class="login-container" id="loginContainer">
-        <div class="login-box">
-            <h1>🔐 ADM</h1>
-            <p class="sub">Painel Administrativo</p>
-            <input type="password" id="senhaInput" placeholder="Digite a senha..." />
-            <button class="login-btn" onclick="fazerLogin()">ENTRAR</button>
-            <p class="login-error" id="loginError">❌ Senha incorreta! Tente novamente.</p>
-        </div>
-    </div>
-
     <!-- ========== PAINEL ADM ========== -->
-    <div class="adm-container" id="admContainer">
+    <div class="adm-container">
 
         <header class="adm-header">
             <h1>⚙️ PAINEL ADMINISTRATIVO</h1>
-            <button class="logout-btn" onclick="logout()">🚪 SAIR</button>
+            <span class="info">📌 Dados salvos automaticamente no navegador</span>
         </header>
 
         <div class="adm-grid">
@@ -632,7 +503,6 @@
         // CONFIGURAÇÕES E DADOS
         // =========================================
 
-        const SENHA = '123qweasdzxcZ';
         const STORAGE_KEY = 'gaming_battle_data';
 
         // Dados padrão
@@ -644,38 +514,6 @@
             classificacao: [],
             fotos: {}
         };
-
-        // =========================================
-        // LOGIN
-        // =========================================
-
-        function fazerLogin() {
-            const senha = document.getElementById('senhaInput').value;
-            const error = document.getElementById('loginError');
-
-            if (senha === SENHA) {
-                document.getElementById('loginContainer').style.display = 'none';
-                document.getElementById('admContainer').style.display = 'block';
-                error.style.display = 'none';
-                carregarDados();
-                inicializarAdm();
-            } else {
-                error.style.display = 'block';
-                document.getElementById('senhaInput').value = '';
-                document.getElementById('senhaInput').focus();
-            }
-        }
-
-        document.getElementById('senhaInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') fazerLogin();
-        });
-
-        function logout() {
-            document.getElementById('loginContainer').style.display = 'flex';
-            document.getElementById('admContainer').style.display = 'none';
-            document.getElementById('senhaInput').value = '';
-            document.getElementById('loginError').style.display = 'none';
-        }
 
         // =========================================
         // CARREGAR / SALVAR DADOS
@@ -1506,8 +1344,11 @@
         // INICIALIZAR
         // =========================================
 
+        carregarDados();
+        inicializarAdm();
+
         console.log('🔐 ADM - Gaming Battle MLBB');
-        console.log('📌 Senha: 123qweasdzxcZ');
+        console.log('📌 Acesso direto - sem login');
     </script>
 
 </body>
