@@ -1,0 +1,191 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:'Orbitron',sans-serif;
+    background:url("fundogaming.png") center center/cover no-repeat fixed;
+}
+
+.overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.45);
+}
+
+.container{
+    position:relative;
+    z-index:2;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:20px;
+}
+
+.logo{
+    width:90%;
+    max-width:500px;
+    margin-bottom:20px;
+    filter:drop-shadow(0 0 20px #00bfff);
+}
+
+.card{
+    width:95%;
+    max-width:450px;
+    background:rgba(15,20,35,.75);
+    backdrop-filter:blur(15px);
+    border:2px solid #00bfff;
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 0 25px #009dff;
+}
+
+.card h1{
+    color:#6fd9ff;
+    text-align:center;
+    margin-bottom:10px;
+}
+
+.card p{
+    color:#fff;
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.card input{
+    width:100%;
+    margin:10px 0;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    background:#101827;
+    color:#fff;
+    font-size:16px;
+}
+
+.card label{
+    display:block;
+    color:#7bdcff;
+    margin-top:10px;
+}
+
+.card button{
+    width:100%;
+    margin-top:20px;
+    padding:16px;
+    border:none;
+    border-radius:14px;
+    background:#00aaff;
+    color:#fff;
+    font-size:20px;
+    font-family:'Orbitron',sans-serif;
+    cursor:pointer;
+    box-shadow:0 0 20px #00bfff;
+}
+
+.bemvindo{
+    margin-top:40px;
+    text-align:center;
+    color:#fff;
+    width:90%;
+    max-width:900px;
+}
+
+.frase-topo{
+    color:#d6d6d6;
+    font-size:14px;
+    letter-spacing:4px;
+}
+
+.bemvindo h2{
+    color:#fff;
+    font-size:32px;
+    margin:5px 0;
+}
+
+.subtitulo{
+    color:#58b8ff;
+    font-size:26px;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.descricao{
+    color:#d7d7d7;
+    font-size:18px;
+    margin-bottom:30px;
+}
+
+.icones{
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    flex-wrap:wrap;
+    margin-bottom:30px;
+}
+
+.icones div{
+    color:#55bfff;
+    font-size:32px;
+}
+
+.icones span{
+    display:block;
+    margin-top:8px;
+    font-size:16px;
+    color:#fff;
+}
+
+.rodape{
+    color:#fff;
+    font-size:18px;
+    margin-bottom:10px;
+}
+
+.convite{
+    color:#58b8ff;
+    font-size:18px;
+    margin-bottom:40px;
+}
+
+@media (max-width:768px){
+
+    .bemvindo{
+        margin-top:30px;
+    }
+
+    .subtitulo{
+        font-size:20px;
+    }
+
+    .descricao,
+    .rodape,
+    .convite{
+        font-size:15px;
+    }
+
+    .icones{
+        gap:20px;
+    }
+
+    .icones div{
+        font-size:26px;
+    }
+
+    .icones span{
+        font-size:13px;
+    }
+
+    .logo{
+        width:95%;
+    }
+
+    .card{
+        width:95%;
+        padding:20px;
+    }
+
+}

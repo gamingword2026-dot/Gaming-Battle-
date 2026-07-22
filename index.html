@@ -1,737 +1,226 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gaming Battle MLBB Cup</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaming World</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
     <style>
-        /* =========================================
-           GAMING WORLD - STYLE.CSS
-        ========================================= */
-
-        :root {
-            --bg: #050816;
-            --card: rgba(18, 24, 45, .70);
-            --blue: #2EC5FF;
-            --purple: #7B2EFF;
-            --gold: #FFD34D;
-            --white: #F4F8FF;
-            --text: #C8D3E8;
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
-            font-family: "Poppins", sans-serif;
-            background: #000;
-            color: var(--white);
-            overflow-x: hidden;
-            position: relative;
             min-height: 100vh;
-        }
-
-        /* ===========================
-           FUNDO
-        =========================== */
-
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            background:
-                linear-gradient(rgba(0, 0, 0, .55), rgba(0, 0, 0, .75)),
-                url("images/fundogaming.png");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            transform: scale(1.08);
-            animation: bgMove 20s ease-in-out infinite alternate;
-            z-index: -3;
-        }
-
-        @keyframes bgMove {
-            0% {
-                transform: scale(1.08) translateY(0px);
-            }
-            100% {
-                transform: scale(1.12) translateY(-20px);
-            }
-        }
-
-        .background-overlay {
-            position: fixed;
-            inset: 0;
-            background:
-                radial-gradient(circle at top, rgba(46, 197, 255, .18), transparent 60%),
-                radial-gradient(circle at bottom, rgba(123, 46, 255, .15), transparent 70%);
-            pointer-events: none;
-            z-index: -2;
-        }
-
-        /* ===========================
-           ESTRELAS
-        =========================== */
-
-        .stars {
-            position: fixed;
-            inset: 0;
-            background-image:
-                radial-gradient(#ffffff 1px, transparent 1px),
-                radial-gradient(#69d8ff 1px, transparent 1px),
-                radial-gradient(#ffffff 1px, transparent 1px);
-            background-size:
-                140px 140px,
-                220px 220px,
-                300px 300px;
-            animation: starsMove 80s linear infinite;
-            opacity: .45;
-            z-index: -1;
-        }
-
-        @keyframes starsMove {
-            from {
-                transform: translateY(0);
-            }
-            to {
-                transform: translateY(-600px);
-            }
-        }
-
-        /* ===========================
-           HERO
-        =========================== */
-
-        .hero {
-            max-width: 1100px;
-            margin: auto;
-            padding: 60px 20px 30px;
-            text-align: center;
-        }
-
-        /* ===========================
-           LOGO - COM FALLBACK EM TEXTO
-        =========================== */
-
-        .logo-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 10px;
+            font-family: 'Orbitron', sans-serif;
+            background: url("fundogaming.png") center center fixed;
+            background-size: cover;
+            background-repeat: no-repeat;
         }
 
-        .logo {
-            width: min(90%, 520px);
-            display: block;
-            margin: auto;
-            filter:
-                drop-shadow(0 0 15px #00c3ff)
-                drop-shadow(0 0 35px #7b2eff);
-            animation:
-                logoFloat 5s ease-in-out infinite,
-                logoGlow 3s ease-in-out infinite;
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(
+                rgba(0, 0, 0, 0.20),
+                rgba(0, 0, 0, 0.60)
+            );
+            z-index: 1;
         }
-
-        /* Fallback: se a imagem não carregar, mostra o texto */
-        .logo-text-fallback {
-            display: none;
-            font-family: "Orbitron", sans-serif;
-            font-size: clamp(2rem, 5vw, 4rem);
-            font-weight: 900;
-            background: linear-gradient(90deg, #00d9ff, #ffffff, #7b2eff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(0, 180, 255, .5);
-            animation: logoFloat 5s ease-in-out infinite;
-        }
-
-        /* Se a imagem falhar, mostra o fallback */
-        .logo.error + .logo-text-fallback {
-            display: block;
-        }
-
-        .logo.error {
-            display: none;
-        }
-
-        @keyframes logoFloat {
-            0% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-14px);
-            }
-            100% {
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes logoGlow {
-            0% {
-                filter:
-                    drop-shadow(0 0 10px #00bfff)
-                    drop-shadow(0 0 20px #7b2eff);
-            }
-            50% {
-                filter:
-                    drop-shadow(0 0 28px #00d9ff)
-                    drop-shadow(0 0 55px #7b2eff);
-            }
-            100% {
-                filter:
-                    drop-shadow(0 0 10px #00bfff)
-                    drop-shadow(0 0 20px #7b2eff);
-            }
-        }
-
-        /* ===========================
-           TEXTOS
-        =========================== */
-
-        .subtitle {
-            margin-top: 20px;
-            color: #89dcff;
-            font-size: 1rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-        }
-
-        .title {
-            margin-top: 18px;
-            font-family: "Orbitron", sans-serif;
-            font-size: clamp(2rem, 5vw, 4rem);
-            font-weight: 900;
-            background: linear-gradient(90deg, #00d9ff, #ffffff, #7b2eff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(0, 180, 255, .5);
-        }
-
-        .description {
-            max-width: 760px;
-            margin: 25px auto;
-            color: var(--text);
-            font-size: 1.08rem;
-            line-height: 1.8;
-        }
-
-        /* ===========================
-           BOTÃO PARTIDAS
-        =========================== */
-
-        .playButton {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 35px;
-            padding: 18px 45px;
-            font-family: "Orbitron", sans-serif;
-            font-size: 1.1rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-decoration: none;
-            text-transform: uppercase;
-            color: #fff;
-            background: linear-gradient(135deg, #00BFFF, #7B2EFF);
-            border: 2px solid rgba(255, 255, 255, .15);
-            border-radius: 60px;
-            box-shadow:
-                0 0 20px rgba(0, 191, 255, .45),
-                0 0 45px rgba(123, 46, 255, .35);
-            transition: .35s;
-            animation: buttonPulse 2.5s infinite ease-in-out;
-        }
-
-        .playButton:hover {
-            transform: translateY(-4px) scale(1.04);
-            box-shadow:
-                0 0 25px #00BFFF,
-                0 0 55px #7B2EFF;
-        }
-
-        .playButton:active {
-            transform: scale(.97);
-        }
-
-        @keyframes buttonPulse {
-            0% {
-                box-shadow:
-                    0 0 15px rgba(0, 191, 255, .35),
-                    0 0 35px rgba(123, 46, 255, .25);
-            }
-            50% {
-                box-shadow:
-                    0 0 28px rgba(0, 191, 255, .75),
-                    0 0 60px rgba(123, 46, 255, .55);
-            }
-            100% {
-                box-shadow:
-                    0 0 15px rgba(0, 191, 255, .35),
-                    0 0 35px rgba(123, 46, 255, .25);
-            }
-        }
-
-        /* ===========================
-           CONTAINER
-        =========================== */
 
         .container {
-            max-width: 1100px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        /* ===========================
-           CARDS
-        =========================== */
-
-        .card {
-            background: var(--card);
-            backdrop-filter: blur(18px);
-            border: 1px solid rgba(255, 255, 255, .08);
-            border-radius: 22px;
-            padding: 30px;
-            margin-bottom: 28px;
-            box-shadow:
-                0 0 25px rgba(0, 0, 0, .35);
-            transition: .35s;
-        }
-
-        .card:hover {
-            transform: translateY(-6px);
-            border-color: var(--blue);
-            box-shadow:
-                0 0 30px rgba(46, 197, 255, .35);
-        }
-
-        .card h2 {
-            font-family: "Orbitron", sans-serif;
-            color: var(--blue);
-            margin-bottom: 20px;
-            font-size: 1.5rem;
-        }
-
-        .card p,
-        .card li {
-            color: var(--text);
-            font-size: 1rem;
-            line-height: 1.9;
-        }
-
-        .card ul {
-            padding-left: 22px;
-        }
-
-        /* ===========================
-           TABELA
-        =========================== */
-
-        .tableBox {
-            overflow-x: auto;
-        }
-
-        table {
+            position: relative;
+            z-index: 10;
             width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
+            max-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 15px 40px;
         }
 
-        th {
-            background: #15284b;
-            color: var(--gold);
-            padding: 16px;
-            font-family: "Orbitron", sans-serif;
+        /* ===== LOGO ===== */
+        .logo {
+            width: 88%;
+            max-width: 650px;
+            animation: flutuar 5s ease-in-out infinite;
+            filter: drop-shadow(0 0 18px #00bfff) drop-shadow(0 0 35px #0066ff);
         }
 
-        td {
-            padding: 15px;
-            border-bottom: 1px solid rgba(255, 255, 255, .08);
-            color: var(--text);
+        @keyframes flutuar {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0); }
         }
 
-        tr:hover {
-            background: rgba(46, 197, 255, .08);
-        }
-
-        /* ===========================
-           PREMIAÇÃO
-        =========================== */
-
-        .awards {
+        /* ===== MENU ===== */
+        .menu {
+            margin-top: 25px;
             display: flex;
             justify-content: center;
-            align-items: stretch;
-            gap: 25px;
+            align-items: center;
+            gap: 22px;
             flex-wrap: wrap;
-            margin-top: 25px;
         }
 
-        .award {
-            flex: 1;
-            min-width: 240px;
-            max-width: 320px;
-            background: rgba(255, 255, 255, .04);
-            border: 1px solid rgba(255, 255, 255, .08);
-            border-radius: 22px;
-            padding: 30px 20px;
+        .botao {
+            width: 180px;
+            height: 70px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            font-size: 28px;
+            color: #74dcff;
+            background: rgba(15, 15, 20, 0.55);
+            border: 3px solid #009dff;
+            border-radius: 40px;
+            backdrop-filter: blur(10px);
+            text-shadow: 0 0 12px #00c3ff;
+            box-shadow: 0 0 12px #009dff, inset 0 0 12px rgba(0, 170, 255, 0.25);
+            transition: 0.3s;
+        }
+
+        .botao:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 0 25px #00c3ff, 0 0 45px #0066ff;
+        }
+
+        /* ===== TEXTO DA PRIMEIRA IMAGEM ===== */
+        .mensagem {
+            margin-top: 40px;
             text-align: center;
-            transition: .4s;
-            backdrop-filter: blur(20px);
+            color: #fff;
+            max-width: 850px;
+            padding: 30px 25px;
+            background: rgba(0, 0, 0, 0.50);
+            border: 2px solid rgba(0, 157, 255, 0.30);
+            border-radius: 30px;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 0 40px rgba(0, 150, 255, 0.15);
         }
 
-        .award:hover {
-            transform: translateY(-10px) scale(1.03);
-            box-shadow:
-                0 0 30px rgba(46, 197, 255, .35);
-        }
-
-        .award span {
+        .mensagem h1 {
             font-size: 3.2rem;
-            display: block;
-            margin-bottom: 15px;
-        }
-
-        .award h3 {
-            font-family: "Orbitron", sans-serif;
-            font-size: 1.5rem;
-            color: var(--gold);
-            margin-bottom: 12px;
-        }
-
-        .award p {
-            color: var(--text);
-            margin: 8px 0;
-        }
-
-        .first {
-            border: 2px solid var(--gold);
-            box-shadow:
-                0 0 25px rgba(255, 211, 77, .25);
-        }
-
-        .second {
-            border: 2px solid var(--blue);
-        }
-
-        /* ===========================
-           FOOTER
-        =========================== */
-
-        footer {
-            margin-top: 70px;
-            padding: 40px 20px;
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, .08);
-            background: rgba(0, 0, 0, .35);
-            backdrop-filter: blur(15px);
-        }
-
-        .footerLogo {
-            width: 220px;
-            margin-bottom: 18px;
-            filter:
-                drop-shadow(0 0 15px #00BFFF);
-        }
-
-        /* Fallback para footer */
-        .footer-text-fallback {
-            display: none;
-            font-family: "Orbitron", sans-serif;
-            font-size: 2rem;
             font-weight: 900;
-            background: linear-gradient(90deg, #00d9ff, #ffffff, #7b2eff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 18px;
+            color: #74dcff;
+            text-shadow: 0 0 30px #00bfff, 0 0 60px #0066ff;
+            letter-spacing: 3px;
         }
 
-        .footerLogo.error + .footer-text-fallback {
-            display: block;
+        .mensagem .subtitulo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #a8e6ff;
+            margin-top: 8px;
+            text-shadow: 0 0 20px #009dff;
         }
 
-        .footerLogo.error {
-            display: none;
-        }
-
-        footer p {
-            font-family: "Orbitron", sans-serif;
+        .mensagem .descricao {
             font-size: 1.2rem;
-            color: var(--white);
-            margin-bottom: 8px;
+            font-weight: 500;
+            color: #cceeff;
+            margin-top: 10px;
+            letter-spacing: 1px;
         }
 
-        footer span {
-            color: #88cfff;
-            font-size: .95rem;
+        .mensagem .icones {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin: 25px 0 20px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #74dcff;
+            text-shadow: 0 0 15px #009dff;
         }
 
-        /* ===========================
-           ANIMAÇÃO DOS CARDS
-        =========================== */
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(60px);
-            transition:
-                opacity .8s ease,
-                transform .8s ease;
+        .mensagem .icones span {
+            background: rgba(0, 157, 255, 0.10);
+            padding: 10px 18px;
+            border-radius: 30px;
+            border: 1px solid rgba(0, 157, 255, 0.25);
         }
 
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
+        .mensagem .frase-final {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #fff;
+            margin-top: 10px;
+            text-shadow: 0 0 15px #009dff;
         }
 
-        /* ===========================
-           RESPONSIVO
-        =========================== */
+        .mensagem .convite {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #74dcff;
+            margin-top: 15px;
+            text-shadow: 0 0 30px #00bfff, 0 0 50px #0066ff;
+        }
 
-        @media(max-width: 768px) {
-            .hero {
-                padding: 40px 20px;
-            }
+        /* ===== RESPONSIVO ===== */
+        @media (max-width: 768px) {
+            .logo { width: 95%; }
+            .menu { gap: 10px; margin-top: 18px; }
+            .botao { width: 120px; height: 55px; font-size: 18px; }
 
-            .logo {
-                width: 92%;
-            }
+            .mensagem { padding: 20px 15px; }
+            .mensagem h1 { font-size: 2.0rem; }
+            .mensagem .subtitulo { font-size: 1.2rem; }
+            .mensagem .descricao { font-size: 0.95rem; }
+            .mensagem .icones { font-size: 0.9rem; gap: 12px; }
+            .mensagem .icones span { padding: 6px 12px; }
+            .mensagem .frase-final { font-size: 1rem; }
+            .mensagem .convite { font-size: 1.1rem; }
+        }
 
-            .title {
-                font-size: 2.2rem;
-            }
-
-            .subtitle {
-                font-size: .85rem;
-                letter-spacing: 2px;
-            }
-
-            .description {
-                font-size: .95rem;
-                line-height: 1.7;
-            }
-
-            .playButton {
-                width: 100%;
-                padding: 18px;
-                font-size: 1rem;
-            }
-
-            .card {
-                padding: 22px;
-            }
-
-            .card h2 {
-                font-size: 1.2rem;
-            }
-
-            .awards {
-                flex-direction: column;
-            }
-
-            .award {
-                max-width: 100%;
-            }
-
-            .footerLogo {
-                width: 170px;
-            }
+        @media (max-width: 480px) {
+            .mensagem h1 { font-size: 1.5rem; }
+            .botao { width: 100px; height: 45px; font-size: 14px; }
         }
     </style>
 </head>
-
 <body>
 
-    <div class="background-overlay"></div>
-    <div class="stars"></div>
+    <div class="overlay"></div>
 
-    <!-- ========== HEADER ========== -->
-    <header class="hero">
-        <div class="logo-container">
-            <img 
-                src="images/txtgaming.png" 
-                class="logo" 
-                alt="Gaming World" 
-                onerror="this.classList.add('error')"
-            />
-            <div class="logo-text-fallback">GAMING WORLD</div>
+    <div class="container">
+
+        <!-- LOGO: txtgaming.png -->
+        <img src="txtgaming.png" alt="Gaming World" class="logo">
+        <!-- MENU COM BOTÕES FUNCIONAIS -->
+        <div class="menu">
+            <a href="campeonato.html" class="botao">Campeonato</a>
+            <a href="regras.html" class="botao">Regras</a>
+            <a href="GW.html" class="botao">GW</a>
+            <a href="GW.html" class="botao">parceria</a>
         </div>
-        <h2 class="subtitle">A COMUNIDADE GAMER ESTÁ DE VOLTA</h2>
-        <h1 class="title">GAMING BATTLE MLBB CUP</h1>
-        <p class="description">
-            O campeonato oficial da comunidade Gaming World para jogadores de Mobile Legends.
-            Prepare sua equipe e dispute o título de campeão.
-        </p>
-        <a href="partidas.html" class="playButton">⚔ PARTIDAS</a>
-    </header>
 
-    <!-- ========== CONTEÚDO ========== -->
-    <main class="container">
+        <!-- TEXTO DA PRIMEIRA IMAGEM (1000034536) -->
+        <div class="mensagem">
+            <h1>DO PÓ VIEMOS<br>E RENASCEMOS.</h1>
+            <p class="subtitulo">SEJA BEM-VINDO À NOSSA COMUNIDADE</p>
+            <p class="descricao">Mais fortes, mais unidos e com uma nova direção.</p>
 
-        <section class="card reveal">
-            <h2>📋 Informações Gerais</h2>
-            <ul>
-                <li><strong>Organização:</strong> Gaming World</li>
-                <li><strong>Jogo:</strong> Mobile Legends Bang Bang</li>
-                <li><strong>Formato:</strong> 5x5</li>
-                <li><strong>Times:</strong> 10 Equipes</li>
-                <li><strong>Sistema:</strong> Fase de grupos + Eliminatórias</li>
-            </ul>
-        </section>
-
-        <section class="card reveal">
-            <h2>⚔ Sistema do Campeonato</h2>
-            <p>
-                Cada grupo terá cinco equipes. Todos jogam entre si. Os dois melhores avançam para a semifinal.
-                As semifinais serão disputadas em MD3. A grande final também será MD3.
-            </p>
-        </section>
-
-        <section class="card reveal">
-            <h2>🔄 Regra de Empate</h2>
-            <p>
-                Caso ocorra empate, a decisão acontecerá no <strong>Modo Rixa (Brawl)</strong>.
-                O vencedor será considerado o ganhador oficial da partida.
-            </p>
-        </section>
-
-        <section class="card reveal">
-            <h2>🚫 Regras do Chat</h2>
-            <p>
-                É proibido utilizar chat durante as partidas. Somente o sistema de PING é permitido.
-                Qualquer infração poderá resultar em advertência ou derrota por WO.
-            </p>
-        </section>
-
-        <section class="card reveal">
-            <h2>📊 Estrutura das Rodadas</h2>
-            <div class="tableBox">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Fase</th>
-                            <th>Formato</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Fase de Grupos</td>
-                            <td>Todos contra todos</td>
-                        </tr>
-                        <tr>
-                            <td>Semifinal</td>
-                            <td>MD3</td>
-                        </tr>
-                        <tr>
-                            <td>Final</td>
-                            <td>MD3</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="icones">
+                <span>🏆 Campeonatos</span>
+                <span>👥 Comunidade</span>
+                <span>🎮 Eventos</span>
+                <span>🤝 Parcerias</span>
             </div>
-        </section>
 
-        <section class="card reveal">
-            <h2>⏰ Prazos</h2>
-            <ul>
-                <li>Atraso máximo permitido: <strong>10 minutos.</strong></li>
-                <li>Após esse tempo será aplicado WO.</li>
-                <li>Cada equipe possui uma pausa técnica de até 3 minutos.</li>
-            </ul>
-        </section>
+            <p class="frase-final">Novos planos, novas ideias, a mesma essência.</p>
+            <p class="convite">Junte-se à Gaming World e faça parte dessa nova era!</p>
+        </div>
 
-        <section class="card reveal">
-            <h2>🏆 Premiação</h2>
-            <div class="awards">
-                <div class="award first">
-                    <span>🥇</span>
-                    <h3>Campeão</h3>
-                    <p>Troféu Virtual</p>
-                    <p>Cargo exclusivo</p>
-                    <p>Destaque na Gaming World</p>
-                </div>
-                <div class="award second">
-                    <span>🥈</span>
-                    <h3>Vice-Campeão</h3>
-                    <p>Menção Honrosa</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="card reveal">
-            <h2>📢 Aviso</h2>
-            <p>
-                Todas as equipes devem respeitar as regras do campeonato.
-                O objetivo é promover partidas competitivas, organizadas e com respeito entre todos os participantes.
-            </p>
-        </section>
-
-    </main>
-
-    <!-- ========== FOOTER ========== -->
-    <footer>
-        <img 
-            src="images/txtgaming.png" 
-            class="footerLogo" 
-            alt="Gaming World"
-            onerror="this.classList.add('error')"
-        />
-        <div class="footer-text-fallback">GAMING WORLD</div>
-        <p>Gaming World © 2026</p>
-        <span>Mobile Legends Bang Bang • Campeonato Oficial</span>
-    </footer>
-
-    <script>
-        // ========== REVELAÇÃO DE CARDS AO ROLAR ==========
-        const revealElements = document.querySelectorAll('.reveal');
-
-        function checkReveal() {
-            const windowHeight = window.innerHeight;
-            const revealThreshold = 120;
-
-            revealElements.forEach(el => {
-                const rect = el.getBoundingClientRect();
-                const isVisible = rect.top < windowHeight - revealThreshold;
-                if (isVisible) {
-                    el.classList.add('active');
-                }
-            });
-        }
-
-        window.addEventListener('load', checkReveal);
-        window.addEventListener('scroll', checkReveal);
-        window.addEventListener('resize', checkReveal);
-
-        // ========== PARALAX NAS ESTRELAS ==========
-        document.addEventListener('scroll', function() {
-            const stars = document.querySelector('.stars');
-            const scrollY = window.scrollY;
-            stars.style.transform = 'translateY(' + scrollY * 0.02 + 'px)';
-        });
-
-        // ========== CLIQUE NO BOTÃO ==========
-        const btn = document.querySelector('.playButton');
-        if (btn) {
-            btn.addEventListener('click', function(e) {
-                this.style.transform = 'scale(0.95)';
-                setTimeout(() => {
-                    this.style.transform = '';
-                }, 150);
-            });
-        }
-
-        console.log('🔥 Gaming Battle MLBB Cup carregado!');
-    </script>
+    </div>
 
 </body>
 </html>
