@@ -1,226 +1,327 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gaming World</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        body {
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Orbitron', sans-serif;
-            background: url("fundogaming.png") center center fixed;
-            background-size: cover;
-            background-repeat: no-repeat;
-        }
+<title>Gaming World</title>
 
-        .overlay {
-            position: fixed;
-            inset: 0;
-            background: linear-gradient(
-                rgba(0, 0, 0, 0.20),
-                rgba(0, 0, 0, 0.60)
-            );
-            z-index: 1;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
 
-        .container {
-            position: relative;
-            z-index: 10;
-            width: 100%;
-            max-width: 1200px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px 15px 40px;
-        }
+<style>
 
-        /* ===== LOGO ===== */
-        .logo {
-            width: 88%;
-            max-width: 650px;
-            animation: flutuar 5s ease-in-out infinite;
-            filter: drop-shadow(0 0 18px #00bfff) drop-shadow(0 0 35px #0066ff);
-        }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
 
-        @keyframes flutuar {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-12px); }
-            100% { transform: translateY(0); }
-        }
+body{
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+font-family:'Orbitron',sans-serif;
+background:url("fundogaming.png") center center fixed;
+background-size:cover;
+background-repeat:no-repeat;
+}
 
-        /* ===== MENU ===== */
-        .menu {
-            margin-top: 25px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 22px;
-            flex-wrap: wrap;
-        }
+.overlay{
+position:fixed;
+inset:0;
+background:linear-gradient(rgba(0,0,0,.20),rgba(0,0,0,.60));
+z-index:1;
+}
 
-        .botao {
-            width: 180px;
-            height: 70px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-decoration: none;
-            font-size: 28px;
-            color: #74dcff;
-            background: rgba(15, 15, 20, 0.55);
-            border: 3px solid #009dff;
-            border-radius: 40px;
-            backdrop-filter: blur(10px);
-            text-shadow: 0 0 12px #00c3ff;
-            box-shadow: 0 0 12px #009dff, inset 0 0 12px rgba(0, 170, 255, 0.25);
-            transition: 0.3s;
-        }
+.container{
+position:relative;
+z-index:10;
+width:100%;
+max-width:1200px;
+display:flex;
+flex-direction:column;
+align-items:center;
+padding:20px 15px 40px;
+}
 
-        .botao:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 0 25px #00c3ff, 0 0 45px #0066ff;
-        }
+.logo{
+width:88%;
+max-width:650px;
+animation:flutuar 5s ease-in-out infinite;
+filter:drop-shadow(0 0 18px #00bfff) drop-shadow(0 0 35px #0066ff);
+}
 
-        /* ===== TEXTO DA PRIMEIRA IMAGEM ===== */
-        .mensagem {
-            margin-top: 40px;
-            text-align: center;
-            color: #fff;
-            max-width: 850px;
-            padding: 30px 25px;
-            background: rgba(0, 0, 0, 0.50);
-            border: 2px solid rgba(0, 157, 255, 0.30);
-            border-radius: 30px;
-            backdrop-filter: blur(8px);
-            box-shadow: 0 0 40px rgba(0, 150, 255, 0.15);
-        }
+@keyframes flutuar{
+0%{transform:translateY(0);}
+50%{transform:translateY(-12px);}
+100%{transform:translateY(0);}
+}
 
-        .mensagem h1 {
-            font-size: 3.2rem;
-            font-weight: 900;
-            color: #74dcff;
-            text-shadow: 0 0 30px #00bfff, 0 0 60px #0066ff;
-            letter-spacing: 3px;
-        }
+.menu{
+margin-top:25px;
+display:flex;
+justify-content:center;
+align-items:center;
+gap:22px;
+flex-wrap:wrap;
+}
 
-        .mensagem .subtitulo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #a8e6ff;
-            margin-top: 8px;
-            text-shadow: 0 0 20px #009dff;
-        }
+.botao{
+width:180px;
+height:70px;
+display:flex;
+justify-content:center;
+align-items:center;
+text-decoration:none;
+font-size:28px;
+color:#74dcff;
+background:rgba(15,15,20,.55);
+border:3px solid #009dff;
+border-radius:40px;
+backdrop-filter:blur(10px);
+text-shadow:0 0 12px #00c3ff;
+box-shadow:0 0 12px #009dff,inset 0 0 12px rgba(0,170,255,.25);
+transition:.3s;
+}
 
-        .mensagem .descricao {
-            font-size: 1.2rem;
-            font-weight: 500;
-            color: #cceeff;
-            margin-top: 10px;
-            letter-spacing: 1px;
-        }
+.botao:hover{
+transform:translateY(-6px);
+box-shadow:0 0 25px #00c3ff,0 0 45px #0066ff;
+}
 
-        .mensagem .icones {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 30px;
-            flex-wrap: wrap;
-            margin: 25px 0 20px;
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #74dcff;
-            text-shadow: 0 0 15px #009dff;
-        }
+.mensagem{
+margin-top:40px;
+text-align:center;
+color:#fff;
+max-width:850px;
+padding:30px 25px;
+background:rgba(0,0,0,.50);
+border:2px solid rgba(0,157,255,.30);
+border-radius:30px;
+backdrop-filter:blur(8px);
+box-shadow:0 0 40px rgba(0,150,255,.15);
+}
 
-        .mensagem .icones span {
-            background: rgba(0, 157, 255, 0.10);
-            padding: 10px 18px;
-            border-radius: 30px;
-            border: 1px solid rgba(0, 157, 255, 0.25);
-        }
+.mensagem h1{
+font-size:3.2rem;
+font-weight:900;
+color:#74dcff;
+text-shadow:0 0 30px #00bfff,0 0 60px #0066ff;
+}
 
-        .mensagem .frase-final {
-            font-size: 1.3rem;
-            font-weight: 500;
-            color: #fff;
-            margin-top: 10px;
-            text-shadow: 0 0 15px #009dff;
-        }
+.subtitulo{
+font-size:1.8rem;
+font-weight:700;
+color:#a8e6ff;
+margin-top:8px;
+}
 
-        .mensagem .convite {
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: #74dcff;
-            margin-top: 15px;
-            text-shadow: 0 0 30px #00bfff, 0 0 50px #0066ff;
-        }
+.descricao{
+font-size:1.2rem;
+margin-top:10px;
+color:#cceeff;
+}
 
-        /* ===== RESPONSIVO ===== */
-        @media (max-width: 768px) {
-            .logo { width: 95%; }
-            .menu { gap: 10px; margin-top: 18px; }
-            .botao { width: 120px; height: 55px; font-size: 18px; }
+.icones{
+display:flex;
+justify-content:center;
+gap:25px;
+flex-wrap:wrap;
+margin:25px 0;
+}
 
-            .mensagem { padding: 20px 15px; }
-            .mensagem h1 { font-size: 2.0rem; }
-            .mensagem .subtitulo { font-size: 1.2rem; }
-            .mensagem .descricao { font-size: 0.95rem; }
-            .mensagem .icones { font-size: 0.9rem; gap: 12px; }
-            .mensagem .icones span { padding: 6px 12px; }
-            .mensagem .frase-final { font-size: 1rem; }
-            .mensagem .convite { font-size: 1.1rem; }
-        }
+.icones span{
+padding:10px 18px;
+border-radius:30px;
+background:rgba(0,157,255,.10);
+border:1px solid rgba(0,157,255,.25);
+}
 
-        @media (max-width: 480px) {
-            .mensagem h1 { font-size: 1.5rem; }
-            .botao { width: 100px; height: 45px; font-size: 14px; }
-        }
-    </style>
+.frase-final{
+margin-top:10px;
+font-size:1.3rem;
+}
+
+.convite{
+margin-top:15px;
+font-size:1.6rem;
+color:#74dcff;
+}
+
+.video{
+margin-top:45px;
+width:100%;
+display:flex;
+justify-content:center;
+}
+
+.video iframe{
+width:850px;
+max-width:100%;
+height:470px;
+border:none;
+border-radius:25px;
+box-shadow:0 0 25px #00bfff;
+}
+
+.canal{
+margin-top:20px;
+font-size:28px;
+color:#74dcff;
+text-align:center;
+}
+
+.redes{
+margin-top:35px;
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.rede{
+padding:16px 28px;
+border-radius:35px;
+text-decoration:none;
+font-size:22px;
+color:white;
+font-weight:bold;
+}
+
+.instagram{
+background:#E1306C;
+}
+
+.whatsapp{
+background:#25D366;
+}
+
+@media(max-width:768px){
+
+.logo{width:95%;}
+
+.botao{
+width:120px;
+height:55px;
+font-size:18px;
+}
+
+.mensagem h1{
+font-size:2rem;
+}
+
+.video iframe{
+height:220px;
+}
+
+.redes{
+flex-direction:column;
+align-items:center;
+}
+
+.rede{
+width:280px;
+text-align:center;
+}
+
+}
+
+</style>
+
 </head>
+
 <body>
 
-    <div class="overlay"></div>
+<div class="overlay"></div>
 
-    <div class="container">
+<div class="container">
 
-        <!-- LOGO: txtgaming.png -->
-        <img src="txtgaming.png" alt="Gaming World" class="logo">
-        <!-- MENU COM BOTÕES FUNCIONAIS -->
-        <div class="menu">
-            <a href="campeonato.html" class="botao">Campeonato</a>
-            <a href="regras.html" class="botao">Regras</a>
-            <a href="GW.html" class="botao">GW</a>
-            <a href="GW.html" class="botao">parceria</a>
-        </div>
+<img src="txtgaming.png" class="logo">
 
-        <!-- TEXTO DA PRIMEIRA IMAGEM (1000034536) -->
-        <div class="mensagem">
-            <h1>DO PÓ VIEMOS<br>E RENASCEMOS.</h1>
-            <p class="subtitulo">SEJA BEM-VINDO À NOSSA COMUNIDADE</p>
-            <p class="descricao">Mais fortes, mais unidos e com uma nova direção.</p>
+<div class="menu">
 
-            <div class="icones">
-                <span>🏆 Campeonatos</span>
-                <span>👥 Comunidade</span>
-                <span>🎮 Eventos</span>
-                <span>🤝 Parcerias</span>
-            </div>
+<a href="campeonato.html" class="botao">Campeonato</a>
 
-            <p class="frase-final">Novos planos, novas ideias, a mesma essência.</p>
-            <p class="convite">Junte-se à Gaming World e faça parte dessa nova era!</p>
-        </div>
+<a href="regras.html" class="botao">Regras</a>
 
-    </div>
+<a href="GW.html" class="botao">GW</a>
+
+<a href="parceria.html" class="botao">Parceria</a>
+
+</div>
+
+<div class="mensagem">
+
+<h1>DO PÓ VIEMOS<br>E RENASCEMOS.</h1>
+
+<p class="subtitulo">SEJA BEM-VINDO À NOSSA COMUNIDADE</p>
+
+<p class="descricao">
+Mais fortes, mais unidos e com uma nova direção.
+</p>
+
+<div class="icones">
+
+<span>🏆 Campeonatos</span>
+
+<span>👥 Comunidade</span>
+
+<span>🎮 Eventos</span>
+
+<span>🤝 Parcerias</span>
+
+</div>
+
+<p class="frase-final">
+Novos planos, novas ideias, a mesma essência.
+</p>
+
+<p class="convite">
+Junte-se à Gaming World e faça parte dessa nova era!
+</p>
+</div>
+
+<!-- VÍDEO -->
+<div class="video">
+
+<iframe
+src="https://www.youtube.com/embed/INNo9166tDc"
+title="Gaming World"
+allowfullscreen>
+</iframe>
+
+</div>
+
+<h2 class="canal">
+📺 Inscreva-se no Canal
+</h2>
+
+<!-- BOTÕES DAS REDES -->
+
+<div class="redes">
+
+<a
+href="https://www.instagram.com/gaming_world.gw?igsh=MTJ5OGswYTd4Mjljag%3D%3D"
+target="_blank"
+class="rede instagram">
+
+📷 Instagram
+
+</a>
+
+<a
+href="https://chat.whatsapp.com/IyzCZ7VZXncDMroYXsZIeG?s=cl&p=a&ilr=1"
+target="_blank"
+class="rede whatsapp">
+
+💬 Comunidade WhatsApp
+
+</a>
+
+</div>
+
+</div>
 
 </body>
 </html>
