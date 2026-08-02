@@ -1,503 +1,3 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-:root{
-
-    --azul:#2EC5FF;
-    --roxo:#7B2EFF;
-    --ouro:#FFD34D;
-    --branco:#F4F8FF;
-    --texto:#D6E4FF;
-
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-
-    font-family:"Poppins",sans-serif;
-
-    min-height:100vh;
-
-    color:var(--branco);
-
-    overflow-x:hidden;
-
-    background:#000;
-
-    position:relative;
-
-}
-
-/* =======================
-      FUNDO
-======================= */
-
-.background{
-
-    position:fixed;
-
-    inset:0;
-
-    background:
-
-    linear-gradient(rgba(0,0,0,.55),
-    rgba(0,0,0,.78)),
-
-    url("images/fundogaming.png");
-
-    background-size:cover;
-
-    background-position:center;
-
-    animation:bgMove 18s ease-in-out infinite alternate;
-
-    z-index:-3;
-
-}
-
-@keyframes bgMove{
-
-0%{
-
-transform:scale(1.05);
-
-}
-
-100%{
-
-transform:scale(1.10) translateY(-15px);
-
-}
-
-}
-
-/* =======================
-      ESTRELAS
-======================= */
-
-.stars{
-
-position:fixed;
-
-inset:0;
-
-background-image:
-
-radial-gradient(#fff 1px,transparent 1px),
-radial-gradient(#67d7ff 1px,transparent 1px),
-radial-gradient(#ffffff 1px,transparent 1px);
-
-background-size:
-
-160px 160px,
-240px 240px,
-320px 320px;
-
-opacity:.45;
-
-animation:stars 80s linear infinite;
-
-z-index:-2;
-
-}
-
-@keyframes stars{
-
-from{
-
-transform:translateY(0);
-
-}
-
-to{
-
-transform:translateY(-700px);
-
-}
-
-}
-
-/* =======================
-      HEADER
-======================= */
-
-header{
-
-padding:40px 20px;
-
-text-align:center;
-
-}
-
-.logo{
-
-width:min(90%,470px);
-
-animation:
-
-flutuar 5s ease-in-out infinite;
-
-filter:
-
-drop-shadow(0 0 20px #00bfff)
-drop-shadow(0 0 40px #7B2EFF);
-
-}
-
-@keyframes flutuar{
-
-0%{
-
-transform:translateY(0);
-
-}
-
-50%{
-
-transform:translateY(-14px);
-
-}
-
-100%{
-
-transform:translateY(0);
-
-}
-
-}
-
-header h1{
-
-margin-top:25px;
-
-font-family:"Orbitron",sans-serif;
-
-font-size:clamp(2rem,5vw,4rem);
-
-background:linear-gradient(
-90deg,
-#00d8ff,
-#ffffff,
-#7b2eff
-);
-
--webkit-background-clip:text;
-
--webkit-text-fill-color:transparent;
-
-text-shadow:0 0 25px rgba(0,180,255,.5);
-
-}
-
-header p{
-
-margin-top:12px;
-
-font-size:18px;
-
-letter-spacing:4px;
-
-color:#8adfff;
-
-text-transform:uppercase;
-
-}
-/* =======================
-      CONTAINER
-======================= */
-
-main{
-
-max-width:1100px;
-
-margin:auto;
-
-padding:20px;
-
-}
-
-/* =======================
-      CARDS
-======================= */
-
-.card{
-
-background:rgba(20,28,48,.72);
-
-backdrop-filter:blur(18px);
-
-border:1px solid rgba(255,255,255,.08);
-
-border-radius:22px;
-
-padding:30px;
-
-margin-bottom:30px;
-
-box-shadow:
-
-0 0 25px rgba(0,0,0,.35);
-
-transition:.35s;
-
-opacity:0;
-
-transform:translateY(60px);
-
-}
-
-.card.active{
-
-opacity:1;
-
-transform:translateY(0);
-
-}
-
-.card:hover{
-
-transform:translateY(-8px);
-
-border-color:var(--azul);
-
-box-shadow:
-
-0 0 30px rgba(46,197,255,.35);
-
-}
-
-.card h2{
-
-font-family:"Orbitron",sans-serif;
-
-color:var(--azul);
-
-font-size:28px;
-
-margin-bottom:20px;
-
-}
-
-.card p,
-.card li{
-
-color:var(--texto);
-
-line-height:1.9;
-
-font-size:17px;
-
-}
-
-.card ul{
-
-padding-left:25px;
-
-}
-
-.card li{
-
-margin-bottom:10px;
-
-}
-
-/* =======================
-      PREMIAÇÃO
-======================= */
-
-.premios{
-
-display:flex;
-
-flex-wrap:wrap;
-
-justify-content:center;
-
-gap:25px;
-
-margin-top:20px;
-
-}
-
-.premio{
-
-flex:1;
-
-min-width:250px;
-
-background:rgba(255,255,255,.04);
-
-border-radius:20px;
-
-padding:25px;
-
-text-align:center;
-
-transition:.35s;
-
-border:2px solid rgba(255,255,255,.08);
-
-}
-
-.premio:hover{
-
-transform:translateY(-8px);
-
-}
-
-.premio h3{
-
-font-family:"Orbitron",sans-serif;
-
-margin-bottom:15px;
-
-}
-
-.premio p{
-
-margin:8px 0;
-
-}
-
-.ouro{
-
-border-color:#FFD34D;
-
-box-shadow:0 0 25px rgba(255,211,77,.25);
-
-}
-
-.prata{
-
-border-color:#59CFFF;
-
-box-shadow:0 0 25px rgba(89,207,255,.20);
-
-}
-
-.bronze{
-
-border-color:#B87A45;
-
-box-shadow:0 0 25px rgba(184,122,69,.20);
-
-}
-
-/* =======================
-      FOOTER
-======================= */
-
-footer{
-
-padding:50px 20px;
-
-text-align:center;
-
-margin-top:40px;
-
-border-top:1px solid rgba(255,255,255,.08);
-
-background:rgba(0,0,0,.35);
-
-backdrop-filter:blur(10px);
-
-}
-
-.footerLogo{
-
-width:220px;
-
-filter:
-
-drop-shadow(0 0 18px #00bfff);
-
-margin-bottom:15px;
-
-}
-
-footer p{
-
-font-family:"Orbitron",sans-serif;
-
-color:white;
-
-font-size:18px;
-
-letter-spacing:2px;
-
-}
-
-/* =======================
-      RESPONSIVO
-======================= */
-
-@media(max-width:768px){
-
-.logo{
-
-width:92%;
-
-}
-
-header h1{
-
-font-size:34px;
-
-}
-
-header p{
-
-font-size:15px;
-
-letter-spacing:2px;
-
-}
-
-.card{
-
-padding:22px;
-
-}
-
-.card h2{
-
-font-size:22px;
-
-}
-
-.card p,
-.card li{
-
-font-size:15px;
-
-}
-
-.premios{
-
-flex-direction:column;
-
-}
-
-.premio{
-
-min-width:100%;
-
-}
-
-.footerLogo{
-
-width:170px;
-
-}
-
-}
-
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;500;600&display=swap');
 
 *{
@@ -506,201 +6,398 @@ width:170px;
     box-sizing:border-box;
 }
 
-html{
-    scroll-behavior:smooth;
-}
-
 body{
+
     font-family:'Poppins',sans-serif;
+
+    background:url("fundogaming.png") center center fixed;
+
+    background-size:cover;
+
     color:#fff;
-    overflow-x:hidden;
-    background:#000 url("fundogaming.png") center center/cover no-repeat fixed;
-    position:relative;
+
+    min-height:100vh;
+
 }
 
-body::before{
-    content:"";
+.background{
+
     position:fixed;
+
     inset:0;
-    background:rgba(0,0,0,.65);
+
+    background:rgba(0,8,25,.82);
+
+    backdrop-filter:blur(4px);
+
+    z-index:-2;
+
+}
+
+.stars{
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+    radial-gradient(#00c8ff55 1px, transparent 1px);
+
+    background-size:35px 35px;
+
+    opacity:.25;
+
     z-index:-1;
+
 }
 
 header{
+
     text-align:center;
+
     padding:40px 20px;
+
 }
 
 .logo{
-    width:280px;
+
+    width:340px;
+
     max-width:90%;
-    margin-bottom:25px;
+
     filter:
-        drop-shadow(0 0 15px #00bfff)
-        drop-shadow(0 0 35px #7b2eff);
-    animation:flutuar 4s ease-in-out infinite;
+    drop-shadow(0 0 15px #00c8ff)
+    drop-shadow(0 0 35px #0077ff);
+
+    animation:flutuar 5s infinite ease-in-out;
+
 }
 
 @keyframes flutuar{
-    0%{transform:translateY(0);}
-    50%{transform:translateY(-10px);}
-    100%{transform:translateY(0);}
+
+0%{
+transform:translateY(0);
 }
 
-h1{
+50%{
+transform:translateY(-10px);
+}
+
+100%{
+transform:translateY(0);
+}
+
+}
+
+header h1{
+
+    margin-top:20px;
+
     font-family:'Orbitron',sans-serif;
-    font-size:48px;
-    color:#32c9ff;
-    text-shadow:0 0 20px #00bfff;
-    margin-bottom:10px;
+
+    font-size:42px;
+
+    color:#6fe8ff;
+
+    text-shadow:
+    0 0 20px #00c8ff;
+
 }
 
-.subtitulo{
-    color:#9ddfff;
-    font-size:20px;
-    letter-spacing:4px;
-    margin-bottom:40px;
+header p{
+
+    margin-top:10px;
+
+    color:#b7eeff;
+
+    font-size:18px;
+
 }
 
-.container{
+.btn-voltar{
+
+    display:inline-block;
+
+    margin-top:25px;
+
+    padding:14px 35px;
+
+    background:linear-gradient(90deg,#009dff,#004cff);
+
+    border-radius:40px;
+
+    text-decoration:none;
+
+    color:#fff;
+
+    font-weight:bold;
+
+    transition:.3s;
+
+    box-shadow:
+    0 0 18px #00bfff;
+
+}
+
+.btn-voltar:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:
+    0 0 30px #00c8ff;
+
+}
+
+main{
+
     width:95%;
+
     max-width:1100px;
+
     margin:auto;
+
     padding-bottom:60px;
+
 }
+/*==================================
+            CARDS
+==================================*/
 
 .card{
-    background:rgba(10,18,35,.82);
-    border:2px solid rgba(0,191,255,.35);
-    border-radius:22px;
+
+    background:rgba(8,25,45,.88);
+
+    border:2px solid rgba(0,200,255,.25);
+
+    border-radius:25px;
+
     padding:30px;
+
     margin-bottom:30px;
+
     backdrop-filter:blur(12px);
-    box-shadow:0 0 30px rgba(0,191,255,.15);
+
+    box-shadow:
+        0 0 20px rgba(0,191,255,.15);
+
     transition:.35s;
+
 }
 
 .card:hover{
-    transform:translateY(-5px);
-    box-shadow:0 0 35px rgba(0,191,255,.4);
+
+    transform:translateY(-8px);
+
+    border-color:#00c8ff;
+
+    box-shadow:
+        0 0 25px rgba(0,200,255,.45),
+        0 0 45px rgba(0,120,255,.25);
+
 }
 
 .card h2{
+
     font-family:'Orbitron',sans-serif;
-    color:#35cfff;
+
+    color:#6fe8ff;
+
+    font-size:28px;
+
     margin-bottom:20px;
-    font-size:30px;
+
+    text-shadow:
+        0 0 15px #00c8ff;
+
 }
 
-.card p,
-.card li{
-    color:#f2f2f2;
-    line-height:1.9;
-    font-size:18px;
+.card p{
+
+    color:#d7f7ff;
+
+    font-size:17px;
+
+    line-height:1.8;
+
 }
 
 .card ul{
-    padding-left:25px;
+
+    list-style:none;
+
 }
 
-table{
-    width:100%;
-    border-collapse:collapse;
-    margin-top:20px;
-}
+.card li{
 
-th{
-    background:#0f2b4d;
-    color:#ffd54d;
-    padding:16px;
-    font-family:'Orbitron',sans-serif;
-}
+    margin:18px 0;
 
-td{
     padding:15px;
-    border-bottom:1px solid rgba(255,255,255,.12);
-    text-align:center;
-}
 
-tr:hover{
-    background:rgba(0,191,255,.08);
-}
-
-.premios{
-    display:flex;
-    gap:20px;
-    flex-wrap:wrap;
-    justify-content:center;
-}
-
-.premio{
-    flex:1;
-    min-width:220px;
     background:rgba(255,255,255,.05);
-    border:1px solid rgba(255,255,255,.1);
-    border-radius:18px;
-    padding:25px;
-    text-align:center;
+
+    border-left:4px solid #00c8ff;
+
+    border-radius:12px;
+
+    color:#ffffff;
+
+    transition:.3s;
+
+    line-height:1.8;
+
 }
 
-.premio h3{
-    color:#ffd54d;
-    margin-bottom:10px;
-    font-family:'Orbitron',sans-serif;
+.card li:hover{
+
+    background:rgba(0,200,255,.12);
+
+    transform:translateX(10px);
+
 }
+
+.card strong{
+
+    color:#6fe8ff;
+
+}
+
+/*==================================
+        BOTÃO CATÁLOGO
+==================================*/
+
+.botao-catalogo{
+
+    display:inline-block;
+
+    margin-top:25px;
+
+    padding:16px 35px;
+
+    background:linear-gradient(90deg,#00c8ff,#005eff);
+
+    color:#fff;
+
+    text-decoration:none;
+
+    border-radius:40px;
+
+    font-weight:bold;
+
+    transition:.35s;
+
+    box-shadow:
+        0 0 18px #00bfff;
+
+}
+
+.botao-catalogo:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:
+        0 0 30px #00c8ff,
+        0 0 45px #0077ff;
+
+}
+
+/*==================================
+            RODAPÉ
+==================================*/
 
 footer{
+
     text-align:center;
-    padding:40px 20px;
-    color:#bcdcff;
+
+    padding:50px 20px;
+
 }
 
-footer img{
-    width:180px;
-    margin-bottom:15px;
-    filter:drop-shadow(0 0 12px #00bfff);
+.footerLogo{
+
+    width:220px;
+
+    max-width:80%;
+
+    margin-bottom:20px;
+
+    filter:
+        drop-shadow(0 0 15px #00bfff);
+
 }
 
-.reveal{
-    opacity:0;
-    transform:translateY(60px);
-    transition:1s;
+footer p{
+
+    color:#9fdfff;
+
+    margin-top:10px;
+
+    font-size:15px;
+
 }
 
-.reveal.active{
-    opacity:1;
-    transform:translateY(0);
-}
+/*==================================
+        RESPONSIVO
+==================================*/
 
 @media(max-width:768px){
 
 .logo{
-    width:220px;
+
+    width:260px;
+
 }
 
-h1{
-    font-size:34px;
+header h1{
+
+    font-size:28px;
+
 }
 
-.subtitulo{
-    font-size:16px;
+header p{
+
+    font-size:15px;
+
 }
 
 .card{
+
     padding:20px;
+
 }
 
 .card h2{
-    font-size:24px;
+
+    font-size:22px;
+
 }
 
-.card p,
+.card p{
+
+    font-size:15px;
+
+}
+
 .card li{
-    font-size:16px;
+
+    font-size:14px;
+
+    padding:12px;
+
 }
 
-.premios{
-    flex-direction:column;
+.btn-voltar,
+.botao-catalogo{
+
+    width:100%;
+
+    text-align:center;
+
+}
+
+.footerLogo{
+
+    width:170px;
+
 }
 
 }

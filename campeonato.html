@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaming World - Campeonato</title>
+    <link rel="stylesheet" href="campeonato.css">
+</head>
+<body>
+    <!-- Fundo -->
+    <div class="bg-overlay"></div>
+
+    <!-- Cabeçalho -->
+    <header class="header">
+        <div class="logo-container">
+            <img src="logogaming.png" alt="Gaming World" class="logo-principal">
+        </div>
+        <h1 class="titulo-principal">CAMPEONATO GAMING BATTLE 2026</h1>
+        <p class="subtitulo">"Aqui Gaming World 2026"</p>
+
+        <!-- Navegação do topo -->
+        <nav class="nav-topo">
+            <a href="index.html" class="btn-nav">INÍCIO</a>
+            <a href="regrasc.html" class="btn-nav">REGRAS</a>
+            <a href="inscricao.html" class="btn-nav">INSCREVA-SE</a>
+        </nav>
+    </header>
+
+    <!-- Navegação das Rodadas -->
+    <nav class="nav-rodadas">
+        <button class="btn-rodada ativo" data-rodada="1">RODADA 1</button>
+        <button class="btn-rodada" data-rodada="2">RODADA 2</button>
+        <button class="btn-rodada" data-rodada="3">RODADA 3</button>
+        <button class="btn-rodada" data-rodada="4">FINAL</button>
+    </nav>
+
+    <!-- Container dos confrontos -->
+    <div id="container-confrantos" class="container-confrantos">
+        <!-- Os confrontos serão injetados via JS -->
+    </div>
+
+    <!-- Modal de detalhes -->
+    <div id="modal-confronto" class="modal">
+        <div class="modal-content">
+            <span class="fechar-modal">&times;</span>
+            <h2 id="modal-titulo">⚔️ CONFRONTO</h2>
+            <div id="modal-times" class="modal-times"></div>
+            <div id="modal-info" class="modal-info"></div>
+        </div>
+    </div>
+
+    <!-- Rodapé -->
+    <footer class="footer">
+        <p>© 2026 Gaming Battle - Todos os direitos reservados</p>
+        <p>Aqui Gaming World 2026</p>
+    </footer>
+
+    <script src="campeonato.js"></script>
+</body>
+</html>

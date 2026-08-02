@@ -1,162 +1,403 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parcerias | Gaming Battle</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<title>Parcerias | Gaming Battle</title>
+        body {
+            min-height: 100vh;
+            font-family: 'Orbitron', sans-serif;
+            background: url("fundogaming.png") center center fixed;
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 15px;
+        }
 
-<link rel="stylesheet" href="parceria.css">
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 1100px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            padding: 30px 25px 40px;
+            background: rgba(0, 0, 0, 0.70);
+            backdrop-filter: blur(12px);
+            border: 2px solid rgba(255, 215, 0, 0.25);
+            border-radius: 30px;
+            box-shadow: 0 0 60px rgba(255, 215, 0, 0.08);
+        }
 
+        /* BOTÃO VOLTAR */
+        .btn-voltar {
+            align-self: flex-start;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            background: rgba(255, 215, 0, 0.08);
+            border: 2px solid rgba(255, 215, 0, 0.25);
+            border-radius: 50px;
+            color: #ffd700;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .btn-voltar:hover {
+            background: rgba(255, 215, 0, 0.15);
+            border-color: #ffd700;
+            transform: translateX(-5px);
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.10);
+        }
+
+        .hero {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.10);
+            width: 100%;
+        }
+
+        .logo {
+            max-width: 200px;
+            width: 100%;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.15));
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 900;
+            color: #ffd700;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.20);
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #f0e6c0;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+
+        .box {
+            width: 100%;
+            padding: 25px 30px;
+            background: rgba(255, 215, 0, 0.04);
+            border: 1px solid rgba(255, 215, 0, 0.12);
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+
+        .box:hover {
+            border-color: rgba(255, 215, 0, 0.25);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.03);
+        }
+
+        .box h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #ffd700;
+            margin-bottom: 12px;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.10);
+        }
+
+        .box h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #ffe066;
+            margin-bottom: 8px;
+        }
+
+        .box p {
+            font-size: 1rem;
+            color: #ddd0b0;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        .box strong {
+            color: #ffd700;
+        }
+
+        .box ul {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px 20px;
+        }
+
+        .box ul li {
+            color: #ddd0b0;
+            font-size: 0.95rem;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.05);
+        }
+
+        .box ul li::before {
+            content: "✦ ";
+            color: #ffd700;
+        }
+
+        .beneficios {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            width: 100%;
+        }
+
+        .beneficios .box {
+            text-align: center;
+            padding: 25px 20px;
+        }
+
+        .beneficios .box h3 {
+            font-size: 1.1rem;
+        }
+
+        .beneficios .box p {
+            font-size: 0.9rem;
+        }
+
+        /* BOTÕES REDES */
+        .redes {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .botao {
+            padding: 14px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #fff;
+            transition: all 0.3s;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 0.5px;
+        }
+
+        .botao:hover {
+            transform: translateY(-4px) scale(1.02);
+        }
+
+        .whatsapp {
+            background: #25D366;
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.25);
+        }
+
+        .whatsapp:hover {
+            box-shadow: 0 0 40px rgba(37, 211, 102, 0.35);
+        }
+
+        .instagram {
+            background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            box-shadow: 0 0 20px rgba(225, 48, 108, 0.25);
+        }
+
+        .instagram:hover {
+            box-shadow: 0 0 40px rgba(225, 48, 108, 0.35);
+        }
+
+        .youtube {
+            background: #FF0000;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.25);
+        }
+
+        .youtube:hover {
+            box-shadow: 0 0 40px rgba(255, 0, 0, 0.35);
+        }
+
+        .logos {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            padding: 10px 0;
+        }
+
+        .logos img {
+            max-width: 150px;
+            height: auto;
+            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.08));
+            transition: all 0.3s;
+        }
+
+        .logos img:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.15));
+        }
+
+        footer {
+            width: 100%;
+            text-align: center;
+            padding-top: 20px;
+            border-top: 2px solid rgba(255, 215, 0, 0.08);
+            color: #888;
+            font-size: 0.85rem;
+        }
+
+        footer strong {
+            color: #ffd700;
+        }
+
+        footer p {
+            margin: 4px 0;
+        }
+
+        footer p:last-child {
+            color: #ffd700;
+            font-weight: 700;
+            margin-top: 8px;
+            letter-spacing: 1px;
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 768px) {
+            .container { padding: 20px 15px; }
+            .hero h1 { font-size: 1.6rem; }
+            .box { padding: 18px 16px; }
+            .box h2 { font-size: 1.3rem; }
+            .beneficios { grid-template-columns: 1fr; }
+            .redes { flex-direction: column; align-items: center; }
+            .botao { width: 100%; max-width: 300px; text-align: center; }
+            .box ul { grid-template-columns: 1fr; }
+            .btn-voltar { font-size: 0.75rem; padding: 10px 18px; }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 1.2rem; }
+            .hero p { font-size: 0.9rem; }
+            .box h2 { font-size: 1.1rem; }
+            .box p { font-size: 0.85rem; }
+            .box ul li { font-size: 0.8rem; }
+            .botao { font-size: 0.75rem; padding: 12px 20px; }
+            .logo { max-width: 120px; }
+            .btn-voltar { font-size: 0.65rem; padding: 8px 14px; }
+        }
+    </style>
 </head>
 
 <body>
+    <div class="container">
 
-<div class="container">
+        <!-- BOTÃO VOLTAR -->
+        <a href="index.html" class="btn-voltar">
+            ⬅ VOLTAR
+        </a>
 
-<header class="hero">
+        <header class="hero">
+            <img src="EAGLES.png" class="logo" alt="EAGLES Esports">
+            <h1>Parcerias & Patrocínios</h1>
+            <p>
+                Transformando vidas através dos eSports, da tecnologia e da educação.
+            </p>
+        </header>
 
-<img src="EAGLES.png" class="logo" alt="EAGLES Esports">
+        <section class="box">
+            <h2>EAGLES eSPORTS®</h2>
+            <p>
+                A <strong>EAGLES eSPORTS®</strong> é uma Associação de Treinamento
+                Profissional sem fins lucrativos que utiliza os games e a tecnologia
+                como ferramenta de transformação social e desenvolvimento profissional.
+            </p>
+            <p style="margin-top:10px;">
+                Nosso objetivo é formar atletas, criadores de conteúdo e profissionais
+                para o mercado dos esportes eletrônicos por meio de treinamentos,
+                projetos e eventos.
+            </p>
+        </section>
 
-<h1>Parcerias & Patrocínios</h1>
+        <section class="beneficios">
+            <div class="box">
+                <h3>🌎 Impacto Social</h3>
+                <p>
+                    Promovemos inclusão, capacitação profissional e oportunidades para
+                    jovens talentos.
+                </p>
+            </div>
+            <div class="box">
+                <h3>📢 Visibilidade</h3>
+                <p>
+                    Sua marca será divulgada em campeonatos, transmissões ao vivo,
+                    redes sociais, materiais de marketing e no site oficial.
+                </p>
+            </div>
+            <div class="box">
+                <h3>🤝 Incentivos</h3>
+                <p>
+                    Projetos aptos para parcerias institucionais e patrocínios,
+                    inclusive utilizando incentivos fiscais.
+                </p>
+            </div>
+        </section>
 
-<p>
-Transformando vidas através dos eSports, da tecnologia e da educação.
-</p>
+        <section class="box">
+            <h2>Benefícios para Patrocinadores</h2>
+            <ul>
+                <li>Divulgação da marca.</li>
+                <li>Logo no site oficial.</li>
+                <li>Divulgação em campeonatos.</li>
+                <li>Divulgação em transmissões ao vivo.</li>
+                <li>Marketing digital.</li>
+                <li>Associação da marca a um projeto de impacto social.</li>
+            </ul>
+        </section>
 
-</header>
+        <section class="box">
+            <h2>Fale Conosco</h2>
+            <div class="redes">
+                <a href="https://wa.me/5524999720031?text=Olá!%20Tenho%20interesse%20em%20ser%20parceiro%20da%20EAGLES%20eSPORTS." target="_blank" class="botao whatsapp">
+                    💬 Quero ser Parceiro
+                </a>
+                <a href="https://www.instagram.com/eaglesesportsbr" target="_blank" class="botao instagram">
+                    📸 Instagram
+                </a>
+                <a href="https://chat.whatsapp.com/DXNy2xbO7KbF1s39nacoG3" target="_blank" class="botao whatsapp">
+                    👥 Comunidade WhatsApp
+                </a>
+                <a href="https://www.youtube.com/@eaglesesportsbr" target="_blank" class="botao youtube">
+                    ▶️ YouTube
+                </a>
+            </div>
+        </section>
 
-<section class="box">
+        <section class="box">
+            <h2>Parceiros Oficiais</h2>
+            <div class="logos">
+                <img src="EAGLES.png" alt="EAGLES Esports">
+            </div>
+        </section>
 
-<h2>EAGLES eSPORTS®</h2>
+        <footer>
+            <p><strong>Gaming Battle</strong></p>
+            <p>
+                Em parceria com a <strong>EAGLES eSPORTS®</strong>, promovendo
+                o crescimento dos esportes eletrônicos e a formação de novos talentos.
+            </p>
+            <p>🏆 Gaming World 2026 ®</p>
+        </footer>
 
-<p>
-A <strong>EAGLES eSPORTS®</strong> é uma Associação de Treinamento
-Profissional sem fins lucrativos que utiliza os games e a tecnologia
-como ferramenta de transformação social e desenvolvimento profissional.
-</p>
-
-<p>
-Nosso objetivo é formar atletas, criadores de conteúdo e profissionais
-para o mercado dos esportes eletrônicos por meio de treinamentos,
-projetos e eventos.
-</p>
-
-</section>
-
-<section class="beneficios">
-
-<div class="box">
-
-<h3>🌎 Impacto Social</h3>
-
-<p>
-Promovemos inclusão, capacitação profissional e oportunidades para
-jovens talentos.
-</p>
-
-</div>
-
-<div class="box">
-
-<h3>📢 Visibilidade</h3>
-
-<p>
-Sua marca será divulgada em campeonatos, transmissões ao vivo,
-redes sociais, materiais de marketing e no site oficial.
-</p>
-
-</div>
-
-<div class="box">
-
-<h3>🤝 Incentivos</h3>
-
-<p>
-Projetos aptos para parcerias institucionais e patrocínios,
-inclusive utilizando incentivos fiscais.
-</p>
-
-</div>
-
-</section>
-
-<section class="box">
-
-<h2>Benefícios para Patrocinadores</h2>
-
-<ul>
-
-<li>✔ Divulgação da marca.</li>
-
-<li>✔ Logo no site oficial.</li>
-
-<li>✔ Divulgação em campeonatos.</li>
-
-<li>✔ Divulgação em transmissões ao vivo.</li>
-
-<li>✔ Marketing digital.</li>
-
-<li>✔ Associação da marca a um projeto de impacto social.</li>
-
-</ul>
-
-</section>
-
-<section class="box">
-
-<h2>Fale Conosco</h2>
-
-<div class="redes">
-
-<a href="https://wa.me/5524999720031?text=Olá!%20Tenho%20interesse%20em%20ser%20parceiro%20da%20EAGLES%20eSPORTS." target="_blank" class="botao whatsapp">
-💬 Quero ser Parceiro
-</a>
-
-<a href="https://www.instagram.com/eaglesesportsbr" target="_blank" class="botao instagram">
-📸 Instagram
-</a>
-
-<a href="https://chat.whatsapp.com/DXNy2xbO7KbF1s39nacoG3" target="_blank" class="botao whatsapp">
-👥 Comunidade WhatsApp
-</a>
-
-<a href="https://www.youtube.com/@eaglesesportsbr" target="_blank" class="botao youtube">
-▶️ YouTube
-</a>
-
-</div>
-
-</section>
-
-<section class="box">
-
-<h2>Parceiros Oficiais</h2>
-
-<div class="logos">
-
-<img src="EAGLES.png" alt="EAGLES Esports">
-
-</div>
-
-</section>
-
-<footer>
-
-<p><strong>Gaming Battle</strong></p>
-
-<p>
-Em parceria com a <strong>EAGLES eSPORTS®</strong>, promovendo
-o crescimento dos esportes eletrônicos e a formação de novos talentos.
-</p>
-
-<p>© 2026 - Todos os direitos reservados.</p>
-
-</footer>
-
-</div>
-
+    </div>
 </body>
-
 </html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscrição - Gaming Battle 2026</title>
+    <link rel="stylesheet" href="inscricao.css">
+</head>
+<body>
+    <!-- Fundo -->
+    <div class="bg-overlay"></div>
+
+    <!-- Cabeçalho -->
+    <header class="header">
+        <div class="logo-container">
+            <img src="logogaming.png" alt="Gaming World" class="logo-principal">
+        </div>
+        <h1 class="titulo-principal">CAMPEONATO GAMING BATTLE 2026</h1>
+        <p class="subtitulo">"Aqui Gaming World 2026"</p>
+
+        <!-- Navegação do topo -->
+        <nav class="nav-topo">
+            <a href="index.html" class="btn-nav">INÍCIO</a>
+            <a href="regras.html" class="btn-nav">REGRAS</a>
+            <a href="inscricao.html" class="btn-nav ativo">INSCREVA-SE</a>
+        </nav>
+    </header>
+
+    <!-- Conteúdo principal -->
+    <main class="main-inscricao">
+        <div class="container-inscricao">
+            <!-- Cabeçalho da inscrição -->
+            <div class="inscricao-header">
+                <h2>📝 SEJA BEM-VINDO À INSCRIÇÃO</h2>
+                <p class="valor-inscricao">💵 Taxa de inscrição: <strong>R$ 5,00</strong></p>
+                <p class="info-pagamento">Após preencher, envie o comprovante de pagamento</p>
+            </div>
+
+            <!-- INFORMAÇÕES DO PIX -->
+            <div class="pix-info">
+                <h3>💳 PAGUE COM PIX</h3>
+                <div class="pix-dados">
+                    <div class="pix-item">
+                        <span class="pix-label">📧 E-mail:</span>
+                        <span class="pix-valor">gaming.world.wg@gmail.com</span>
+                    </div>
+                    <div class="pix-item">
+                        <span class="pix-label">👤 Nome:</span>
+                        <span class="pix-valor">Guylherme Rodrigues da Silva Rios</span>
+                    </div>
+                </div>
+                <div class="pix-aviso">
+                    ⚠️ Após o pagamento, anexe o comprovante abaixo
+                </div>
+            </div>
+
+            <!-- Formulário -->
+            <form id="form-inscricao" class="form-inscricao">
+                <!-- Linha 1: NICK -->
+                <div class="linha-campos">
+                    <div class="campo-grupo">
+                        <label for="nick1">🎮 NICK do Jogador 1</label>
+                        <input type="text" id="nick1" placeholder="Ex: FURIA_Player" required>
+                    </div>
+                    <div class="campo-grupo">
+                        <label for="nick2">🎮 NICK do Jogador 2</label>
+                        <input type="text" id="nick2" placeholder="Ex: LiQuiD_Pro" required>
+                    </div>
+                </div>
+
+                <!-- Linha 2: ID -->
+                <div class="linha-campos">
+                    <div class="campo-grupo">
+                        <label for="id1">🆔 ID do Jogador 1</label>
+                        <input type="text" id="id1" placeholder="Ex: 123456789" required>
+                    </div>
+                    <div class="campo-grupo">
+                        <label for="id2">🆔 ID do Jogador 2</label>
+                        <input type="text" id="id2" placeholder="Ex: 987654321" required>
+                    </div>
+                </div>
+
+                <!-- Linha 3: Uploads com avisos -->
+                <div class="linha-uploads">
+                    <div class="campo-upload">
+                        <label for="logo-cla">🏴 LOGO DO CLÃ</label>
+                        <div class="upload-area" id="logo-area">
+                            <input type="file" id="logo-cla" accept="image/*" required>
+                            <span class="upload-placeholder">📁 Clique para enviar a logo</span>
+                            <img id="logo-preview" class="preview-img" style="display:none;" alt="Preview da logo">
+                            <div class="aviso-upload">
+                                ⚠️ Enviar logotipo
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="campo-upload">
+                        <label for="comprovante">🧾 COMPROVANTE DE PAGAMENTO</label>
+                        <div class="upload-area" id="comprovante-area">
+                            <input type="file" id="comprovante" accept="image/*" required>
+                            <span class="upload-placeholder">📁 Clique para enviar o comprovante</span>
+                            <img id="comprovante-preview" class="preview-img" style="display:none;" alt="Preview do comprovante">
+                            <div class="aviso-upload">
+                                ⚠️ Enviar comprovante
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botão de envio -->
+                <button type="submit" class="btn-enviar" id="btn-enviar">
+                    📤 ENVIAR INSCRIÇÃO VIA WHATSAPP
+                </button>
+            </form>
+
+            <!-- Informação de contato -->
+            <div class="info-contato">
+                <p>📱 Dúvidas? Fale conosco: <strong>(31) 7218-9691</strong></p>
+                <p class="obs">* Após o envio, aguarde a confirmação da inscrição</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="footer">
+        <p>© 2026 Gaming Battle - Todos os direitos reservados</p>
+        <p>Aqui Gaming World 2026</p>
+    </footer>
+
+    <script src="inscricao.js"></script>
+</body>
+</html>

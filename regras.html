@@ -1,161 +1,408 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Regras | Gaming World</title>
+<title>Mobile Legends - Gaming World</title>
 
-<link rel="stylesheet" href="regras.css">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Orbitron',sans-serif;
+}
+
+body{
+
+background:
+linear-gradient(rgba(0,5,20,.55),rgba(0,5,20,.80)),
+url("fundogaming.png");
+
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+
+color:#fff;
+
+padding:20px;
+
+}
+
+.container{
+
+max-width:900px;
+
+margin:auto;
+
+}
+
+.logo-box{
+
+background:
+linear-gradient(rgba(0,8,30,.45),rgba(0,8,30,.70)),
+url("fundogaming.png");
+
+background-size:cover;
+background-position:center;
+
+border:2px solid #00aaff;
+
+border-radius:25px;
+
+box-shadow:
+0 0 20px #008cff,
+0 0 40px rgba(0,140,255,.4);
+
+padding:40px 25px;
+
+text-align:center;
+
+margin-bottom:25px;
+
+backdrop-filter:blur(10px);
+
+}
+
+.logo-box img{
+
+width:320px;
+max-width:95%;
+
+filter:drop-shadow(0 0 18px #00bfff);
+
+margin-bottom:35px;
+
+}
+
+.logo-box h1{
+
+font-size:34px;
+
+color:#19b5ff;
+
+text-shadow:0 0 15px #00bfff;
+
+margin-bottom:20px;
+
+}
+
+.logo-box p{
+
+font-size:18px;
+
+line-height:1.8;
+
+}
+
+.card{
+
+background:rgba(0,20,55,.60);
+
+backdrop-filter:blur(14px);
+
+border:2px solid #009dff;
+
+border-radius:20px;
+
+padding:25px;
+
+margin-bottom:20px;
+
+box-shadow:
+0 0 20px rgba(0,160,255,.35);
+
+transition:.35s;
+
+}
+
+.card:hover{
+
+transform:translateY(-5px);
+
+box-shadow:
+0 0 35px rgba(0,170,255,.8);
+
+}
+
+.card h2{
+
+color:#24c3ff;
+
+margin-bottom:15px;
+
+font-size:22px;
+
+}
+
+.card p{
+
+font-size:15px;
+
+line-height:1.8;
+
+color:#f2f2f2;
+
+}
+
+.lista{
+
+list-style:none;
+
+}
+
+.lista li{
+
+margin:12px 0;
+
+font-size:15px;
+
+}
+
+.btn{
+
+display:block;
+
+text-align:center;
+
+text-decoration:none;
+
+padding:18px;
+
+margin-top:20px;
+
+border-radius:15px;
+
+background:
+linear-gradient(90deg,#0077ff,#00d9ff);
+
+color:#fff;
+
+font-weight:bold;
+
+box-shadow:
+0 0 20px #009dff;
+
+transition:.35s;
+
+}
+
+.btn:hover{
+
+transform:scale(1.04);
+
+box-shadow:
+0 0 35px #00d9ff;
+
+}
+
+.voltar{
+
+background:rgba(0,20,55,.8);
+
+border:2px solid #009dff;
+
+}
+
+@media(max-width:700px){
+
+.logo-box img{
+
+width:250px;
+
+}
+
+.logo-box h1{
+
+font-size:28px;
+
+}
+
+.card h2{
+
+font-size:19px;
+
+}
+
+}
+
+</style>
 
 </head>
 
 <body>
 
-<div class="background"></div>
+<div class="container">
 
-<div class="stars"></div>
+<div class="logo-box">
 
-<header>
+<img src="txtgaming.png">
 
-<img src="txtgaming.png" class="logo" alt="Gaming World">
-<h1>REGRAS OFICIAIS</h1>
-
-<p>Gaming Battle MLBB Cup</p>
-
-</header>
-
-<main>
-
-<section class="card">
-
-<h2>📋 Informações Gerais</h2>
-
-<ul>
-
-<li>O campeonato contará com <strong>16 equipes</strong>.</li>
-
-<li>Todos os confrontos serão eliminatórios.</li>
-
-<li>As decisões da organização Gaming World são finais.</li>
-
-<li>É obrigatório respeitar adversários e organização.</li>
-
-</ul>
-
-</section>
-
-<section class="card">
-
-<h2>⚔ Sistema do Campeonato</h2>
-
-<ul>
-
-<li>Primeira fase: <strong>Mata-Mata em partida única.</strong></li>
-
-<li>Quartas de Final.</li>
-
-<li>Semifinal.</li>
-
-<li>Grande Final.</li>
-
-</ul>
-
-</section>
-
-<section class="card">
-
-<h2>🎮 Regras das Partidas</h2>
-
-<ul>
-
-<li>O primeiro confronto será decidido em apenas uma partida.</li>
-
-<li>Nas fases seguintes, vence quem ganhar o confronto.</li>
-
-<li>Os horários serão definidos pela organização.</li>
-
-<li>Qualquer atraso superior ao permitido poderá resultar em WO.</li>
-
-</ul>
-
-</section>
-
-<section class="card">
-
-<h2>🚫 Regras do Chat</h2>
-
-<ul>
-
-<li>É proibido utilizar o chat para provocar adversários.</li>
-
-<li>Somente o sistema de PING é permitido durante a partida.</li>
-
-<li>Ofensas poderão resultar em punição ou eliminação.</li>
-
-</ul>
-
-</section>
-
-<section class="card">
-
-<h2>🏆 Premiação</h2>
-
-<div class="premios">
-
-<div class="premio ouro">
-
-<h3>🥇 1º Lugar</h3>
-
-<p><strong>R$ 50,00</strong></p>
-
-</div>
-
-<div class="premio prata">
-
-<h3>🥈 2º Lugar</h3>
-
-<p>Passe Semanal</p>
-
-</div>
-
-<div class="premio bronze">
-
-<h3>🥉 3º Lugar</h3>
-
-<p>Vaga garantida para a próxima edição do campeonato.</p>
-
-</div>
-
-</div>
-
-</section>
-
-<section class="card">
-
-<h2>📢 Aviso Final</h2>
+<h1>MOBILE LEGENDS - GW</h1>
 
 <p>
-
-Ao participar do campeonato, todos os jogadores concordam com este regulamento.
-A Gaming World poderá alterar as regras quando necessário para garantir uma competição justa.
-
+🫸 MAIS QUE UMA COMUNIDADE,<br>
+UMA FAMÍLIA! 🫷
 </p>
 
-</section>
+</div>
 
-</main>
+<div class="card">
 
-      <p>Gaming World © 2026</p>
+<h2>🛡️ CONHEÇA NOSSOS GRUPOS</h2>
+
+<p>
+Aqui você encontra grupos organizados por objetivo, com foco em interação, competitividade, recrutamento, treinos, desafios e novidades do Mobile Legends.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>🎮 ML BATE-PAPO</h2>
+
+<p>
+Grupo principal para conversa, interação, resenha, dúvidas e movimentação geral da comunidade.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>👥 ML RECRUTAMENTO • FICHAS</h2>
+
+<p>
+Para jogadores procurarem times e times recrutarem jogadores. Envie sua ficha, encontre equipe ou monte sua line.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>⚔️ ML SCRIM • AMISTOSOS</h2>
+
+<p>
+Grupo para marcar scrims, amistosos, treinos competitivos e confrontos entre equipes.
+</p>
+
+</div>
+<div class="card">
+
+<h2>🎯 ML X1 • 5X5 • APOSTAS</h2>
+
+<p>
+Espaço destinado para desafios, X1, partidas 5x5 e confrontos organizados. Respeite sempre as regras e a boa convivência.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>💰 ML VENDAS • TROCAS</h2>
+
+<p>
+Grupo para compras, vendas e trocas relacionadas ao Mobile Legends. Sempre negocie com responsabilidade e, quando possível, utilize um intermediador da administração.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>🎲 ML MAGIC CHESS</h2>
+
+<p>
+Comunidade voltada para os jogadores de Magic Chess. Compartilhe estratégias, monte composições, participe de partidas e evolua junto com outros jogadores.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>📢 CANAL DE NOTÍCIAS</h2>
+
+<p>
+Receba anúncios oficiais, eventos, campeonatos, patch notes, atualizações, novidades e comunicados importantes da Gaming World.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>⚠️ NOSSA COMUNIDADE É VOLTADA PARA</h2>
+
+<ul class="lista">
+
+<li>♧ Competitivo amador e profissional</li>
+
+<li>◇ Recrutamento de jogadores e equipes</li>
+
+<li>♡ Scrims, amistosos e treinos</li>
+
+<li>♤ Eventos internos e campeonatos</li>
+
+<li>☆ X1, 5x5 e desafios</li>
+
+<li>☆ Magic Chess</li>
+
+<li>☆ Vendas e trocas organizadas</li>
+
+<li>☆ Parcerias autorizadas</li>
+
+<li>☆ Notícias e novidades do Mobile Legends</li>
+
+</ul>
+
+</div>
+
+<div class="card">
+
+<h2>📌 NOSSO OBJETIVO</h2>
+
+<p>
+Criar um ambiente organizado, seguro e ativo para jogadores casuais e competitivos. Nossa missão é reunir equipes, líderes e jogadores em uma comunidade completa, oferecendo recrutamentos, eventos, scrims, desafios, notícias e oportunidades para todos crescerem juntos.
+</p>
+
+</div>
+<div class="card">
+
+<h2>📱 CATÁLOGO DA COMUNIDADE</h2>
+
+<p>
+Entre no catálogo oficial da Gaming World e escolha o grupo ideal para você participar.
+</p>
+
+<a class="btn" href="https://wa.me/c/554797805117" target="_blank">
+
+📱 ABRIR CATÁLOGO
+
+</a>
+
+</div>
+
+<a class="btn voltar" href="index.html">
+
+🏠 VOLTAR AO INÍCIO
+
+</a>
+
+<footer style="text-align:center;margin-top:40px;padding:20px;color:#8ecfff;font-size:14px;">
+
+<hr style="border:1px solid rgba(0,170,255,.4);margin-bottom:20px;">
+
+<p><strong>Gaming World</strong></p>
+
+<p>Mais que uma comunidade, uma família.</p>
+
+<p>© 2026 - Todos os direitos reservados.</p>
 
 </footer>
 
-<script src="regras.js"></script>
+</div>
 
 </body>
 
