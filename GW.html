@@ -1,115 +1,395 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gaming World</title>
-<link rel="stylesheet" href="GW.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaming World</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: 'Orbitron', sans-serif;
+            background: url("fundogaming.png") center center fixed;
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            padding: 30px 15px;
+        }
+
+        /* OVERLAY */
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 1100px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            padding: 30px 25px 40px;
+            background: rgba(0, 0, 0, 0.60);
+            backdrop-filter: blur(12px);
+            border: 2px solid rgba(255, 215, 0, 0.20);
+            border-radius: 30px;
+            box-shadow: 0 0 60px rgba(255, 215, 0, 0.05);
+        }
+
+        /* BOTÃO VOLTAR */
+        .btn-voltar {
+            align-self: flex-start;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            background: rgba(255, 215, 0, 0.08);
+            border: 2px solid rgba(255, 215, 0, 0.25);
+            border-radius: 50px;
+            color: #ffd700;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .btn-voltar:hover {
+            background: rgba(255, 215, 0, 0.15);
+            border-color: #ffd700;
+            transform: translateX(-5px);
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.10);
+        }
+
+        /* HEADER */
+        header {
+            width: 100%;
+            text-align: center;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.10);
+        }
+
+        .logo {
+            max-width: 320px;
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.12));
+            animation: flutuar 5s ease-in-out infinite;
+        }
+
+        @keyframes flutuar {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0); }
+        }
+
+        /* CARDS */
+        .card {
+            width: 100%;
+            padding: 25px 30px;
+            background: rgba(255, 215, 0, 0.04);
+            border: 1px solid rgba(255, 215, 0, 0.10);
+            border-radius: 20px;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .card:hover {
+            border-color: rgba(255, 215, 0, 0.25);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.03);
+        }
+
+        .card h2 {
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: #ffd700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.10);
+            text-align: center;
+        }
+
+        .card p {
+            font-size: 1rem;
+            color: #ddd0b0;
+            line-height: 1.7;
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .card p strong {
+            color: #ffd700;
+        }
+
+        /* VÍDEOS */
+        .card video {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 16px;
+            border: 2px solid rgba(255, 215, 0, 0.10);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.05);
+        }
+
+        .card video:hover {
+            border-color: rgba(255, 215, 0, 0.25);
+        }
+
+        /* IMAGENS */
+        .card img {
+            max-width: 200px;
+            width: 100%;
+            border-radius: 16px;
+            border: 2px solid rgba(255, 215, 0, 0.10);
+            transition: all 0.3s;
+        }
+
+        .card img:hover {
+            border-color: rgba(255, 215, 0, 0.30);
+            transform: scale(1.02);
+        }
+
+        /* BOTÕES DOS GRUPOS */
+        .grupos-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            width: 100%;
+            margin-top: 5px;
+        }
+
+        .grupos-links a {
+            padding: 12px 28px;
+            background: rgba(255, 215, 0, 0.06);
+            border: 2px solid rgba(255, 215, 0, 0.15);
+            border-radius: 50px;
+            color: #ffd700;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            transition: all 0.3s;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 0.5px;
+        }
+
+        .grupos-links a:hover {
+            background: rgba(255, 215, 0, 0.12);
+            border-color: #ffd700;
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.08);
+        }
+
+        /* BOTÕES PRINCIPAIS */
+        .btn-principal {
+            padding: 14px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #0a0a0a;
+            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            border: 2px solid #ffd700;
+            transition: all 0.3s;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.15);
+        }
+
+        .btn-principal:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 0 45px rgba(255, 215, 0, 0.25);
+            background: linear-gradient(135deg, #ffe44d, #ff9900);
+        }
+
+        .botoes-card {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            width: 100%;
+            margin-top: 5px;
+        }
+
+        .botoes-card a {
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #0a0a0a;
+            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            border: 2px solid #ffd700;
+            transition: all 0.3s;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 0.5px;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.10);
+        }
+
+        .botoes-card a:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 0 35px rgba(255, 215, 0, 0.20);
+            background: linear-gradient(135deg, #ffe44d, #ff9900);
+        }
+
+        /* RODAPÉ */
+        .footer-gw {
+            width: 100%;
+            text-align: center;
+            padding-top: 20px;
+            border-top: 2px solid rgba(255, 215, 0, 0.08);
+            color: #ffd700;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 768px) {
+            .container { padding: 20px 15px; }
+            .logo { max-width: 220px; }
+            .card { padding: 18px 16px; }
+            .card h2 { font-size: 1.2rem; }
+            .card p { font-size: 0.9rem; }
+            .grupos-links { flex-direction: column; align-items: center; }
+            .grupos-links a { width: 100%; max-width: 300px; text-align: center; }
+            .botoes-card { flex-direction: column; align-items: center; }
+            .botoes-card a { width: 100%; max-width: 300px; text-align: center; }
+            .btn-principal { width: 100%; max-width: 300px; text-align: center; }
+            .btn-voltar { font-size: 0.75rem; padding: 10px 18px; }
+        }
+
+        @media (max-width: 480px) {
+            .logo { max-width: 160px; }
+            .card h2 { font-size: 1rem; }
+            .card p { font-size: 0.8rem; }
+            .card video { max-width: 100%; }
+            .card img { max-width: 120px; }
+            .grupos-links a { font-size: 0.7rem; padding: 10px 16px; }
+            .botoes-card a { font-size: 0.75rem; padding: 10px 16px; }
+            .btn-principal { font-size: 0.85rem; padding: 12px 20px; }
+            .btn-voltar { font-size: 0.65rem; padding: 8px 14px; }
+            .footer-gw { font-size: 0.75rem; }
+        }
+    </style>
 </head>
 
 <body>
 
-<header>
+    <div class="overlay"></div>
 
-<img src="txtgaming.png" alt="Gaming World" class="logo">
+    <div class="container">
 
-</header>
+        <!-- BOTÃO VOLTAR -->
+        <a href="index.html" class="btn-voltar">
+            ⬅ VOLTAR
+        </a>
 
-<main>
+        <!-- HEADER COM LOGO TROCADA -->
+        <header>
+            <img src="logogaming.png" alt="Gaming World" class="logo">
+        </header>
 
-<section class="card">
+        <!-- CARD 1 - VÍDEO GW -->
+        <section class="card">
+            <video controls autoplay muted loop playsinline>
+                <source src="gamingword.mp4" type="video/mp4">
+            </video>
 
-<video controls autoplay muted loop playsinline>
-<source src="gamingword.mp4" type="video/mp4">
-</video>
+            <h2>🌎 ǤΔΜƗŇǤ ŴØŘŁĐ 🌎</h2>
 
-<h2>🌎 ǤΔΜƗŇǤ ŴØŘŁĐ 🌎</h2>
+            <p>📲 Junte-se a nós no WhatsApp e no Discord.</p>
 
-<p>📲 Junte-se a nós no WhatsApp e no Discord.</p>
+            <p>
+                Na GW você encontra grupos com os principais jogos Mobile e PC da atualidade.
+                Também contamos com eventos, campeonatos, recrutamento de jogadores, sorteios e parcerias.
+            </p>
 
-<p>Na GW você encontra grupos com os principais jogos Mobile e PC da atualidade. Também contamos com eventos, campeonatos, recrutamento de jogadores, sorteios e parcerias.</p>
+            <div class="botoes-card">
+                <a href="https://chat.whatsapp.com/Lsx3KjGeQxi3UWFEijh0Kq" target="_blank">
+                    📱 Entrar no WhatsApp
+                </a>
+                <a href="https://discord.gg/z9rkndABpu" target="_blank">
+                    🎮 Entrar no Discord
+                </a>
+            </div>
+        </section>
 
-<a href="https://chat.whatsapp.com/Lsx3KjGeQxi3UWFEijh0Kq" target="_blank">
-Entrar no WhatsApp
-</a>
+        <!-- CARD 2 - RECRUTAMENTO -->
+        <section class="card">
+            <h2>📢 Recrutamento</h2>
 
-<a href="https://discord.gg/z9rkndABpu" target="_blank">
-Entrar no Discord
-</a>
+            <p>Você é líder de clã e deseja recrutar jogadores?</p>
 
-</section>
+            <a href="https://chat.whatsapp.com/CBDOTtHkkp87wpCZxHqaMh" target="_blank" class="btn-principal">
+                👑 Grupo para Líderes
+            </a>
 
-<section class="card">
+            <p style="margin-top:5px;">Você procura um clã?</p>
 
-<h2>Recrutamento</h2>
+            <a href="https://chat.whatsapp.com/LIcvNT8J5MsBXmFYVQ2H9b" target="_blank" class="btn-principal">
+                🎯 Grupo para Jogadores
+            </a>
+        </section>
 
-<p>Você é líder de clã e deseja recrutar jogadores?</p>
+        <!-- CARD 3 - MOBILE LEGENDS -->
+        <section class="card">
+            <img src="img/chatml.png" alt="Mobile Legends">
 
-<a href="https://chat.whatsapp.com/CBDOTtHkkp87wpCZxHqaMh" target="_blank">
-Grupo para Líderes
-</a>
+            <h2>⚔️ Mobile Legends</h2>
 
-<p>Você procura um clã?</p>
+            <p>
+                Junte-se ao Grupo de Bate-Papo de Mobile Legends mais ativo do momento!
+                Aqui a conversa não para nunca.
+            </p>
 
-<a href="https://chat.whatsapp.com/LIcvNT8J5MsBXmFYVQ2H9b" target="_blank">
-Grupo para Jogadores
-</a>
+            <a href="https://chat.whatsapp.com/LLwVKJtmZkV9dMjg85ey2C" target="_blank" class="btn-principal">
+                📱 Entrar no Grupo ML
+            </a>
+        </section>
 
-</section>
+        <!-- CARD 4 - HONOR OF KINGS -->
+        <section class="card">
+            <video controls autoplay muted loop playsinline>
+                <source src="gamingsemlimite.mp4" type="video/mp4">
+            </video>
 
-<section class="card">
+            <h2>👑 Honor of Kings</h2>
 
-<img src="img/chatml.png" alt="Mobile Legends">
+            <p>
+                OLÁ, PASSANDO PARA LEMBRAR VOCÊS DOS GRUPOS DA ǤΔΜƗŇǤ ŴØŘŁĐ NO HOK.
+            </p>
 
-<h2>Mobile Legends</h2>
+            <p style="font-weight:700; color:#ffd700;">Grupos para subir de elo:</p>
 
-<p>
-Junte-se ao Grupo de Bate-Papo de Mobile Legends mais ativo do momento! Aqui a conversa não para nunca.
-</p>
+            <div class="grupos-links">
+                <a href="https://chat.whatsapp.com/FTJi9Grk8zJGn6lavU9Mse" target="_blank">🥉 Bronze • Prata</a>
+                <a href="https://chat.whatsapp.com/EssI0BuXopS51bBqmeSE2z" target="_blank">🥈 Ouro • Platina</a>
+                <a href="https://chat.whatsapp.com/FBfmT37e64pJW6Mz4MxwpK" target="_blank">💎 Diamante • Mestre</a>
+                <a href="https://chat.whatsapp.com/FWsSlMKT6x1LQDsl3Fwdro" target="_blank">⭐ Grão Mestre • Mítico</a>
+                <a href="https://chat.whatsapp.com/KhNzwxqLbwuAsBMv1bmsVt" target="_blank">🔥 Épico • Lenda</a>
+            </div>
+        </section>
 
-<a href="https://chat.whatsapp.com/LLwVKJtmZkV9dMjg85ey2C" target="_blank">
-Entrar no Grupo
-</a>
+        <!-- RODAPÉ -->
+        <div class="footer-gw">
+            🏆 Gaming World 2026 ®
+        </div>
 
-</section>
-
-<section class="card">
-
-<video controls autoplay muted loop playsinline>
-<source src="gamingsemlimite.mp4" type="video/mp4">
-</video>
-
-<h2>Honor of Kings</h2>
-
-<p>
-OLÁ, PASSANDO PARA LEMBRAR VOCÊS DOS GRUPOS DA ǤΔΜƗŇǤ ŴØŘŁĐ NO HOK.
-</p>
-
-<p>Grupos para subir de elo:</p>
-
-<a href="https://chat.whatsapp.com/FTJi9Grk8zJGn6lavU9Mse" target="_blank">
-Bronze • Prata
-</a>
-
-<a href="https://chat.whatsapp.com/EssI0BuXopS51bBqmeSE2z" target="_blank">
-Ouro • Platina
-</a>
-
-<a href="https://chat.whatsapp.com/FBfmT37e64pJW6Mz4MxwpK" target="_blank">
-Diamante • Mestre
-</a>
-
-<a href="https://chat.whatsapp.com/FWsSlMKT6x1LQDsl3Fwdro" target="_blank">
-Grão Mestre • Mítico
-</a>
-
-<a href="https://chat.whatsapp.com/KhNzwxqLbwuAsBMv1bmsVt" target="_blank">
-Épico • Lenda
-</a>
-
-</section>
-
-</main>
+    </div>
 
 </body>
 </html>

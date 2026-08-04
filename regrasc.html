@@ -1,162 +1,536 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regras | Gaming World</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<meta charset="UTF-8">
+        body {
+            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            background: url("fundogaming.png") center center fixed;
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            padding: 30px 15px;
+        }
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.78);
+            z-index: 0;
+        }
 
-<title>Regras | Gaming World</title>
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 1000px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+            padding: 30px 25px 40px;
+            background: rgba(0, 0, 0, 0.60);
+            backdrop-filter: blur(12px);
+            border: 2px solid rgba(255, 215, 0, 0.20);
+            border-radius: 30px;
+            box-shadow: 0 0 60px rgba(255, 215, 0, 0.05);
+        }
 
-<link rel="stylesheet" href="regras.css">
+        /* BOTÃO VOLTAR */
+        .btn-voltar {
+            align-self: flex-start;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            background: rgba(255, 215, 0, 0.08);
+            border: 2px solid rgba(255, 215, 0, 0.25);
+            border-radius: 50px;
+            color: #ffd700;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            font-family: 'Orbitron', sans-serif;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+        .btn-voltar:hover {
+            background: rgba(255, 215, 0, 0.15);
+            border-color: #ffd700;
+            transform: translateX(-5px);
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.10);
+        }
 
+        /* HEADER */
+        header {
+            width: 100%;
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.10);
+        }
+
+        .logo {
+            max-width: 300px;
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.10));
+            animation: flutuar 5s ease-in-out infinite;
+        }
+
+        @keyframes flutuar {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0); }
+        }
+
+        header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #ffd700;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.15);
+            margin-top: 10px;
+            letter-spacing: 3px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: #ffe066;
+            font-weight: 600;
+            margin-top: 4px;
+            letter-spacing: 2px;
+        }
+
+        /* CARDS */
+        .card {
+            width: 100%;
+            padding: 25px 30px;
+            background: rgba(255, 215, 0, 0.04);
+            border: 1px solid rgba(255, 215, 0, 0.10);
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            border-color: rgba(255, 215, 0, 0.25);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.03);
+        }
+
+        .card h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #ffd700;
+            margin-bottom: 12px;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.05);
+        }
+
+        .card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .card ul li {
+            color: #ddd0b0;
+            font-size: 1rem;
+            padding: 6px 0;
+            padding-left: 28px;
+            position: relative;
+            line-height: 1.6;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.04);
+        }
+
+        .card ul li:last-child {
+            border-bottom: none;
+        }
+
+        .card ul li::before {
+            content: "◆";
+            color: #ffd700;
+            position: absolute;
+            left: 0;
+            font-size: 0.8rem;
+        }
+
+        .card ul li strong {
+            color: #ffd700;
+        }
+
+        .card p {
+            color: #ddd0b0;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .card p strong {
+            color: #ffd700;
+        }
+
+        /* REGRAS ESPECIAIS - MODO SELEÇÃO */
+        .regras-destaque {
+            background: rgba(255, 215, 0, 0.06);
+            border-left: 4px solid #ffd700;
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin-top: 10px;
+        }
+
+        .regras-destaque p {
+            color: #f0e6c0;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .regras-destaque strong {
+            color: #ffd700;
+        }
+
+        /* SISTEMA DE SORTEIO - DESTAQUE */
+        .sorteio-box {
+            background: rgba(255, 215, 0, 0.06);
+            border: 2px solid rgba(255, 215, 0, 0.15);
+            border-radius: 16px;
+            padding: 18px 22px;
+            margin: 10px 0 5px;
+            text-align: center;
+        }
+
+        .sorteio-box h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: #ffd700;
+            font-size: 1.1rem;
+            margin-bottom: 6px;
+        }
+
+        .sorteio-box p {
+            color: #f0e6c0;
+            font-size: 0.95rem;
+        }
+
+        .sorteio-box strong {
+            color: #ffd700;
+        }
+
+        /* FLUXO DO CAMPEONATO */
+        .fluxo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .fluxo-item {
+            padding: 10px 18px;
+            background: rgba(255, 215, 0, 0.06);
+            border: 1px solid rgba(255, 215, 0, 0.12);
+            border-radius: 12px;
+            color: #ddd0b0;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-align: center;
+            min-width: 80px;
+        }
+
+        .fluxo-item strong {
+            color: #ffd700;
+            display: block;
+            font-size: 1.1rem;
+        }
+
+        .fluxo-seta {
+            color: #ffd700;
+            font-size: 1.5rem;
+            font-weight: 900;
+        }
+
+        /* PREMIAÇÃO */
+        .premios {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .premio {
+            padding: 20px 15px;
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 215, 0, 0.08);
+        }
+
+        .premio:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .premio h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .premio p {
+            font-size: 0.95rem;
+            color: #ddd0b0;
+        }
+
+        .premio p strong {
+            font-size: 1.3rem;
+        }
+
+        .ouro {
+            background: rgba(255, 215, 0, 0.10);
+            border-color: rgba(255, 215, 0, 0.25);
+        }
+
+        .ouro h3 {
+            color: #ffd700;
+        }
+
+        .ouro p strong {
+            color: #ffd700;
+        }
+
+        .prata {
+            background: rgba(192, 192, 192, 0.06);
+            border-color: rgba(192, 192, 192, 0.15);
+        }
+
+        .prata h3 {
+            color: #c0c0c0;
+        }
+
+        .bronze {
+            background: rgba(205, 127, 50, 0.06);
+            border-color: rgba(205, 127, 50, 0.15);
+        }
+
+        .bronze h3 {
+            color: #cd7f32;
+        }
+
+        /* FOOTER */
+        .footer-regras {
+            width: 100%;
+            text-align: center;
+            padding-top: 20px;
+            border-top: 2px solid rgba(255, 215, 0, 0.08);
+            color: #ffd700;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 768px) {
+            .container { padding: 20px 15px; }
+            .logo { max-width: 220px; }
+            header h1 { font-size: 1.6rem; }
+            header p { font-size: 1rem; }
+            .card { padding: 18px 16px; }
+            .card h2 { font-size: 1.1rem; }
+            .card ul li { font-size: 0.9rem; }
+            .premios { grid-template-columns: 1fr; }
+            .btn-voltar { font-size: 0.75rem; padding: 10px 18px; }
+            .fluxo { gap: 5px; }
+            .fluxo-item { padding: 8px 12px; font-size: 0.75rem; min-width: 60px; }
+            .fluxo-seta { font-size: 1rem; }
+            .sorteio-box { padding: 14px 16px; }
+            .sorteio-box h3 { font-size: 0.95rem; }
+            .sorteio-box p { font-size: 0.85rem; }
+        }
+
+        @media (max-width: 480px) {
+            .logo { max-width: 160px; }
+            header h1 { font-size: 1.2rem; letter-spacing: 1px; }
+            header p { font-size: 0.8rem; }
+            .card h2 { font-size: 0.95rem; }
+            .card ul li { font-size: 0.8rem; padding-left: 22px; }
+            .card p { font-size: 0.85rem; }
+            .premio h3 { font-size: 0.95rem; }
+            .premio p { font-size: 0.8rem; }
+            .btn-voltar { font-size: 0.65rem; padding: 8px 14px; }
+            .footer-regras { font-size: 0.75rem; }
+            .regras-destaque { padding: 12px 14px; }
+            .regras-destaque p { font-size: 0.8rem; }
+            .fluxo-item { font-size: 0.65rem; min-width: 50px; padding: 6px 8px; }
+            .fluxo-item strong { font-size: 0.9rem; }
+            .sorteio-box { padding: 10px 12px; }
+            .sorteio-box h3 { font-size: 0.8rem; }
+            .sorteio-box p { font-size: 0.75rem; }
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="background"></div>
-
-<div class="stars"></div>
-
-<header>
-
-<img src="txtgaming.png" class="logo" alt="Gaming World">
-<h1>REGRAS OFICIAIS</h1>
-
-<p>Gaming Battle MLBB Cup</p>
-
-</header>
-
-<main>
-
-<section class="card">
-
-<h2>📋 Informações Gerais</h2>
-
-<ul>
-
-<li>O campeonato contará com <strong>16 equipes</strong>.</li>
-
-<li>Todos os confrontos serão eliminatórios.</li>
-
-<li>As decisões da organização Gaming World são finais.</li>
-
-<li>É obrigatório respeitar adversários e organização.</li>
-
-</ul>
-
-</section>
-
-<section class="card">
-
-<h2>⚔ Sistema do Campeonato</h2>
-
-<ul>
-
-<li>Primeira fase: <strong>Mata-Mata em partida única.</strong></li>
-
-<li>Quartas de Final.</li>
-
-<li>Semifinal.</li>
-
-<li>Grande Final.</li>
-
-</ul>
-
-</section>
-
-<section class="card">
-
-<h2>🎮 Regras das Partidas</h2>
-
-<ul>
-
-<li>O primeiro confronto será decidido em apenas uma partida.</li>
-
-<li>Nas fases seguintes, vence quem ganhar o confronto.</li>
-
-<li>Os horários serão definidos pela organização.</li>
-
-<li>Qualquer atraso superior ao permitido poderá resultar em WO.</li>
-
-</ul>
-
-</section>
-
-<section class="card">
-
-<h2>🚫 Regras do Chat</h2>
-
-<ul>
-
-<li>É proibido utilizar o chat para provocar adversários.</li>
-
-<li>Somente o sistema de PING é permitido durante a partida.</li>
-
-<li>Ofensas poderão resultar em punição ou eliminação.</li>
-
-</ul>
-
-</section>
-
-<section class="card">
-
-<h2>🏆 Premiação</h2>
-
-<div class="premios">
-
-<div class="premio ouro">
-
-<h3>🥇 1º Lugar</h3>
-
-<p><strong>R$ 50,00</strong></p>
-
-</div>
-
-<div class="premio prata">
-
-<h3>🥈 2º Lugar</h3>
-
-<p>Passe Semanal</p>
-
-</div>
-
-<div class="premio bronze">
-
-<h3>🥉 3º Lugar</h3>
-
-<p>Vaga garantida para a próxima edição do campeonato.</p>
-
-</div>
-
-</div>
-
-</section>
-
-<section class="card">
-
-<h2>📢 Aviso Final</h2>
-
-<p>
-
-Ao participar do campeonato, todos os jogadores concordam com este regulamento.
-A Gaming World poderá alterar as regras quando necessário para garantir uma competição justa.
-
-</p>
-
-</section>
-
-</main>
-
-      <p>Gaming World © 2026</p>
-
-</footer>
-
-<script src="regras.js"></script>
+    <div class="overlay"></div>
+
+    <div class="container">
+
+        <!-- BOTÃO VOLTAR -->
+        <a href="index.html" class="btn-voltar">
+            ⬅ VOLTAR
+        </a>
+
+        <!-- HEADER -->
+        <header>
+            <img src="logogaming.png" class="logo" alt="Gaming World">
+            <h1>REGRAS OFICIAIS</h1>
+            <p>⚔️ Gaming Battle MLBB Cup ⚔️</p>
+        </header>
+
+        <!-- INFORMAÇÕES GERAIS -->
+        <section class="card">
+            <h2>📋 Informações Gerais</h2>
+            <ul>
+                <li>O campeonato contará com <strong>12 equipes</strong>.</li>
+                <li>Todos os confrontos serão eliminatórios.</li>
+                <li>As decisões da organização Gaming World são finais.</li>
+                <li>É obrigatório respeitar adversários e organização.</li>
+            </ul>
+        </section>
+
+        <!-- SISTEMA DO CAMPEONATO -->
+        <section class="card">
+            <h2>⚔ Sistema do Campeonato</h2>
+            
+            <div class="fluxo">
+                <div class="fluxo-item">
+                    <strong>6</strong>
+                    R1 - 12 times
+                </div>
+                <span class="fluxo-seta">→</span>
+                <div class="fluxo-item">
+                    <strong>3</strong>
+                    R2 - 6 times
+                </div>
+                <span class="fluxo-seta">→</span>
+                <div class="fluxo-item" style="border-color: rgba(255, 215, 0, 0.3);">
+                    <strong>🎲</strong>
+                    SORTEIO
+                </div>
+                <span class="fluxo-seta">→</span>
+                <div class="fluxo-item">
+                    <strong>2</strong>
+                    R3 - 4 times
+                </div>
+                <span class="fluxo-seta">→</span>
+                <div class="fluxo-item" style="border-color: #ffd700;">
+                    <strong>🏆</strong>
+                    FINAL
+                </div>
+            </div>
+
+            <ul style="margin-top:15px;">
+                <li><strong>Rodada 1:</strong> 6 confrontos (12 times).</li>
+                <li><strong>Rodada 2:</strong> 3 confrontos (6 times - vencedores da R1).</li>
+                <li><strong>Rodada 3:</strong> <strong style="color:#ffd700;">🎲 Sorteio dos perdedores da R2</strong> (4 times - 2 confrontos).</li>
+                <li><strong>Final:</strong> Vencedor da R2 x Vencedor da R3.</li>
+            </ul>
+
+            <div class="sorteio-box">
+                <h3>🎲 SORTEIO DA RODADA 3</h3>
+                <p>
+                    Os <strong>4 times que perderem na Rodada 2</strong> serão 
+                    <strong>sorteados aleatoriamente</strong> para formar 2 novos confrontos.
+                    Os vencedores avançam para a <strong>FINAL</strong>!
+                </p>
+            </div>
+        </section>
+
+        <!-- REGRAS DAS PARTIDAS - MODO SELEÇÃO -->
+        <section class="card">
+            <h2>🎮 Regras das Partidas - Modo Seleção</h2>
+
+            <div class="regras-destaque">
+                <p>
+                    <strong>🏹 Farm:</strong> Permitido farmar atrás da <strong>T2 inimiga</strong> ou da <strong>sua base</strong>.
+                    Vale <strong>toda a selva</strong> (dos dois lados).
+                </p>
+            </div>
+
+            <div class="regras-destaque" style="border-left-color: #ff6b00; margin-top:10px;">
+                <p>
+                    <strong>⚔️ Team Fights (TF):</strong> Permitidas so mid , <strong>exceto atrás das T2</strong>.
+                    Só é permitido <strong>defender</strong> atrás das T2, não pode iniciar TF.
+                </p>
+            </div>
+
+            <ul style="margin-top:12px;">
+                <li>Todos os confrontos serão em <strong>partida única</strong>.</li>
+                <li>Os horários serão definidos pela organização.</li>
+                <li>Qualquer atraso superior ao permitido poderá resultar em <strong>WO</strong>.</li>
+            </ul>
+        </section>
+
+        <!-- REGRAS DO CHAT -->
+        <section class="card">
+            <h2>🚫 Regras do Chat</h2>
+            <ul>
+                <li>É proibido utilizar o chat para <strong>provocar</strong> adversários.</li>
+                <li>Somente o sistema de <strong>PING</strong> é permitido durante a partida.</li>
+                <li>Ofensas poderão resultar em <strong>punição ou eliminação</strong>.</li>
+            </ul>
+        </section>
+
+        <!-- PREMIAÇÃO -->
+        <section class="card">
+            <h2>🏆 Premiação</h2>
+            <div class="premios">
+                <div class="premio ouro">
+                    <h3>🥇 1º Lugar</h3>
+                    <p><strong>R$ 50,00</strong></p>
+                    <p style="font-size:0.8rem; color:#aaa;">em PIX</p>
+                </div>
+                <div class="premio prata">
+                    <h3>🥈 2º Lugar</h3>
+                    <p><strong>Passe do Mês</strong></p>
+                    <p style="font-size:0.8rem; color:#aaa;">MLBB Premium Pass</p>
+                </div>
+                <div class="premio bronze">
+                    <h3>🥉 3º Lugar</h3>
+                    <p><strong>Vaga garantida</strong></p>
+                    <p style="font-size:0.8rem; color:#aaa;">para a próxima edição</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- AVISO FINAL -->
+        <section class="card">
+            <h2>📢 Aviso Final</h2>
+            <p>
+                Ao participar do campeonato, todos os jogadores concordam com este regulamento.
+                A Gaming World poderá alterar as regras quando necessário para garantir uma competição justa.
+            </p>
+            <p style="margin-top:10px; color:#ffd700; font-weight:600; text-align:center;">
+                🏆 Boa sorte a todos os participantes! 🏆
+            </p>
+        </section>
+
+        <!-- RODAPÉ -->
+        <div class="footer-regras">
+            🏆 Gaming World 2026 ®
+        </div>
+
+    </div>
 
 </body>
-
 </html>

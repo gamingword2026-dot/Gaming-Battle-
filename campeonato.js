@@ -14,9 +14,9 @@ const times = [
     { id: 12, nome: 'Clã 12', img: 'style/cla12.png' }
 ];
 
-// Estrutura dos confrontos
+// Estrutura dos confrontos por rodada
 const rodadas = {
-    1: [ // 6 confrontos - 12 times
+    1: [ // 6 confrontos
         { timeA: 1, timeB: 2 },
         { timeA: 3, timeB: 4 },
         { timeA: 5, timeB: 6 },
@@ -24,22 +24,23 @@ const rodadas = {
         { timeA: 9, timeB: 10 },
         { timeA: 11, timeB: 12 }
     ],
-    2: [ // 3 confrontos - 6 times (vencedores da rodada 1)
+    2: [ // 3 confrontos (vencedores da rodada 1)
         { timeA: 1, timeB: 3 },
         { timeA: 5, timeB: 7 },
         { timeA: 9, timeB: 11 }
     ],
-    3: [ // 2 confrontos - 4 times (semifinal)
-        { timeA: 1, timeB: 5 },
-        { timeA: 9, timeB: 11 }
+    3: [ // 1 confronto (semifinal)
+        { timeA: 1, timeB: 5 }
     ],
-    4: [ // 1 confronto - FINAL
+    4: [ // FINAL
         { timeA: 1, timeB: 9 }
     ]
 };
 
+// Estado atual
 let rodadaAtual = 1;
 
+// Elementos
 const container = document.getElementById('container-confrantos');
 const botoes = document.querySelectorAll('.btn-rodada');
 const modal = document.getElementById('modal-confronto');
@@ -48,10 +49,12 @@ const modalInfo = document.getElementById('modal-info');
 const modalTitulo = document.getElementById('modal-titulo');
 const fecharModal = document.querySelector('.fechar-modal');
 
+// Função para buscar time por ID
 function getTime(id) {
     return times.find(t => t.id === id);
 }
 
+// Renderizar confrontos de uma rodada
 function renderizarRodada(numero) {
     const confrontos = rodadas[numero];
     if (!confrontos) return;
@@ -80,6 +83,7 @@ function renderizarRodada(numero) {
     html += `</div>`;
     container.innerHTML = html;
 
+    // Adicionar evento de clique nos cards
     document.querySelectorAll('.card-jogo').forEach(card => {
         card.addEventListener('click', function() {
             const rodada = parseInt(this.dataset.rodada);
@@ -89,6 +93,7 @@ function renderizarRodada(numero) {
     });
 }
 
+// Abrir modal com detalhes do confronto
 function abrirModal(rodadaNum, jogoIndex) {
     const confronto = rodadas[rodadaNum][jogoIndex];
     if (!confronto) return;
@@ -110,23 +115,23 @@ function abrirModal(rodadaNum, jogoIndex) {
         </div>
     `;
 
-    const data = new Date();
-    const dataStr = data.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' });
-    
+    // Informações adicionais com data e horário atualizados
     modalInfo.innerHTML = `
-        <p>📅 ${dataStr} - 20:00 BRT</p>
+        <p>📅 00/26 - 23:00 BRT</p>
         <p>🏟️ Arena Gaming World</p>
-        <p style="color:#ffd700; margin-top:8px; opacity:0.5;">Clique fora para fechar</p>
+        <p style="color:#ffd700; margin-top:8px;">Clique fora para fechar</p>
     `;
 
     modal.classList.add('mostrar');
 }
 
+// Fechar modal
 fecharModal.addEventListener('click', () => modal.classList.remove('mostrar'));
 modal.addEventListener('click', (e) => {
     if (e.target === modal) modal.classList.remove('mostrar');
 });
 
+// Navegação entre rodadas
 botoes.forEach(btn => {
     btn.addEventListener('click', function() {
         botoes.forEach(b => b.classList.remove('ativo'));

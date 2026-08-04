@@ -1,409 +1,367 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Mobile Legends - Gaming World</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
-
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Orbitron',sans-serif;
-}
-
-body{
-
-background:
-linear-gradient(rgba(0,5,20,.55),rgba(0,5,20,.80)),
-url("fundogaming.png");
-
-background-size:cover;
-background-position:center;
-background-attachment:fixed;
-
-color:#fff;
-
-padding:20px;
-
-}
-
-.container{
-
-max-width:900px;
-
-margin:auto;
-
-}
-
-.logo-box{
-
-background:
-linear-gradient(rgba(0,8,30,.45),rgba(0,8,30,.70)),
-url("fundogaming.png");
-
-background-size:cover;
-background-position:center;
-
-border:2px solid #00aaff;
-
-border-radius:25px;
-
-box-shadow:
-0 0 20px #008cff,
-0 0 40px rgba(0,140,255,.4);
-
-padding:40px 25px;
-
-text-align:center;
-
-margin-bottom:25px;
-
-backdrop-filter:blur(10px);
-
-}
-
-.logo-box img{
-
-width:320px;
-max-width:95%;
-
-filter:drop-shadow(0 0 18px #00bfff);
-
-margin-bottom:35px;
-
-}
-
-.logo-box h1{
-
-font-size:34px;
-
-color:#19b5ff;
-
-text-shadow:0 0 15px #00bfff;
-
-margin-bottom:20px;
-
-}
-
-.logo-box p{
-
-font-size:18px;
-
-line-height:1.8;
-
-}
-
-.card{
-
-background:rgba(0,20,55,.60);
-
-backdrop-filter:blur(14px);
-
-border:2px solid #009dff;
-
-border-radius:20px;
-
-padding:25px;
-
-margin-bottom:20px;
-
-box-shadow:
-0 0 20px rgba(0,160,255,.35);
-
-transition:.35s;
-
-}
-
-.card:hover{
-
-transform:translateY(-5px);
-
-box-shadow:
-0 0 35px rgba(0,170,255,.8);
-
-}
-
-.card h2{
-
-color:#24c3ff;
-
-margin-bottom:15px;
-
-font-size:22px;
-
-}
-
-.card p{
-
-font-size:15px;
-
-line-height:1.8;
-
-color:#f2f2f2;
-
-}
-
-.lista{
-
-list-style:none;
-
-}
-
-.lista li{
-
-margin:12px 0;
-
-font-size:15px;
-
-}
-
-.btn{
-
-display:block;
-
-text-align:center;
-
-text-decoration:none;
-
-padding:18px;
-
-margin-top:20px;
-
-border-radius:15px;
-
-background:
-linear-gradient(90deg,#0077ff,#00d9ff);
-
-color:#fff;
-
-font-weight:bold;
-
-box-shadow:
-0 0 20px #009dff;
-
-transition:.35s;
-
-}
-
-.btn:hover{
-
-transform:scale(1.04);
-
-box-shadow:
-0 0 35px #00d9ff;
-
-}
-
-.voltar{
-
-background:rgba(0,20,55,.8);
-
-border:2px solid #009dff;
-
-}
-
-@media(max-width:700px){
-
-.logo-box img{
-
-width:250px;
-
-}
-
-.logo-box h1{
-
-font-size:28px;
-
-}
-
-.card h2{
-
-font-size:19px;
-
-}
-
-}
-
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Legends - Gaming World</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(rgba(0, 5, 10, 0.70), rgba(0, 5, 10, 0.85)), url("fundogaming.png");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #fff;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        /* BOTÃO VOLTAR */
+        .btn-voltar-topo {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            background: rgba(255, 215, 0, 0.08);
+            border: 2px solid rgba(255, 215, 0, 0.25);
+            border-radius: 50px;
+            color: #ffd700;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .btn-voltar-topo:hover {
+            background: rgba(255, 215, 0, 0.15);
+            border-color: #ffd700;
+            transform: translateX(-5px);
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.10);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        /* LOGO BOX */
+        .logo-box {
+            background: linear-gradient(rgba(0, 5, 10, 0.50), rgba(0, 5, 10, 0.75)), url("fundogaming.png");
+            background-size: cover;
+            background-position: center;
+            border: 2px solid rgba(255, 215, 0, 0.25);
+            border-radius: 25px;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.10), 0 0 40px rgba(255, 215, 0, 0.05);
+            padding: 40px 25px;
+            text-align: center;
+            margin-bottom: 25px;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo-box img {
+            width: 320px;
+            max-width: 95%;
+            filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.15));
+            margin-bottom: 25px;
+            animation: flutuar 5s ease-in-out infinite;
+        }
+
+        @keyframes flutuar {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0); }
+        }
+
+        .logo-box h1 {
+            font-size: 34px;
+            color: #ffd700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.15);
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .logo-box p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #f0e6c0;
+        }
+
+        .logo-box p strong {
+            color: #ffd700;
+        }
+
+        /* CARDS */
+        .card {
+            background: rgba(0, 5, 10, 0.65);
+            backdrop-filter: blur(14px);
+            border: 2px solid rgba(255, 215, 0, 0.10);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.03);
+            transition: .35s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 215, 0, 0.25);
+            box-shadow: 0 0 35px rgba(255, 215, 0, 0.06);
+        }
+
+        .card h2 {
+            color: #ffd700;
+            margin-bottom: 15px;
+            font-size: 22px;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.05);
+        }
+
+        .card p {
+            font-size: 15px;
+            line-height: 1.8;
+            color: #ddd0b0;
+        }
+
+        .card p strong {
+            color: #ffd700;
+        }
+
+        .lista {
+            list-style: none;
+        }
+
+        .lista li {
+            margin: 12px 0;
+            font-size: 15px;
+            color: #ddd0b0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .lista li::before {
+            content: "✦";
+            color: #ffd700;
+            position: absolute;
+            left: 0;
+        }
+
+        /* BOTÃO */
+        .btn {
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            padding: 18px;
+            margin-top: 20px;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            color: #0a0a0a;
+            font-weight: 700;
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.10);
+            transition: .35s;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 45px rgba(255, 215, 0, 0.20);
+            background: linear-gradient(135deg, #ffe44d, #ff9900);
+        }
+
+        .btn-voltar {
+            background: rgba(255, 215, 0, 0.06);
+            border: 2px solid rgba(255, 215, 0, 0.15);
+            color: #ffd700;
+            box-shadow: none;
+        }
+
+        .btn-voltar:hover {
+            background: rgba(255, 215, 0, 0.12);
+            border-color: #ffd700;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.05);
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #888;
+            font-size: 14px;
+        }
+
+        footer hr {
+            border: 1px solid rgba(255, 215, 0, 0.08);
+            margin-bottom: 20px;
+        }
+
+        footer strong {
+            color: #ffd700;
+        }
+
+        footer p:last-child {
+            color: #ffd700;
+            font-weight: 700;
+            margin-top: 6px;
+            letter-spacing: 1px;
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 700px) {
+            .logo-box img { width: 220px; }
+            .logo-box h1 { font-size: 26px; }
+            .logo-box p { font-size: 15px; }
+            .card h2 { font-size: 18px; }
+            .card p { font-size: 13px; }
+            .lista li { font-size: 13px; }
+            .btn { font-size: 14px; padding: 15px; }
+            .btn-voltar-topo { font-size: 0.75rem; padding: 10px 18px; }
+        }
+
+        @media (max-width: 480px) {
+            .logo-box img { width: 170px; }
+            .logo-box h1 { font-size: 20px; }
+            .logo-box p { font-size: 13px; }
+            .card { padding: 18px 16px; }
+            .card h2 { font-size: 15px; }
+            .card p { font-size: 12px; }
+            .lista li { font-size: 12px; }
+            .btn { font-size: 12px; padding: 12px; }
+            .btn-voltar-topo { font-size: 0.65rem; padding: 8px 14px; }
+            footer { font-size: 11px; }
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="container">
-
-<div class="logo-box">
-
-<img src="txtgaming.png">
-
-<h1>MOBILE LEGENDS - GW</h1>
-
-<p>
-🫸 MAIS QUE UMA COMUNIDADE,<br>
-UMA FAMÍLIA! 🫷
-</p>
-
-</div>
-
-<div class="card">
-
-<h2>🛡️ CONHEÇA NOSSOS GRUPOS</h2>
-
-<p>
-Aqui você encontra grupos organizados por objetivo, com foco em interação, competitividade, recrutamento, treinos, desafios e novidades do Mobile Legends.
-</p>
-
-</div>
-
-<div class="card">
-
-<h2>🎮 ML BATE-PAPO</h2>
-
-<p>
-Grupo principal para conversa, interação, resenha, dúvidas e movimentação geral da comunidade.
-</p>
-
-</div>
-
-<div class="card">
-
-<h2>👥 ML RECRUTAMENTO • FICHAS</h2>
-
-<p>
-Para jogadores procurarem times e times recrutarem jogadores. Envie sua ficha, encontre equipe ou monte sua line.
-</p>
-
-</div>
-
-<div class="card">
-
-<h2>⚔️ ML SCRIM • AMISTOSOS</h2>
-
-<p>
-Grupo para marcar scrims, amistosos, treinos competitivos e confrontos entre equipes.
-</p>
-
-</div>
-<div class="card">
-
-<h2>🎯 ML X1 • 5X5 • APOSTAS</h2>
-
-<p>
-Espaço destinado para desafios, X1, partidas 5x5 e confrontos organizados. Respeite sempre as regras e a boa convivência.
-</p>
-
-</div>
-
-<div class="card">
-
-<h2>💰 ML VENDAS • TROCAS</h2>
-
-<p>
-Grupo para compras, vendas e trocas relacionadas ao Mobile Legends. Sempre negocie com responsabilidade e, quando possível, utilize um intermediador da administração.
-</p>
-
-</div>
-
-<div class="card">
-
-<h2>🎲 ML MAGIC CHESS</h2>
-
-<p>
-Comunidade voltada para os jogadores de Magic Chess. Compartilhe estratégias, monte composições, participe de partidas e evolua junto com outros jogadores.
-</p>
-
-</div>
-
-<div class="card">
-
-<h2>📢 CANAL DE NOTÍCIAS</h2>
-
-<p>
-Receba anúncios oficiais, eventos, campeonatos, patch notes, atualizações, novidades e comunicados importantes da Gaming World.
-</p>
-
-</div>
-
-<div class="card">
-
-<h2>⚠️ NOSSA COMUNIDADE É VOLTADA PARA</h2>
-
-<ul class="lista">
-
-<li>♧ Competitivo amador e profissional</li>
-
-<li>◇ Recrutamento de jogadores e equipes</li>
-
-<li>♡ Scrims, amistosos e treinos</li>
-
-<li>♤ Eventos internos e campeonatos</li>
-
-<li>☆ X1, 5x5 e desafios</li>
-
-<li>☆ Magic Chess</li>
-
-<li>☆ Vendas e trocas organizadas</li>
-
-<li>☆ Parcerias autorizadas</li>
-
-<li>☆ Notícias e novidades do Mobile Legends</li>
-
-</ul>
-
-</div>
-
-<div class="card">
-
-<h2>📌 NOSSO OBJETIVO</h2>
-
-<p>
-Criar um ambiente organizado, seguro e ativo para jogadores casuais e competitivos. Nossa missão é reunir equipes, líderes e jogadores em uma comunidade completa, oferecendo recrutamentos, eventos, scrims, desafios, notícias e oportunidades para todos crescerem juntos.
-</p>
-
-</div>
-<div class="card">
-
-<h2>📱 CATÁLOGO DA COMUNIDADE</h2>
-
-<p>
-Entre no catálogo oficial da Gaming World e escolha o grupo ideal para você participar.
-</p>
-
-<a class="btn" href="https://wa.me/c/554797805117" target="_blank">
-
-📱 ABRIR CATÁLOGO
-
-</a>
-
-</div>
-
-<a class="btn voltar" href="index.html">
-
-🏠 VOLTAR AO INÍCIO
-
-</a>
-
-<footer style="text-align:center;margin-top:40px;padding:20px;color:#8ecfff;font-size:14px;">
-
-<hr style="border:1px solid rgba(0,170,255,.4);margin-bottom:20px;">
-
-<p><strong>Gaming World</strong></p>
-
-<p>Mais que uma comunidade, uma família.</p>
-
-<p>© 2026 - Todos os direitos reservados.</p>
-
-</footer>
-
-</div>
+    <div class="container">
+
+        <!-- BOTÃO VOLTAR TOPO -->
+        <a href="index.html" class="btn-voltar-topo">
+            ⬅ VOLTAR
+        </a>
+
+        <!-- LOGO BOX -->
+        <div class="logo-box">
+            <img src="logogaming.png" alt="Gaming World">
+            <h1>⚔️ MOBILE LEGENDS - GW</h1>
+            <p>
+                🫸 MAIS QUE UMA COMUNIDADE,<br>
+                <strong>UMA FAMÍLIA!</strong> 🫷
+            </p>
+        </div>
+
+        <!-- CARDS -->
+        <div class="card">
+            <h2>🛡️ CONHEÇA NOSSOS GRUPOS</h2>
+            <p>
+                Aqui você encontra grupos organizados por objetivo, com foco em interação, competitividade, recrutamento, treinos, desafios e novidades do Mobile Legends.
+            </p>
+        </div>
+
+        <div class="card">
+            <h2>🎮 ML BATE-PAPO</h2>
+            <p>
+                Grupo principal para conversa, interação, resenha, dúvidas e movimentação geral da comunidade.
+            </p>
+        </div>
+
+        <div class="card">
+            <h2>👥 ML RECRUTAMENTO • FICHAS</h2>
+            <p>
+                Para jogadores procurarem times e times recrutarem jogadores. Envie sua ficha, encontre equipe ou monte sua line.
+            </p>
+        </div>
+
+        <div class="card">
+            <h2>⚔️ ML SCRIM • AMISTOSOS</h2>
+            <p>
+                Grupo para marcar scrims, amistosos, treinos competitivos e confrontos entre equipes.
+            </p>
+        </div>
+
+        <div class="card">
+            <h2>🎯 ML X1 • 5X5 • APOSTAS</h2>
+            <p>
+                Espaço destinado para desafios, X1, partidas 5x5 e confrontos organizados. Respeite sempre as regras e a boa convivência.
+            </p>
+        </div>
+
+        <div class="card">
+            <h2>💰 ML VENDAS • TROCAS</h2>
+            <p>
+                Grupo para compras, vendas e trocas relacionadas ao Mobile Legends. Sempre negocie com responsabilidade e, quando possível, utilize um intermediador da administração.
+            </p>
+        </div>
+
+        <div class="card">
+            <h2>🎲 ML MAGIC CHESS</h2>
+            <p>
+                Comunidade voltada para os jogadores de Magic Chess. Compartilhe estratégias, monte composições, participe de partidas e evolua junto com outros jogadores.
+            </p>
+        </div>
+
+        <div class="card">
+            <h2>📢 CANAL DE NOTÍCIAS</h2>
+            <p>
+                Receba anúncios oficiais, eventos, campeonatos, patch notes, atualizações, novidades e comunicados importantes da Gaming World.
+            </p>
+        </div>
+
+        <div class="card">
+            <h2>⚠️ NOSSA COMUNIDADE É VOLTADA PARA</h2>
+            <ul class="lista">
+                <li>♧ Competitivo amador e profissional</li>
+                <li>◇ Recrutamento de jogadores e equipes</li>
+                <li>♡ Scrims, amistosos e treinos</li>
+                <li>♤ Eventos internos e campeonatos</li>
+                <li>☆ X1, 5x5 e desafios</li>
+                <li>☆ Magic Chess</li>
+                <li>☆ Vendas e trocas organizadas</li>
+                <li>☆ Parcerias autorizadas</li>
+                <li>☆ Notícias e novidades do Mobile Legends</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>📌 NOSSO OBJETIVO</h2>
+            <p>
+                Criar um ambiente organizado, seguro e ativo para jogadores casuais e competitivos. Nossa missão é reunir equipes, líderes e jogadores em uma comunidade completa, oferecendo recrutamentos, eventos, scrims, desafios, notícias e oportunidades para todos crescerem juntos.
+            </p>
+        </div>
+
+        <div class="card">
+            <h2>📱 CATÁLOGO DA COMUNIDADE</h2>
+            <p>
+                Entre no catálogo oficial da Gaming World e escolha o grupo ideal para você participar.
+            </p>
+            <a class="btn" href="https://wa.me/c/554797805117" target="_blank">
+                📱 ABRIR CATÁLOGO
+            </a>
+        </div>
+
+        <!-- BOTÃO VOLTAR -->
+        <a class="btn btn-voltar" href="index.html">
+            🏠 VOLTAR AO INÍCIO
+        </a>
+
+        <!-- FOOTER -->
+        <footer>
+            <hr>
+            <p><strong>Gaming World</strong></p>
+            <p>Mais que uma comunidade, uma família.</p>
+            <p>🏆 Gaming World 2026 ®</p>
+        </footer>
+
+    </div>
 
 </body>
-
 </html>
