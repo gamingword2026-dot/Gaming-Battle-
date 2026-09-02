@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roleta - Sorteio de Clãs</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            min-height: 100vh;
+            background: #0a0a0a;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .bg-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at 20% 50%, rgba(255, 215, 0, 0.05) 0%, transparent 60%), radial-gradient(ellipse at 80% 50%, rgba(255, 100, 0, 0.04) 0%, transparent 60%), linear-gradient(180deg, #0a0a0a 0%, #111 50%, #0a0a0a 100%);
+            z-index: 0;
+        }
+
+        .bg-overlay::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('fundogaming.png') no-repeat center center/cover;
+            opacity: 0.08;
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo-pequena {
+            max-width: 200px;
+            width: 100%;
+            margin: 0 auto 20px;
+        }
+
+        .logo-pequena img {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.1));
+        }
+
+        .titulo {
+            font-size: 2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, #ffd700, #ff8c00, #ffd700);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shineText 3s linear infinite;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+
+        @keyframes shineText {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+
+        .subtitulo {
+            color: #aaa;
+            font-size: 1rem;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        /* ROELTA */
+        .roleta-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto 30px;
+        }
+
+        .roleta-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 100%;
+            border-radius: 50%;
+            box-shadow: 0 0 60px rgba(255, 215, 0, 0.1), 0 0 120px rgba(255, 215, 0, 0.05);
+        }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 4px solid rgba(255, 215, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        /* Ponteiro */
+        .ponteiro {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            font-size: 2.5rem;
+            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.3));
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.1); }
+        }
+
+        /* Resultado */
+        .resultado {
+            background: rgba(18, 18, 35, 0.92);
+            backdrop-filter: blur(12px);
+            border: 2px solid rgba(255, 215, 0, 0.15);
+            border-radius: 20px;
+            padding: 20px 25px;
+            margin: 10px 0 25px;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            transition: all 0.5s ease;
+        }
+
+        .resultado .label {
+            font-size: 0.8rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .resultado .sorteado {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #ffd700;
+            text-shadow: 0 0 40px rgba(255, 215, 0, 0.2);
+            margin-top: 5px;
+            text-transform: uppercase;
+        }
+
+        .resultado.destaque {
+            border-color: rgba(255, 215, 0, 0.4);
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.05);
+        }
+
+        /* Botões */
+        .btn-girar {
+            padding: 18px 50px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: none;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: linear-gradient(145deg, #f7d875, #f5b342);
+            color: #0a0a0a;
+            box-shadow: 0 6px 0 #b16f1a, 0 8px 25px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 350px;
+        }
+
+        .btn-girar:hover:not(:disabled) {
+            transform: translateY(-2px);
+            background: linear-gradient(145deg, #fce38a, #f7b845);
+            box-shadow: 0 8px 0 #a55f12, 0 12px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .btn-girar:active:not(:disabled) {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 #b16f1a, 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-girar:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        /* Lista de clãs */
+        .lista-clas {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .clan-tag {
+            background: rgba(255, 215, 0, 0.06);
+            border: 1px solid rgba(255, 215, 0, 0.08);
+            border-radius: 20px;
+            padding: 4px 14px;
+            font-size: 0.7rem;
+            color: #999;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .clan-tag.sorteado-tag {
+            background: rgba(255, 215, 0, 0.15);
+            border-color: #ffd700;
+            color: #ffd700;
+        }
+
+        .btn-voltar {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid rgba(255, 215, 0, 0.15);
+            background: transparent;
+            color: #aaa;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-voltar:hover {
+            background: rgba(255, 215, 0, 0.05);
+            color: #ffd700;
+            border-color: rgba(255, 215, 0, 0.3);
+        }
+
+        @media (max-width: 480px) {
+            .titulo { font-size: 1.5rem; }
+            .resultado .sorteado { font-size: 2rem; }
+            .btn-girar { font-size: 1rem; padding: 15px 30px; }
+            .ponteiro { font-size: 2rem; top: -10px; }
+        }
+    </style>
+</head>
+<body>
+<div class="bg-overlay"></div>
+
+<div class="container">
+    <!-- Logo -->
+    <div class="logo-pequena">
+        <img src="logogaming.png" alt="Gaming World" onerror="this.style.display='none'">
+    </div>
+
+    <h1 class="titulo">🎯 ROLETA DOS CLÃS</h1>
+    <p class="subtitulo">Gire e descubra qual clã será sorteado!</p>
+
+    <!-- Roleta -->
+    <div class="roleta-wrapper">
+        <div class="roleta-container">
+            <canvas id="roletaCanvas" width="500" height="500"></canvas>
+            <div class="ponteiro">▼</div>
+        </div>
+    </div>
+
+    <!-- Resultado -->
+    <div class="resultado" id="resultado">
+        <span class="label">🎲 CLÃ SORTEADO</span>
+        <span class="sorteado" id="sorteadoTexto">?</span>
+    </div>
+
+    <!-- Botão -->
+    <button class="btn-girar" id="btnGirar">🔄 GIRAR ROLETA</button>
+
+    <!-- Lista de Clãs -->
+    <div class="lista-clas" id="listaClas">
+        <span class="clan-tag">CLÃ 1</span>
+        <span class="clan-tag">CLÃ 2</span>
+        <span class="clan-tag">CLÃ 3</span>
+        <span class="clan-tag">CLÃ 4</span>
+        <span class="clan-tag">CLÃ 5</span>
+        <span class="clan-tag">CLÃ 6</span>
+        <span class="clan-tag">CLÃ 7</span>
+        <span class="clan-tag">CLÃ 8</span>
+        <span class="clan-tag">CLÃ 9</span>
+        <span class="clan-tag">CLÃ 10</span>
+        <span class="clan-tag">CLÃ 11</span>
+        <span class="clan-tag">CLÃ 12</span>
+    </div>
+
+    <!-- Voltar -->
+    <a href="index.html" class="btn-voltar">⬅ VOLTAR</a>
+</div>
+    <script>
+        const clãs = [
+            'CLÃ 1', 'CLÃ 2', 'CLÃ 3', 'CLÃ 4', 'CLÃ 5',
+            'CLÃ 6', 'CLÃ 7', 'CLÃ 8', 'CLÃ 9', 'CLÃ 10',
+            'CLÃ 11', 'CLÃ 12'
+        ];
+
+        const cores = [
+            '#e74c3c', '#3498db', '#2ecc71', '#f1c40f', '#9b59b6',
+            '#1abc9c', '#e67e22', '#ecf0f1', '#e84393', '#00b894',
+            '#6c5ce7', '#fd79a8'
+        ];
+
+        let anguloAtual = 0;
+        let girando = false;
+        let ultimoSorteado = null;
+
+        const canvas = document.getElementById('roletaCanvas');
+        const ctx = canvas.getContext('2d');
+        const btnGirar = document.getElementById('btnGirar');
+        const sorteadoTexto = document.getElementById('sorteadoTexto');
+        const resultadoDiv = document.getElementById('resultado');
+        const listaClas = document.getElementById('listaClas');
+
+        // Ajustar tamanho do canvas para mobile
+        function ajustarCanvas() {
+            const container = canvas.parentElement;
+            const size = container.clientWidth || 400;
+            canvas.width = size;
+            canvas.height = size;
+            desenharRoleta(anguloAtual);
+        }
+
+        function desenharRoleta(angulo) {
+            const width = canvas.width;
+            const height = canvas.height;
+            const centerX = width / 2;
+            const centerY = height / 2;
+            const raio = Math.min(width, height) / 2 - 10;
+            const numSegments = clãs.length;
+            const segmentAngle = (2 * Math.PI) / numSegments;
+
+            ctx.clearRect(0, 0, width, height);
+
+            for (let i = 0; i < numSegments; i++) {
+                const startAngle = angulo + i * segmentAngle;
+                const endAngle = startAngle + segmentAngle;
+
+                ctx.beginPath();
+                ctx.moveTo(centerX, centerY);
+                ctx.arc(centerX, centerY, raio, startAngle, endAngle);
+                ctx.closePath();
+
+                ctx.fillStyle = cores[i % cores.length];
+                ctx.fill();
+                ctx.strokeStyle = '#0a0a0a';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+
+                // Texto
+                const midAngle = startAngle + segmentAngle / 2;
+                const textRadius = raio * 0.65;
+                const x = centerX + Math.cos(midAngle) * textRadius;
+                const y = centerY + Math.sin(midAngle) * textRadius;
+
+                ctx.save();
+                ctx.translate(x, y);
+                ctx.rotate(midAngle + Math.PI / 2);
+                ctx.fillStyle = '#fff';
+                ctx.font = `${Math.min(raio * 0.11, 18)}px 'Segoe UI', Arial, sans-serif`;
+                ctx.fontWeight = 'bold';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(clãs[i], 0, 0);
+                ctx.restore();
+            }
+
+            // Círculo central
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, raio * 0.12, 0, 2 * Math.PI);
+            ctx.fillStyle = '#1a1a2e';
+            ctx.fill();
+            ctx.strokeStyle = '#ffd700';
+            ctx.lineWidth = 3;
+            ctx.stroke();
+
+            // Borda externa
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, raio, 0, 2 * Math.PI);
+            ctx.strokeStyle = 'rgba(255, 215, 0, 0.2)';
+            ctx.lineWidth = 4;
+            ctx.stroke();
+        }
+
+        function girarRoleta() {
+            if (girando) return;
+            girando = true;
+            btnGirar.disabled = true;
+            btnGirar.textContent = '🌀 GIRANDO...';
+            resultadoDiv.classList.remove('destaque');
+            sorteadoTexto.textContent = '...';
+
+            // Remove destaque anterior
+            document.querySelectorAll('.clan-tag').forEach(tag => tag.classList.remove('sorteado-tag'));
+
+            // Sorteia um clã
+            const sorteado = Math.floor(Math.random() * clãs.length);
+            ultimoSorteado = sorteado;
+
+            // Calcula o ângulo para parar no clã sorteado
+            const segmentAngle = (2 * Math.PI) / clãs.length;
+            const targetAngle = (2 * Math.PI) - (sorteado * segmentAngle + segmentAngle / 2);
+            const spins = 5 + Math.random() * 3; // 5 a 8 voltas
+            const finalAngle = anguloAtual + targetAngle + spins * 2 * Math.PI + (Math.random() * 0.5 - 0.25);
+
+            // Anima
+            const inicio = performance.now();
+            const duracao = 4000 + Math.random() * 1000; // 4-5 segundos
+
+            function animar(tempo) {
+                const progress = Math.min((tempo - inicio) / duracao, 1);
+                // Easing: easeOutQuart
+                const eased = 1 - Math.pow(1 - progress, 4);
+                const anguloAtualAnim = anguloAtual + (finalAngle - anguloAtual) * eased;
+
+                desenharRoleta(anguloAtualAnim);
+
+                if (progress < 1) {
+                    requestAnimationFrame(animar);
+                } else {
+                    anguloAtual = finalAngle;
+                    girando = false;
+                    btnGirar.disabled = false;
+                    btnGirar.textContent = '🔄 GIRAR ROLETA';
+
+                    // Mostra o resultado
+                    sorteadoTexto.textContent = clãs[sorteado];
+                    resultadoDiv.classList.add('destaque');
+
+                    // Destaca na lista
+                    const tags = document.querySelectorAll('.clan-tag');
+                    tags.forEach((tag, index) => {
+                        if (index === sorteado) {
+                            tag.classList.add('sorteado-tag');
+                        }
+                    });
+
+                    // Efeito sonoro visual
+                    const coresFlash = ['#ffd700', '#ff8c00', '#ffd700', '#ff8c00'];
+                    let flashIndex = 0;
+                    const flashInterval = setInterval(() => {
+                        resultadoDiv.style.borderColor = coresFlash[flashIndex % coresFlash.length];
+                        flashIndex++;
+                        if (flashIndex > 10) {
+                            clearInterval(flashInterval);
+                            resultadoDiv.style.borderColor = 'rgba(255, 215, 0, 0.4)';
+                        }
+                    }, 100);
+                }
+            }
+
+            requestAnimationFrame(animar);
+        }
+
+        btnGirar.addEventListener('click', girarRoleta);
+
+        // Ajustar canvas ao carregar e redimensionar
+        window.addEventListener('load', ajustarCanvas);
+        window.addEventListener('resize', ajustarCanvas);
+
+        console.log('🎯 Roleta carregada!');
+        console.log('📊 Total de clãs:', clãs.length);
+    </script>
+</body>
+</html>

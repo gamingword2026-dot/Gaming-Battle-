@@ -19,7 +19,6 @@
             position: relative;
         }
 
-        /* Fundo */
         .bg-overlay {
             position: fixed;
             top: 0;
@@ -59,7 +58,6 @@
             justify-content: center;
         }
 
-        /* Logo principal */
         .logo-principal {
             width: 100%;
             max-width: 700px;
@@ -79,7 +77,6 @@
             transform: scale(1.02);
         }
 
-        /* Título */
         .titulo-campeonato {
             font-size: 3rem;
             font-weight: 900;
@@ -110,7 +107,6 @@
             margin-bottom: 40px;
         }
 
-        /* Cards dos campeonatos */
         .card-grid {
             display: flex;
             flex-wrap: wrap;
@@ -141,8 +137,19 @@
         }
 
         .card .icone-card {
-            font-size: 3.5rem;
             margin-bottom: 12px;
+        }
+
+        /* AUMENTEI O TAMANHO DA IMAGEM AQUI */
+        .card .icone-card img {
+            width: 100px;
+            height: auto;
+            filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.3));
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover .icone-card img {
+            transform: scale(1.1) rotate(-5deg);
         }
 
         .card h2 {
@@ -209,7 +216,6 @@
             box-shadow: 0 2px 0 #b16f1a, 0 6px 20px rgba(0, 0, 0, 0.3);
         }
 
-        /* Rodapé */
         .footer {
             margin-top: 50px;
             text-align: center;
@@ -235,6 +241,7 @@
             .card { flex: 1 1 100%; max-width: 400px; }
             .card h2 { font-size: 1.7rem; }
             .btn { font-size: 1rem; padding: 12px 30px; }
+            .card .icone-card img { width: 80px; }
         }
 
         @media (max-width: 480px) {
@@ -244,7 +251,7 @@
             .subtitulo-campeonato { font-size: 0.85rem; }
             .card { padding: 25px 18px 22px; }
             .card h2 { font-size: 1.4rem; }
-            .card .icone-card { font-size: 2.8rem; }
+            .card .icone-card img { width: 70px; }
             .card p { font-size: 0.85rem; }
             .btn { font-size: 0.9rem; padding: 11px 20px; }
             .footer { font-size: 0.75rem; }
@@ -255,32 +262,30 @@
 <div class="bg-overlay"></div>
 
 <div class="container">
-    <!-- Logo Principal -->
     <div class="logo-principal">
         <img src="logogaming.png" alt="Gaming World" onerror="this.style.display='none'">
     </div>
 
-    <!-- Título -->
     <h1 class="titulo-campeonato">CAMPEONATO GAMING BATTLE 2026</h1>
     <p class="subtitulo-campeonato">"Aqui Gaming World 2026"</p>
 
-    <!-- Cards -->
     <div class="card-grid">
-        <!-- Card Mobile Legends 2vs2 -->
         <div class="card">
-            <div class="icone-card">⚔️</div>
+            <div class="icone-card">
+                <img src="fotoc.png" alt="Espadas cruzadas">
+            </div>
             <h2>2 VS 2</h2>
             <div class="card-sub">Mobile Legends</div>
-            <div class="card-destaque">🏆 Dupla • Estratégia • Sincronia</div>
+            <div class="card-destaque">🏅 Dupla • Estratégia • Sincronia</div>
             <p>
                 Mostre sua dupla dinâmica.<br>
-                Partidas eletrizantes, premiação exclusiva e ranking global.
+                Partidas eletrizantes, premiação exclusiva.
+                <!-- REMOVI O "ranking global" AQUI -->
             </p>
             <a href="campeonatoml.html" class="btn">⚔️ PARTICIPAR</a>
         </div>
     </div>
 
-    <!-- Rodapé -->
     <div class="footer">
         <p>© 2026 Gaming Battle - Todos os direitos reservados</p>
         <p>Gaming World E-SPORTS</p>
