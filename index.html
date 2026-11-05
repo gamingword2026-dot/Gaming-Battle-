@@ -3,22 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gaming World</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+
+    <!-- ===== SEO ===== -->
+    <title>Gaming World — Campeonatos, Comunidade e Eventos de Games</title>
+    <meta name="description" content="Gaming World: há mais de 5 anos organizando campeonatos, eventos e uma comunidade de jogadores unida. Participe dos campeonatos, confira as regras e faça parte da história.">
+    <meta name="keywords" content="gaming world, campeonato, games, comunidade gamer, torneio, e-sports">
+    <meta name="author" content="Gaming World">
+    <meta name="theme-color" content="#0f0f14">
+    <meta name="robots" content="index, follow">
+
+    <!-- ===== Open Graph / Redes Sociais ===== -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Gaming World — Campeonatos e Comunidade Gamer">
+    <meta property="og:description" content="Há mais de 5 anos construindo a lenda. Campeonatos, eventos e parcerias. Faça parte da Gaming World!">
+    <meta property="og:image" content="logogaming.png">
+    <meta property="og:locale" content="pt_BR">
+
+    <link rel="icon" type="image/png" href="logogaming.png">
+
+    <!-- ===== Performance ===== -->
+    <link rel="preload" as="image" href="logogaming.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --dourado: #ffd700;
+            --dourado-claro: #ffe066;
+            --laranja: #ff8c00;
+            --fundo: #0f0f14;
+            --texto: #f0e6c0;
+            --borda: rgba(255, 215, 0, 0.30);
         }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
 
         body {
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Orbitron', sans-serif;
-            background: url("fundogaming.png") center center fixed;
+            font-family: 'Rajdhani', sans-serif;
+            color: var(--texto);
+            background: var(--fundo) url("fundogaming.png") center center fixed;
             background-size: cover;
             background-repeat: no-repeat;
         }
@@ -30,15 +57,60 @@
             z-index: 1;
         }
 
+        /* ===== NAVEGAÇÃO FIXA ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 28px;
+            background: rgba(15, 15, 20, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.15);
+        }
+
+        .navbar img {
+            height: 42px;
+            filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.5));
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 8px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dourado);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: .3s;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 215, 0, 0.12);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.25);
+        }
+
         .container {
             position: relative;
             z-index: 10;
             width: 100%;
             max-width: 1200px;
+            margin: 0 auto;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 20px 15px 40px;
+            padding: 100px 15px 40px;
         }
 
         .logo {
@@ -49,9 +121,8 @@
         }
 
         @keyframes flutuar {
-            0% { transform: translateY(0); }
+            0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-12px); }
-            100% { transform: translateY(0); }
         }
 
         .menu {
@@ -64,69 +135,75 @@
         }
 
         .botao {
-            width: 180px;
+            min-width: 180px;
             height: 70px;
+            padding: 0 24px;
             display: flex;
             justify-content: center;
             align-items: center;
             text-decoration: none;
-            font-size: 28px;
-            color: #ffd700;
+            font-size: 24px;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--dourado);
             background: rgba(15, 15, 20, 0.55);
-            border: 3px solid #ffd700;
+            border: 3px solid var(--dourado);
             border-radius: 40px;
             backdrop-filter: blur(10px);
-            text-shadow: 0 0 12px #ffd700;
+            text-shadow: 0 0 12px var(--dourado);
             box-shadow: 0 0 12px rgba(255, 215, 0, 0.3), inset 0 0 12px rgba(255, 215, 0, 0.15);
             transition: .3s;
         }
 
-        .botao:hover {
+        .botao:hover, .botao:focus-visible {
             transform: translateY(-6px);
-            box-shadow: 0 0 25px #ffd700, 0 0 45px #ff8c00;
+            box-shadow: 0 0 25px var(--dourado), 0 0 45px var(--laranja);
             background: rgba(255, 215, 0, 0.10);
+            outline: none;
         }
+
+        .botao-longo { min-width: 270px; font-size: 22px; }
 
         .mensagem {
             margin-top: 40px;
             text-align: center;
-            color: #fff;
             max-width: 850px;
             padding: 30px 25px;
             background: rgba(0, 0, 0, 0.60);
-            border: 2px solid rgba(255, 215, 0, 0.30);
+            border: 2px solid var(--borda);
             border-radius: 30px;
             backdrop-filter: blur(8px);
             box-shadow: 0 0 40px rgba(255, 215, 0, 0.10);
         }
 
         .mensagem h1 {
-            font-size: 2.8rem;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.4rem;
             font-weight: 900;
-            color: #ffd700;
-            text-shadow: 0 0 30px #ffd700, 0 0 60px #ff8c00;
+            color: var(--dourado);
+            text-shadow: 0 0 30px var(--dourado), 0 0 60px var(--laranja);
             line-height: 1.3;
         }
 
         .subtitulo {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 700;
-            color: #ffe066;
+            color: var(--dourado-claro);
             margin-top: 8px;
+            font-family: 'Orbitron', sans-serif;
         }
 
         .destaque-anos {
-            font-size: 2.2rem;
+            font-size: 2rem;
             font-weight: 900;
-            color: #ffd700;
-            text-shadow: 0 0 30px #ffd700;
+            color: var(--dourado);
+            text-shadow: 0 0 30px var(--dourado);
             margin: 10px 0;
+            font-family: 'Orbitron', sans-serif;
         }
 
         .descricao {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             margin-top: 10px;
-            color: #f0e6c0;
             line-height: 1.6;
         }
 
@@ -143,20 +220,52 @@
             border-radius: 30px;
             background: rgba(255, 215, 0, 0.08);
             border: 1px solid rgba(255, 215, 0, 0.20);
-            color: #ffd700;
+            color: var(--dourado);
+            font-weight: 600;
         }
 
-        .frase-final {
-            margin-top: 10px;
-            font-size: 1.3rem;
-            color: #f0e6c0;
-        }
+        .frase-final { margin-top: 10px; font-size: 1.3rem; }
 
         .convite {
             margin-top: 15px;
             font-size: 1.6rem;
-            color: #ffd700;
+            font-weight: 700;
+            color: var(--dourado);
             text-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+        }
+
+        /* ===== ESTATÍSTICAS ===== */
+        .stats {
+            margin-top: 40px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .stat-card {
+            min-width: 180px;
+            padding: 20px 30px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.55);
+            border: 1px solid var(--borda);
+            border-radius: 20px;
+            backdrop-filter: blur(8px);
+        }
+
+        .stat-numero {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--dourado);
+            text-shadow: 0 0 20px var(--dourado);
+        }
+
+        .stat-rotulo {
+            font-size: 1rem;
+            color: var(--texto);
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         .video {
@@ -169,17 +278,19 @@
         .video iframe {
             width: 850px;
             max-width: 100%;
-            height: 470px;
+            aspect-ratio: 16 / 9;
+            height: auto;
             border: none;
             border-radius: 25px;
             box-shadow: 0 0 25px rgba(255, 215, 0, 0.20);
         }
 
         .canal {
-            margin-top: 20px;
+            margin-top: 30px;
             font-size: 28px;
-            color: #ffd700;
+            color: var(--dourado);
             text-align: center;
+            font-family: 'Orbitron', sans-serif;
             text-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
         }
 
@@ -204,155 +315,136 @@
             gap: 8px;
         }
 
-        .rede:hover {
-            transform: translateY(-4px) scale(1.02);
-        }
+        .rede:hover, .rede:focus-visible { transform: translateY(-4px) scale(1.02); outline: none; }
 
-        .instagram {
-            background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-            box-shadow: 0 0 20px rgba(225, 48, 108, 0.3);
-        }
+        .instagram  { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); box-shadow: 0 0 20px rgba(225, 48, 108, 0.3); }
+        .whatsapp-gaming { background: #25D366; box-shadow: 0 0 20px rgba(37, 211, 102, 0.3); }
+        .youtube    { background: #FF0000; box-shadow: 0 0 20px rgba(255, 0, 0, 0.3); }
+        .discord    { background: #5865F2; box-shadow: 0 0 20px rgba(88, 101, 242, 0.3); }
+        .facebook   { background: #1877F2; box-shadow: 0 0 20px rgba(24, 119, 242, 0.3); }
+        .tiktok     { background: linear-gradient(135deg, #00f2ea, #ff0050); box-shadow: 0 0 20px rgba(255, 0, 80, 0.3); }
 
-        .whatsapp-gaming {
-            background: #25D366;
-            box-shadow: 0 0 20px rgba(37, 211, 102, 0.3);
-        }
-
-        .youtube {
-            background: #FF0000;
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
-        }
-
-        .discord {
-            background: #5865F2;
-            box-shadow: 0 0 20px rgba(88, 101, 242, 0.3);
-        }
-
-        .facebook {
-            background: #1877F2;
-            box-shadow: 0 0 20px rgba(24, 119, 242, 0.3);
-        }
-
-        .tiktok {
-            background: linear-gradient(135deg, #00f2ea, #ff0050);
-            box-shadow: 0 0 20px rgba(255, 0, 80, 0.3);
-        }
-
-        /* RODAPÉ COM COPYRIGHT */
+        /* ===== RODAPÉ PROFISSIONAL ===== */
         .footer-site {
-            margin-top: 40px;
-            padding: 20px 30px;
-            text-align: center;
-            color: #ffd700;
-            font-size: 1.1rem;
-            font-weight: 700;
-            border-top: 1px solid rgba(255, 215, 0, 0.15);
-            background: rgba(0, 0, 0, 0.40);
-            border-radius: 20px;
-            backdrop-filter: blur(5px);
+            margin-top: 50px;
             width: 100%;
             max-width: 850px;
+            padding: 30px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.55);
+            border: 1px solid rgba(255, 215, 0, 0.15);
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-bottom: 18px;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: var(--dourado);
+            text-decoration: none;
+            font-weight: 600;
+            transition: .3s;
+        }
+
+        .footer-links a:hover { text-shadow: 0 0 12px var(--dourado); }
+
+        .footer-copy {
+            color: var(--dourado);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
             letter-spacing: 2px;
             text-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
         }
 
+        /* ===== ANIMAÇÃO DE ENTRADA ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity .7s ease, transform .7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .logo, .reveal { animation: none; transition: none; opacity: 1; transform: none; }
+        }
+
+        /* ===== RESPONSIVO ===== */
         @media (max-width: 768px) {
+            .navbar { padding: 10px 15px; }
+            .navbar img { height: 32px; }
+            .nav-links a { font-size: 0.7rem; padding: 6px 10px; }
+            .container { padding-top: 90px; }
             .logo { width: 95%; }
-            .botao {
-                width: 120px;
-                height: 55px;
-                font-size: 18px;
-            }
-            .mensagem h1 {
-                font-size: 1.8rem;
-            }
-            .subtitulo {
-                font-size: 1.2rem;
-            }
-            .destaque-anos {
-                font-size: 1.6rem;
-            }
-            .video iframe {
-                height: 220px;
-            }
-            .redes {
-                flex-direction: column;
-                align-items: center;
-            }
-            .rede {
-                width: 280px;
-                text-align: center;
-                justify-content: center;
-            }
-            .footer-site {
-                font-size: 0.9rem;
-                padding: 15px 20px;
-            }
+            .botao { min-width: 140px; height: 55px; font-size: 16px; padding: 0 16px; }
+            .botao-longo { min-width: 170px; font-size: 14px; }
+            .mensagem h1 { font-size: 1.6rem; }
+            .subtitulo { font-size: 1.1rem; }
+            .destaque-anos { font-size: 1.5rem; }
+            .redes { flex-direction: column; align-items: center; }
+            .rede { width: 280px; justify-content: center; font-size: 17px; }
+            .footer-copy { font-size: 0.85rem; }
         }
 
         @media (max-width: 480px) {
-            .mensagem h1 {
-                font-size: 1.4rem;
-            }
-            .subtitulo {
-                font-size: 1rem;
-            }
-            .destaque-anos {
-                font-size: 1.3rem;
-            }
-            .descricao {
-                font-size: 0.95rem;
-            }
-            .convite {
-                font-size: 1.2rem;
-            }
-            .botao {
-                width: 100px;
-                height: 45px;
-                font-size: 14px;
-            }
-            .rede {
-                width: 240px;
-                font-size: 16px;
-                padding: 14px 20px;
-            }
-            .footer-site {
-                font-size: 0.75rem;
-                padding: 12px 15px;
-            }
+            .nav-links a { font-size: 0.62rem; padding: 5px 8px; }
+            .mensagem h1 { font-size: 1.3rem; }
+            .subtitulo { font-size: 0.95rem; }
+            .destaque-anos { font-size: 1.2rem; }
+            .descricao { font-size: 1rem; }
+            .convite { font-size: 1.15rem; }
+            .botao { min-width: 115px; height: 45px; font-size: 13px; }
+            .botao-longo { min-width: 140px; font-size: 11px; }
+            .rede { width: 240px; font-size: 15px; padding: 14px 20px; }
+            .stat-card { min-width: 140px; padding: 15px 20px; }
+            .stat-numero { font-size: 1.7rem; }
+            .footer-copy { font-size: 0.7rem; }
         }
-<<<<<<< HEAD
-    
-        /* botão com texto maior ("Campeonato 5v5") */
-        .botao-longo { width: 270px; font-size: 24px; }
-        @media (max-width: 768px) { .botao-longo { width: 170px; font-size: 15px; text-align: center; } }
-        @media (max-width: 480px) { .botao-longo { width: 140px; font-size: 12px; text-align: center; } }
-</style>
-=======
     </style>
->>>>>>> 25fd453c447ff2d983547817a41a65ef35de268b
 </head>
 
 <body>
     <div class="overlay"></div>
 
-    <div class="container">
+    <!-- ===== NAVEGAÇÃO ===== -->
+    <nav class="navbar" aria-label="Navegação principal">
+        <a href="index.html" aria-label="Gaming World - Página inicial">
+            <img src="logogaming.png" alt="Logo Gaming World">
+        </a>
+        <ul class="nav-links">
+            <li><a href="campeonatoc.html">Campeonato</a></li>
+            <li><a href="campeonato5.html">5v5</a></li>
+            <li><a href="regras.html">Regras</a></li>
+            <li><a href="GW.html">GW</a></li>
+            <li><a href="parceria.html">Parceria</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
 
         <!-- LOGO -->
         <img src="logogaming.png" class="logo" alt="Gaming World">
 
-        <div class="menu">
+        <div class="menu" role="navigation" aria-label="Menu principal">
             <a href="campeonatoc.html" class="botao">Campeonato</a>
-<<<<<<< HEAD
             <a href="campeonato5.html" class="botao botao-longo">Campeonato 5v5</a>
-=======
->>>>>>> 25fd453c447ff2d983547817a41a65ef35de268b
             <a href="regras.html" class="botao">Regras</a>
             <a href="GW.html" class="botao">GW</a>
             <a href="parceria.html" class="botao">Parceria</a>
         </div>
 
-        <div class="mensagem">
+        <section class="mensagem reveal" aria-label="Sobre a Gaming World">
 
             <h1>UMA TRAJETÓRIA DE<br>EXCELÊNCIA E SUPERAÇÃO</h1>
 
@@ -380,77 +472,75 @@
             <p class="convite">
                 🔥 Faça parte da Gaming World e escreva essa história conosco!
             </p>
-        </div>
+        </section>
 
-        <!-- VÍDEO DO YOUTUBE - NOVO LINK -->
-        <div class="video">
+        <!-- ===== ESTATÍSTICAS ===== -->
+        <section class="stats reveal" aria-label="Números da Gaming World">
+            <div class="stat-card">
+                <div class="stat-numero">5+</div>
+                <div class="stat-rotulo">Anos de história</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-numero">🏆</div>
+                <div class="stat-rotulo">Campeonatos</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-numero">👥</div>
+                <div class="stat-rotulo">Comunidade ativa</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-numero">🤝</div>
+                <div class="stat-rotulo">Parcerias</div>
+            </div>
+        </section>
+
+        <!-- VÍDEO DO YOUTUBE -->
+        <section class="video reveal" aria-label="Vídeo do canal">
             <iframe
                 src="https://www.youtube.com/embed/Ycm3uax8Fdc"
-                title="Tutorial Como Mudar Email Moonton Que Perdeu o Acesso"
+                title="Gaming World no YouTube"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen>
             </iframe>
-        </div>
+        </section>
 
-        <h2 class="canal">
-            📺 Inscreva-se no Canal
-        </h2>
+        <h2 class="canal reveal">📺 Inscreva-se no Canal</h2>
 
-        <!-- BOTÕES DAS REDES SOCIAIS -->
-        <div class="redes">
-            <!-- Instagram -->
-            <a
-                href="https://www.instagram.com/gaming_world.gw/"
-                target="_blank"
-                class="rede instagram">
-                📷 Instagram
-            </a>
+        <!-- REDES SOCIAIS -->
+        <section class="redes reveal" aria-label="Redes sociais">
+            <a href="https://www.instagram.com/gaming_world.gw/" target="_blank" rel="noopener noreferrer" class="rede instagram" aria-label="Instagram da Gaming World">📷 Instagram</a>
+            <a href="https://chat.whatsapp.com/Lsx3KjGeQxi3UWFEijh0Kq" target="_blank" rel="noopener noreferrer" class="rede whatsapp-gaming" aria-label="Grupo de WhatsApp">💬 WhatsApp</a>
+            <a href="https://www.youtube.com/@gaming.world_wg" target="_blank" rel="noopener noreferrer" class="rede youtube" aria-label="Canal no YouTube">▶️ YouTube</a>
+            <a href="https://discord.gg/J78Yq2cxMp" target="_blank" rel="noopener noreferrer" class="rede discord" aria-label="Servidor do Discord">💬 Discord</a>
+            <a href="https://www.facebook.com/gaming.world.wg" target="_blank" rel="noopener noreferrer" class="rede facebook" aria-label="Página no Facebook">👍 Facebook</a>
+            <a href="https://www.tiktok.com/@gaming_world.gw" target="_blank" rel="noopener noreferrer" class="rede tiktok" aria-label="Perfil no TikTok">🎵 TikTok</a>
+        </section>
 
-            <!-- WhatsApp -->
-            <a
-                href="https://chat.whatsapp.com/Lsx3KjGeQxi3UWFEijh0Kq"
-                target="_blank"
-                class="rede whatsapp-gaming">
-                💬 WhatsApp
-            </a>
+        <!-- RODAPÉ -->
+        <footer class="footer-site">
+            <ul class="footer-links" aria-label="Links do rodapé">
+                <li><a href="campeonatoc.html">Campeonato</a></li>
+                <li><a href="regras.html">Regras</a></li>
+                <li><a href="GW.html">GW</a></li>
+                <li><a href="parceria.html">Parceria</a></li>
+            </ul>
+            <p class="footer-copy">🏆 Gaming World 2026 ® — Todos os direitos reservados</p>
+        </footer>
 
-            <!-- YouTube -->
-            <a
-                href="https://www.youtube.com/@gaming.world_wg"
-                target="_blank"
-                class="rede youtube">
-                ▶️ YouTube
-            </a>
+    </main>
 
-            <!-- Discord -->
-            <a
-                href="https://discord.gg/J78Yq2cxMp"
-                target="_blank"
-                class="rede discord">
-                💬 Discord
-            </a>
+    <script>
+        // Animação de entrada ao rolar a página
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.15 });
 
-            <!-- Facebook -->
-            <a
-                href="https://www.facebook.com/gaming.world.wg"
-                target="_blank"
-                class="rede facebook">
-                👍 Facebook
-            </a>
-
-            <!-- TikTok -->
-            <a
-                href="https://www.tiktok.com/@gaming_world.gw"
-                target="_blank"
-                class="rede tiktok">
-                🎵 TikTok
-            </a>
-        </div>
-
-        <!-- RODAPÉ - GAMING WORLD 2026® -->
-        <div class="footer-site">
-            🏆 Gaming World 2026 ®
-        </div>
-
-    </div>
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>
