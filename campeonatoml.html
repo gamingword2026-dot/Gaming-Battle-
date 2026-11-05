@@ -412,7 +412,10 @@
             #modal-titulo { font-size: 1rem; }
         }
     </style>
+<<<<<<< HEAD
     <link rel="stylesheet" href="gw-shared.css">
+=======
+>>>>>>> 25fd453c447ff2d983547817a41a65ef35de268b
 </head>
 <body>
 <div class="bg-overlay"></div>
@@ -423,12 +426,16 @@
     </div>
     <h1 class="titulo-principal">CAMPEONATO GAMING BATTLE 2026</h1>
     <p class="subtitulo">"Aqui Gaming World 2026"</p>
+<<<<<<< HEAD
     <p class="subtitulo" style="font-style:normal;font-weight:800;letter-spacing:4px;margin-top:10px;">⚔️ MODALIDADE 2 VS 2</p>
+=======
+>>>>>>> 25fd453c447ff2d983547817a41a65ef35de268b
 
     <nav class="nav-topo">
         <a href="index.html" class="btn-nav">INÍCIO</a>
         <a href="regrasc.html" class="btn-nav">REGRAS</a>
         <a href="inscricao.html" class="btn-nav">INSCREVA-SE</a>
+<<<<<<< HEAD
         <a href="campeonato5.html" class="btn-nav">CAMPEONATO 5V5</a>
     </nav>
 </header>
@@ -448,6 +455,17 @@
 <div id="gw-campeao" hidden></div>
 
 <nav class="nav-rodadas" aria-label="Rodadas"></nav>
+=======
+    </nav>
+</header>
+
+<nav class="nav-rodadas">
+    <button class="btn-rodada ativo" data-rodada="1">RODADA 1</button>
+    <button class="btn-rodada" data-rodada="2">RODADA 2</button>
+    <button class="btn-rodada" data-rodada="3">RODADA 3</button>
+    <button class="btn-rodada" data-rodada="4">FINAL</button>
+</nav>
+>>>>>>> 25fd453c447ff2d983547817a41a65ef35de268b
 
 <div id="container-confrantos" class="container-confrantos"></div>
 
@@ -464,6 +482,7 @@
     <p>© 2026 Gaming Battle - Todos os direitos reservados</p>
     <p>Aqui Gaming World 2026</p>
 </footer>
+<<<<<<< HEAD
     <script src="firebase-config.js"></script>
     <script src="gw-core.js"></script>
     <script src="gw-chave.js"></script>
@@ -472,6 +491,151 @@
         // Equipes, resultados, horários e premiação vêm do painel ADM (Firestore);
         // sem Firebase configurado, mostra os 16 clãs padrão.
         GW.mountChave({ camp: '2v2' });
+=======
+    <script>
+        // DADOS DOS TIMES
+        const times = [
+            { id: 1, nome: 'CLÃ 1', img: 'style/cla1.png' },
+            { id: 2, nome: 'CLÃ 2', img: 'style/cla2.png' },
+            { id: 3, nome: 'CLÃ 3', img: 'style/cla3.png' },
+            { id: 4, nome: 'CLÃ 4', img: 'style/cla4.png' },
+            { id: 5, nome: 'CLÃ 5', img: 'style/cla5.png' },
+            { id: 6, nome: 'CLÃ 6', img: 'style/cla6.png' },
+            { id: 7, nome: 'CLÃ 7', img: 'style/cla7.png' },
+            { id: 8, nome: 'CLÃ 8', img: 'style/cla8.png' },
+            { id: 9, nome: 'CLÃ 9', img: 'style/cla9.png' },
+            { id: 10, nome: 'CLÃ 10', img: 'style/cla10.png' },
+            { id: 11, nome: 'CLÃ 11', img: 'style/cla11.png' },
+            { id: 12, nome: 'CLÃ 12', img: 'style/cla12.png' }
+        ];
+
+        // CONFRONTOS
+        const rodadas = {
+            1: [
+                { timeA: 1, timeB: 2 },
+                { timeA: 3, timeB: 4 },
+                { timeA: 5, timeB: 6 },
+                { timeA: 7, timeB: 8 },
+                { timeA: 9, timeB: 10 },
+                { timeA: 11, timeB: 12 }
+            ],
+            2: [
+                { timeA: 1, timeB: 3 },
+                { timeA: 5, timeB: 7 },
+                { timeA: 9, timeB: 11 }
+            ],
+            3: [
+                { timeA: 1, timeB: 5 },
+                { timeA: 9, timeB: 11 }
+            ],
+            4: [
+                { timeA: 1, timeB: 9 }
+            ]
+        };
+
+        function getTime(id) {
+            return times.find(t => t.id === id);
+        }
+
+        function renderizarRodada(numero) {
+            const container = document.getElementById('container-confrantos');
+            const confrontos = rodadas[numero];
+            
+            if (!confrontos || confrontos.length === 0) {
+                container.innerHTML = '<p style="text-align:center;color:#888;padding:40px 0;">Nenhum confronto disponível</p>';
+                return;
+            }
+
+            let html = '<div class="grid-jogos">';
+            
+            confrontos.forEach((conf, index) => {
+                const timeA = getTime(conf.timeA);
+                const timeB = getTime(conf.timeB);
+                
+                html += `
+                    <div class="card-jogo" data-rodada="${numero}" data-jogo="${index}">
+                        <div class="time-box">
+                            <img src="${timeA.img}" alt="${timeA.nome}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2260%22 height=%2260%22%3E%3Crect width=%2260%22 height=%2260%22 fill=%22%23333%22/%3E%3Ctext x=%2230%22 y=%2235%22 text-anchor=%22middle%22 fill=%22%23ffd700%22 font-size=%2212%22 font-weight=%22bold%22%3E${timeA.nome.replace('CLÃ ', '')}%3C/text%3E%3C/svg%3E'">
+                            <span>${timeA.nome}</span>
+                        </div>
+                        <div class="vs-box">⚔️</div>
+                        <div class="time-box">
+                            <img src="${timeB.img}" alt="${timeB.nome}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2260%22 height=%2260%22%3E%3Crect width=%2260%22 height=%2260%22 fill=%22%23333%22/%3E%3Ctext x=%2230%22 y=%2235%22 text-anchor=%22middle%22 fill=%22%23ffd700%22 font-size=%2212%22 font-weight=%22bold%22%3E${timeB.nome.replace('CLÃ ', '')}%3C/text%3E%3C/svg%3E'">
+                            <span>${timeB.nome}</span>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            html += '</div>';
+            container.innerHTML = html;
+
+            document.querySelectorAll('.card-jogo').forEach(card => {
+                card.addEventListener('click', function() {
+                    const rodada = parseInt(this.dataset.rodada);
+                    const jogo = parseInt(this.dataset.jogo);
+                    abrirModal(rodada, jogo);
+                });
+            });
+        }
+
+        function abrirModal(rodadaNum, jogoIndex) {
+            const modal = document.getElementById('modal-confronto');
+            const modalTimes = document.getElementById('modal-times');
+            const modalInfo = document.getElementById('modal-info');
+            const modalTitulo = document.getElementById('modal-titulo');
+            
+            const confronto = rodadas[rodadaNum][jogoIndex];
+            if (!confronto) return;
+
+            const timeA = getTime(confronto.timeA);
+            const timeB = getTime(confronto.timeB);
+
+            modalTitulo.textContent = `⚔️ RODADA ${rodadaNum} - CONFRONTO ${jogoIndex + 1}`;
+            
+            modalTimes.innerHTML = `
+                <div class="modal-time">
+                    <img src="${timeA.img}" alt="${timeA.nome}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2280%22 height=%2280%22%3E%3Crect width=%2280%22 height=%2280%22 fill=%22%23333%22/%3E%3Ctext x=%2240%22 y=%2245%22 text-anchor=%22middle%22 fill=%22%23ffd700%22 font-size=%2216%22 font-weight=%22bold%22%3E${timeA.nome.replace('CLÃ ', '')}%3C/text%3E%3C/svg%3E'">
+                    <span>${timeA.nome}</span>
+                </div>
+                <div class="modal-vs">VS</div>
+                <div class="modal-time">
+                    <img src="${timeB.img}" alt="${timeB.nome}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2280%22 height=%2280%22%3E%3Crect width=%2280%22 height=%2280%22 fill=%22%23333%22/%3E%3Ctext x=%2240%22 y=%2245%22 text-anchor=%22middle%22 fill=%22%23ffd700%22 font-size=%2216%22 font-weight=%22bold%22%3E${timeB.nome.replace('CLÃ ', '')}%3C/text%3E%3C/svg%3E'">
+                    <span>${timeB.nome}</span>
+                </div>
+            `;
+
+            modalInfo.innerHTML = `
+                <p>📅 00/26 - 23:00 BRT</p>
+                <p>🏟️ Arena Gaming World</p>
+                <p style="color:#ffd700; margin-top:8px;">Clique fora para fechar</p>
+            `;
+
+            modal.classList.add('mostrar');
+        }
+
+        document.querySelector('.fechar-modal').addEventListener('click', function() {
+            document.getElementById('modal-confronto').classList.remove('mostrar');
+        });
+
+        document.getElementById('modal-confronto').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.remove('mostrar');
+            }
+        });
+
+        document.querySelectorAll('.btn-rodada').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.btn-rodada').forEach(b => b.classList.remove('ativo'));
+                this.classList.add('ativo');
+                const rodada = parseInt(this.dataset.rodada);
+                renderizarRodada(rodada);
+            });
+        });
+
+        renderizarRodada(1);
+        console.log('✅ Campeonato carregado!');
+>>>>>>> 25fd453c447ff2d983547817a41a65ef35de268b
     </script>
 </body>
 </html>
