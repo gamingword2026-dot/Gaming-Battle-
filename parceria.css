@@ -1,0 +1,142 @@
+/* ===== Parcerias ===== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:url("fundogaming.png") center/cover fixed;
+    color:#fff;
+}
+
+/* Banner */
+
+.hero{
+    text-align:center;
+    padding:60px 20px;
+    background:rgba(0,0,0,.45);
+}
+
+.logo{
+    width:180px;
+    margin-bottom:20px;
+}
+
+.hero h1{
+    color:#FFD700;
+    font-size:42px;
+    text-shadow:0 0 15px gold;
+}
+
+.hero p{
+    color:#ddd;
+    margin-top:15px;
+    font-size:18px;
+}
+
+/* Conteúdo */
+
+main{
+    width:90%;
+    max-width:1100px;
+    margin:40px auto;
+}
+
+.box{
+    background:rgba(8,12,28,.90);
+    border:2px solid #00bfff;
+    border-radius:18px;
+    padding:30px;
+    margin-bottom:30px;
+    box-shadow:0 0 20px rgba(0,191,255,.4);
+}
+
+.box h2,
+.box h3{
+    color:#FFD700;
+    margin-bottom:15px;
+}
+
+.box p{
+    line-height:1.8;
+    color:#eee;
+}
+
+.box ul{
+    margin-left:20px;
+}
+
+.box li{
+    margin:12px 0;
+}
+
+/* Benefícios */
+
+.beneficios{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:20px;
+}
+
+/* Botão */
+
+.botao{
+    display:block;
+    width:280px;
+    margin:40px auto;
+    text-align:center;
+    background:#FFD700;
+    color:#000;
+    padding:16px;
+    border-radius:40px;
+    text-decoration:none;
+    font-size:20px;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.botao:hover{
+    background:#fff;
+    transform:scale(1.05);
+}
+
+/* Parceiros */
+
+.patrocinadores{
+    text-align:center;
+}
+
+.patrocinadores h2{
+    color:#FFD700;
+    margin-bottom:25px;
+}
+
+.logos{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:25px;
+}
+
+.logos img{
+    width:150px;
+    transition:.3s;
+}
+
+.logos img:hover{
+    transform:scale(1.08);
+}
+
+/* Rodapé */
+
+footer{
+    text-align:center;
+    padding:30px;
+    margin-top:40px;
+    background:rgba(0,0,0,.7);
+    color:#bbb;
+    border-top:2px solid #00bfff;
+}

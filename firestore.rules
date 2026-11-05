@@ -1,0 +1,62 @@
+rules_version = '2';
+
+// ============================================================
+// GAMING WORLD 2026 — Regras do Firestore (2v2 e 5v5 separados)
+//   - Qualquer visitante LÊ: configuração, equipes e resultados.
+//   - Qualquer visitante pode CRIAR uma inscrição (com validação).
+//   - Só o ADMINISTRADOR lê/edita inscrições e altera o resto.
+// TROQUE o e-mail abaixo pelo(s) e-mail(s) dos administradores
+// (o mesmo usuário criado em Authentication > Usuários).
+// ============================================================
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email in ['gamingword2026@gmail.com'];
+    }
+
+    function campValido(camp) {
+      return camp in ['2v2', '5v5'];
+    }
+
+    function inscricaoValida(camp) {
+      let d = request.resource.data;
+      return d.keys().hasOnly(['nomeEquipe', 'capitao', 'contato', 'idTransacao', 'jogadores',
+                               'valor', 'logo', 'comprovante', 'camp', 'status', 'pagamento', 'criadoEm'])
+        && d.keys().hasAll(['nomeEquipe', 'contato', 'jogadores', 'logo', 'comprovante',
+                            'camp', 'status', 'pagamento', 'criadoEm'])
+        && d.camp == camp
+        && d.status == 'pendente'
+        && d.pagamento == 'aguardando'
+        && d.criadoEm == request.time
+        && d.nomeEquipe is string && d.nomeEquipe.size() > 0 && d.nomeEquipe.size() <= 40
+        && d.contato is string && d.contato.size() <= 25
+        && d.jogadores is list
+        && ((camp == '2v2' && d.jogadores.size() == 2)
+            || (camp == '5v5' && d.jogadores.size() >= 5 && d.jogadores.size() <= 7))
+        && d.logo is string && d.logo.size() < 150000
+        && d.comprovante is string && d.comprovante.size() < 700000;
+    }
+
+    match /campeonatos/{camp} {
+      allow read: if campValido(camp);
+      allow write: if campValido(camp) && isAdmin();
+
+      match /equipes/{id} {
+        allow read: if campValido(camp);
+        allow write: if campValido(camp) && isAdmin();
+      }
+
+      match /partidas/{id} {
+        allow read: if campValido(camp);
+        allow write: if campValido(camp) && isAdmin();
+      }
+
+      match /inscricoes/{id} {
+        allow create: if campValido(camp) && inscricaoValida(camp);
+        allow read, update, delete: if campValido(camp) && isAdmin();
+      }
+    }
+  }
+}

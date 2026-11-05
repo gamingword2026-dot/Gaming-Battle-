@@ -1,0 +1,403 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;500;600&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:url("fundogaming.png") center center fixed;
+
+    background-size:cover;
+
+    color:#fff;
+
+    min-height:100vh;
+
+}
+
+.background{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,8,25,.82);
+
+    backdrop-filter:blur(4px);
+
+    z-index:-2;
+
+}
+
+.stars{
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+    radial-gradient(#00c8ff55 1px, transparent 1px);
+
+    background-size:35px 35px;
+
+    opacity:.25;
+
+    z-index:-1;
+
+}
+
+header{
+
+    text-align:center;
+
+    padding:40px 20px;
+
+}
+
+.logo{
+
+    width:340px;
+
+    max-width:90%;
+
+    filter:
+    drop-shadow(0 0 15px #00c8ff)
+    drop-shadow(0 0 35px #0077ff);
+
+    animation:flutuar 5s infinite ease-in-out;
+
+}
+
+@keyframes flutuar{
+
+0%{
+transform:translateY(0);
+}
+
+50%{
+transform:translateY(-10px);
+}
+
+100%{
+transform:translateY(0);
+}
+
+}
+
+header h1{
+
+    margin-top:20px;
+
+    font-family:'Orbitron',sans-serif;
+
+    font-size:42px;
+
+    color:#6fe8ff;
+
+    text-shadow:
+    0 0 20px #00c8ff;
+
+}
+
+header p{
+
+    margin-top:10px;
+
+    color:#b7eeff;
+
+    font-size:18px;
+
+}
+
+.btn-voltar{
+
+    display:inline-block;
+
+    margin-top:25px;
+
+    padding:14px 35px;
+
+    background:linear-gradient(90deg,#009dff,#004cff);
+
+    border-radius:40px;
+
+    text-decoration:none;
+
+    color:#fff;
+
+    font-weight:bold;
+
+    transition:.3s;
+
+    box-shadow:
+    0 0 18px #00bfff;
+
+}
+
+.btn-voltar:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:
+    0 0 30px #00c8ff;
+
+}
+
+main{
+
+    width:95%;
+
+    max-width:1100px;
+
+    margin:auto;
+
+    padding-bottom:60px;
+
+}
+/*==================================
+            CARDS
+==================================*/
+
+.card{
+
+    background:rgba(8,25,45,.88);
+
+    border:2px solid rgba(0,200,255,.25);
+
+    border-radius:25px;
+
+    padding:30px;
+
+    margin-bottom:30px;
+
+    backdrop-filter:blur(12px);
+
+    box-shadow:
+        0 0 20px rgba(0,191,255,.15);
+
+    transition:.35s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-8px);
+
+    border-color:#00c8ff;
+
+    box-shadow:
+        0 0 25px rgba(0,200,255,.45),
+        0 0 45px rgba(0,120,255,.25);
+
+}
+
+.card h2{
+
+    font-family:'Orbitron',sans-serif;
+
+    color:#6fe8ff;
+
+    font-size:28px;
+
+    margin-bottom:20px;
+
+    text-shadow:
+        0 0 15px #00c8ff;
+
+}
+
+.card p{
+
+    color:#d7f7ff;
+
+    font-size:17px;
+
+    line-height:1.8;
+
+}
+
+.card ul{
+
+    list-style:none;
+
+}
+
+.card li{
+
+    margin:18px 0;
+
+    padding:15px;
+
+    background:rgba(255,255,255,.05);
+
+    border-left:4px solid #00c8ff;
+
+    border-radius:12px;
+
+    color:#ffffff;
+
+    transition:.3s;
+
+    line-height:1.8;
+
+}
+
+.card li:hover{
+
+    background:rgba(0,200,255,.12);
+
+    transform:translateX(10px);
+
+}
+
+.card strong{
+
+    color:#6fe8ff;
+
+}
+
+/*==================================
+        BOTÃO CATÁLOGO
+==================================*/
+
+.botao-catalogo{
+
+    display:inline-block;
+
+    margin-top:25px;
+
+    padding:16px 35px;
+
+    background:linear-gradient(90deg,#00c8ff,#005eff);
+
+    color:#fff;
+
+    text-decoration:none;
+
+    border-radius:40px;
+
+    font-weight:bold;
+
+    transition:.35s;
+
+    box-shadow:
+        0 0 18px #00bfff;
+
+}
+
+.botao-catalogo:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:
+        0 0 30px #00c8ff,
+        0 0 45px #0077ff;
+
+}
+
+/*==================================
+            RODAPÉ
+==================================*/
+
+footer{
+
+    text-align:center;
+
+    padding:50px 20px;
+
+}
+
+.footerLogo{
+
+    width:220px;
+
+    max-width:80%;
+
+    margin-bottom:20px;
+
+    filter:
+        drop-shadow(0 0 15px #00bfff);
+
+}
+
+footer p{
+
+    color:#9fdfff;
+
+    margin-top:10px;
+
+    font-size:15px;
+
+}
+
+/*==================================
+        RESPONSIVO
+==================================*/
+
+@media(max-width:768px){
+
+.logo{
+
+    width:260px;
+
+}
+
+header h1{
+
+    font-size:28px;
+
+}
+
+header p{
+
+    font-size:15px;
+
+}
+
+.card{
+
+    padding:20px;
+
+}
+
+.card h2{
+
+    font-size:22px;
+
+}
+
+.card p{
+
+    font-size:15px;
+
+}
+
+.card li{
+
+    font-size:14px;
+
+    padding:12px;
+
+}
+
+.btn-voltar,
+.botao-catalogo{
+
+    width:100%;
+
+    text-align:center;
+
+}
+
+.footerLogo{
+
+    width:170px;
+
+}
+
+}

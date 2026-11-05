@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaming World</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Orbitron', sans-serif;
+            background: url("fundogaming.png") center center fixed;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.30), rgba(0, 0, 0, 0.70));
+            z-index: 1;
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 15px 40px;
+        }
+
+        .logo {
+            width: 88%;
+            max-width: 650px;
+            animation: flutuar 5s ease-in-out infinite;
+            filter: drop-shadow(0 0 18px #ffd700) drop-shadow(0 0 35px #ff8c00);
+        }
+
+        @keyframes flutuar {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0); }
+        }
+
+        .menu {
+            margin-top: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 22px;
+            flex-wrap: wrap;
+        }
+
+        .botao {
+            width: 180px;
+            height: 70px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            font-size: 28px;
+            color: #ffd700;
+            background: rgba(15, 15, 20, 0.55);
+            border: 3px solid #ffd700;
+            border-radius: 40px;
+            backdrop-filter: blur(10px);
+            text-shadow: 0 0 12px #ffd700;
+            box-shadow: 0 0 12px rgba(255, 215, 0, 0.3), inset 0 0 12px rgba(255, 215, 0, 0.15);
+            transition: .3s;
+        }
+
+        .botao:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 0 25px #ffd700, 0 0 45px #ff8c00;
+            background: rgba(255, 215, 0, 0.10);
+        }
+
+        .mensagem {
+            margin-top: 40px;
+            text-align: center;
+            color: #fff;
+            max-width: 850px;
+            padding: 30px 25px;
+            background: rgba(0, 0, 0, 0.60);
+            border: 2px solid rgba(255, 215, 0, 0.30);
+            border-radius: 30px;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.10);
+        }
+
+        .mensagem h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: #ffd700;
+            text-shadow: 0 0 30px #ffd700, 0 0 60px #ff8c00;
+            line-height: 1.3;
+        }
+
+        .subtitulo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #ffe066;
+            margin-top: 8px;
+        }
+
+        .destaque-anos {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #ffd700;
+            text-shadow: 0 0 30px #ffd700;
+            margin: 10px 0;
+        }
+
+        .descricao {
+            font-size: 1.2rem;
+            margin-top: 10px;
+            color: #f0e6c0;
+            line-height: 1.6;
+        }
+
+        .icones {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin: 25px 0;
+        }
+
+        .icones span {
+            padding: 10px 18px;
+            border-radius: 30px;
+            background: rgba(255, 215, 0, 0.08);
+            border: 1px solid rgba(255, 215, 0, 0.20);
+            color: #ffd700;
+        }
+
+        .frase-final {
+            margin-top: 10px;
+            font-size: 1.3rem;
+            color: #f0e6c0;
+        }
+
+        .convite {
+            margin-top: 15px;
+            font-size: 1.6rem;
+            color: #ffd700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+        }
+
+        .video {
+            margin-top: 45px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .video iframe {
+            width: 850px;
+            max-width: 100%;
+            height: 470px;
+            border: none;
+            border-radius: 25px;
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.20);
+        }
+
+        .canal {
+            margin-top: 20px;
+            font-size: 28px;
+            color: #ffd700;
+            text-align: center;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+        }
+
+        .redes {
+            margin-top: 35px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .rede {
+            padding: 16px 28px;
+            border-radius: 35px;
+            text-decoration: none;
+            font-size: 20px;
+            color: white;
+            font-weight: bold;
+            transition: .3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .rede:hover {
+            transform: translateY(-4px) scale(1.02);
+        }
+
+        .instagram {
+            background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            box-shadow: 0 0 20px rgba(225, 48, 108, 0.3);
+        }
+
+        .whatsapp-gaming {
+            background: #25D366;
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.3);
+        }
+
+        .youtube {
+            background: #FF0000;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+        }
+
+        .discord {
+            background: #5865F2;
+            box-shadow: 0 0 20px rgba(88, 101, 242, 0.3);
+        }
+
+        .facebook {
+            background: #1877F2;
+            box-shadow: 0 0 20px rgba(24, 119, 242, 0.3);
+        }
+
+        .tiktok {
+            background: linear-gradient(135deg, #00f2ea, #ff0050);
+            box-shadow: 0 0 20px rgba(255, 0, 80, 0.3);
+        }
+
+        /* RODAPÉ COM COPYRIGHT */
+        .footer-site {
+            margin-top: 40px;
+            padding: 20px 30px;
+            text-align: center;
+            color: #ffd700;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-top: 1px solid rgba(255, 215, 0, 0.15);
+            background: rgba(0, 0, 0, 0.40);
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+            width: 100%;
+            max-width: 850px;
+            letter-spacing: 2px;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .logo { width: 95%; }
+            .botao {
+                width: 120px;
+                height: 55px;
+                font-size: 18px;
+            }
+            .mensagem h1 {
+                font-size: 1.8rem;
+            }
+            .subtitulo {
+                font-size: 1.2rem;
+            }
+            .destaque-anos {
+                font-size: 1.6rem;
+            }
+            .video iframe {
+                height: 220px;
+            }
+            .redes {
+                flex-direction: column;
+                align-items: center;
+            }
+            .rede {
+                width: 280px;
+                text-align: center;
+                justify-content: center;
+            }
+            .footer-site {
+                font-size: 0.9rem;
+                padding: 15px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .mensagem h1 {
+                font-size: 1.4rem;
+            }
+            .subtitulo {
+                font-size: 1rem;
+            }
+            .destaque-anos {
+                font-size: 1.3rem;
+            }
+            .descricao {
+                font-size: 0.95rem;
+            }
+            .convite {
+                font-size: 1.2rem;
+            }
+            .botao {
+                width: 100px;
+                height: 45px;
+                font-size: 14px;
+            }
+            .rede {
+                width: 240px;
+                font-size: 16px;
+                padding: 14px 20px;
+            }
+            .footer-site {
+                font-size: 0.75rem;
+                padding: 12px 15px;
+            }
+        }
+    
+        /* botão com texto maior ("Campeonato 5v5") */
+        .botao-longo { width: 270px; font-size: 24px; }
+        @media (max-width: 768px) { .botao-longo { width: 170px; font-size: 15px; text-align: center; } }
+        @media (max-width: 480px) { .botao-longo { width: 140px; font-size: 12px; text-align: center; } }
+</style>
+</head>
+
+<body>
+    <div class="overlay"></div>
+
+    <div class="container">
+
+        <!-- LOGO -->
+        <img src="logogaming.png" class="logo" alt="Gaming World">
+
+        <div class="menu">
+            <a href="campeonatoc.html" class="botao">Campeonato</a>
+            <a href="campeonato5.html" class="botao botao-longo">Campeonato 5v5</a>
+            <a href="regras.html" class="botao">Regras</a>
+            <a href="GW.html" class="botao">GW</a>
+            <a href="parceria.html" class="botao">Parceria</a>
+        </div>
+
+        <div class="mensagem">
+
+            <h1>UMA TRAJETÓRIA DE<br>EXCELÊNCIA E SUPERAÇÃO</h1>
+
+            <p class="subtitulo">⚡ A MAIS DE 5 ANOS CONSTRUINDO A LENDA ⚡</p>
+
+            <p class="destaque-anos">🏆 5+ ANOS DE ATIVIDADE</p>
+
+            <p class="descricao">
+                A Gaming World nasceu da paixão por jogos e cresceu com uma comunidade forte e unida.<br>
+                São mais de <strong style="color:#ffd700;">5 anos</strong> de história, conquistas e evolução.<br>
+                Novos desafios, novos horizontes, mas a mesma essência que nos tornou referência.
+            </p>
+
+            <div class="icones">
+                <span>🏆 Campeonatos</span>
+                <span>👥 Comunidade</span>
+                <span>🎮 Eventos</span>
+                <span>🤝 Parcerias</span>
+            </div>
+
+            <p class="frase-final">
+                Cada ano é um novo capítulo, e o melhor ainda está por vir.
+            </p>
+
+            <p class="convite">
+                🔥 Faça parte da Gaming World e escreva essa história conosco!
+            </p>
+        </div>
+
+        <!-- VÍDEO DO YOUTUBE - NOVO LINK -->
+        <div class="video">
+            <iframe
+                src="https://www.youtube.com/embed/Ycm3uax8Fdc"
+                title="Tutorial Como Mudar Email Moonton Que Perdeu o Acesso"
+                allowfullscreen>
+            </iframe>
+        </div>
+
+        <h2 class="canal">
+            📺 Inscreva-se no Canal
+        </h2>
+
+        <!-- BOTÕES DAS REDES SOCIAIS -->
+        <div class="redes">
+            <!-- Instagram -->
+            <a
+                href="https://www.instagram.com/gaming_world.gw/"
+                target="_blank"
+                class="rede instagram">
+                📷 Instagram
+            </a>
+
+            <!-- WhatsApp -->
+            <a
+                href="https://chat.whatsapp.com/Lsx3KjGeQxi3UWFEijh0Kq"
+                target="_blank"
+                class="rede whatsapp-gaming">
+                💬 WhatsApp
+            </a>
+
+            <!-- YouTube -->
+            <a
+                href="https://www.youtube.com/@gaming.world_wg"
+                target="_blank"
+                class="rede youtube">
+                ▶️ YouTube
+            </a>
+
+            <!-- Discord -->
+            <a
+                href="https://discord.gg/J78Yq2cxMp"
+                target="_blank"
+                class="rede discord">
+                💬 Discord
+            </a>
+
+            <!-- Facebook -->
+            <a
+                href="https://www.facebook.com/gaming.world.wg"
+                target="_blank"
+                class="rede facebook">
+                👍 Facebook
+            </a>
+
+            <!-- TikTok -->
+            <a
+                href="https://www.tiktok.com/@gaming_world.gw"
+                target="_blank"
+                class="rede tiktok">
+                🎵 TikTok
+            </a>
+        </div>
+
+        <!-- RODAPÉ - GAMING WORLD 2026® -->
+        <div class="footer-site">
+            🏆 Gaming World 2026 ®
+        </div>
+
+    </div>
+</body>
+</html>

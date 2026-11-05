@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>ADM - Gaming World 2026</title>
+    <link rel="stylesheet" href="adm.css">
+</head>
+<body>
+<div class="bg-overlay"></div>
+
+<header class="adm-topo">
+    <a href="index.html" class="adm-logo"><img src="logogaming.png" alt="Gaming World"></a>
+    <div class="adm-titulo">
+        <h1>PAINEL ADMINISTRATIVO</h1>
+        <p>Gaming World 2026 · 2v2 e 5v5</p>
+    </div>
+    <div class="adm-usuario" id="adm-usuario" hidden>
+        <span id="adm-email"></span>
+        <button type="button" class="btn btn-sec" id="btn-sair">Sair</button>
+    </div>
+</header>
+
+<main class="adm-main">
+    <!-- Firebase não configurado -->
+    <section class="cartao" id="tela-sem-firebase" hidden>
+        <h2>⚙️ Firebase ainda não configurado</h2>
+        <p>O painel precisa do Firebase (Firestore + Authentication) para salvar inscrições, resultados e configurações para todos os visitantes.</p>
+        <ol>
+            <li>Crie um projeto grátis em <strong>console.firebase.google.com</strong>.</li>
+            <li>Ative <strong>Authentication → E-mail/senha</strong> e crie o usuário administrador.</li>
+            <li>Ative o <strong>Firestore Database</strong> e publique as regras do arquivo <code>firestore.rules</code>.</li>
+            <li>Cole a configuração do app web em <code>firebase-config.js</code>.</li>
+        </ol>
+        <p>Passo a passo completo: <code>FIREBASE_SETUP.md</code>. Enquanto isso, o site funciona com os dados padrão.</p>
+    </section>
+
+    <!-- Login -->
+    <section class="cartao cartao-login" id="tela-login" hidden>
+        <h2>🔐 Acesso do administrador</h2>
+        <form id="form-login" novalidate>
+            <label for="login-email">E-mail</label>
+            <input type="email" id="login-email" autocomplete="username" required>
+            <label for="login-senha">Senha</label>
+            <input type="password" id="login-senha" autocomplete="current-password" required>
+            <button type="submit" class="btn" id="btn-entrar">Entrar</button>
+            <button type="button" class="btn btn-link" id="btn-reset">Esqueci a senha</button>
+            <p class="erro" id="login-erro" role="alert"></p>
+        </form>
+    </section>
+
+    <!-- Painel -->
+    <div id="tela-painel" hidden>
+        <nav class="abas abas-camp" id="abas-camp" aria-label="Campeonato">
+            <button type="button" class="aba ativa" data-camp="2v2">⚔️ CAMPEONATO 2V2</button>
+            <button type="button" class="aba" data-camp="5v5">🛡️ CAMPEONATO 5V5</button>
+        </nav>
+
+        <div class="resumo" id="resumo"></div>
+
+        <nav class="abas" id="abas-secao" aria-label="Seção">
+            <button type="button" class="aba ativa" data-secao="inscricoes">📥 Inscrições</button>
+            <button type="button" class="aba" data-secao="equipes">🏴 Equipes</button>
+            <button type="button" class="aba" data-secao="confrontos">⚔️ Confrontos</button>
+            <button type="button" class="aba" data-secao="config">⚙️ Configurações</button>
+        </nav>
+
+        <section id="secao-inscricoes" class="secao"></section>
+        <section id="secao-equipes" class="secao" hidden></section>
+        <section id="secao-confrontos" class="secao" hidden></section>
+        <section id="secao-config" class="secao" hidden></section>
+    </div>
+</main>
+
+<div class="visualizador" id="visualizador" hidden>
+    <button type="button" class="visualizador-fechar" id="visualizador-fechar" aria-label="Fechar">&times;</button>
+    <img id="visualizador-img" alt="Comprovante de pagamento">
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="firebase-config.js"></script>
+<script src="gw-core.js"></script>
+<script src="adm.js"></script>
+</body>
+</html>

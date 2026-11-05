@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscrição 5v5 - Gaming Battle 2026</title>
+    <link rel="stylesheet" href="inscricao.css">
+    <link rel="stylesheet" href="gw-shared.css">
+</head>
+<body>
+    <!-- Fundo -->
+    <div class="bg-overlay"></div>
+
+    <!-- Cabeçalho -->
+    <header class="header">
+        <div class="logo-container">
+            <img src="logogaming.png" alt="Gaming World" class="logo-principal">
+        </div>
+        <h1 class="titulo-principal">CAMPEONATO GAMING BATTLE 2026</h1>
+        <p class="subtitulo">"Aqui Gaming World 2026"</p>
+
+        <!-- Navegação do topo -->
+        <nav class="nav-topo">
+            <a href="index.html" class="btn-nav">INÍCIO</a>
+            <a href="campeonato5.html#regras" class="btn-nav">REGRAS</a>
+            <a href="inscricao5.html" class="btn-nav ativo">INSCREVA-SE</a>
+            <a href="inscricao.html" class="btn-nav">INSCRIÇÃO 2V2</a>
+        </nav>
+    </header>
+
+    <!-- Conteúdo principal -->
+    <main class="main-inscricao">
+        <div class="container-inscricao">
+            <!-- Cabeçalho da inscrição -->
+            <div class="inscricao-header">
+                <h2>📝 INSCRIÇÃO — CAMPEONATO 5V5</h2>
+                <p class="valor-inscricao">💵 Taxa de inscrição: <strong data-gw="taxa">R$ 50,00</strong> por equipe · até 7 jogadores (5 titulares + 2 reservas)</p>
+                <p class="info-pagamento">Após preencher, envie o comprovante de pagamento</p>
+            </div>
+
+            <div data-gw-aviso style="margin-bottom:18px"></div>
+
+            <!-- INFORMAÇÕES DO PIX -->
+            <div class="pix-info">
+                <h3>💳 PAGUE COM PIX</h3>
+                <div class="pix-dados">
+                    <div class="pix-item">
+                        <span class="pix-label">💰 Valor:</span>
+                        <span class="pix-valor pix-valor-destaque" data-gw="taxa">R$ 50,00</span>
+                    </div>
+                    <div class="pix-item">
+                        <span class="pix-label">🔑 Chave PIX:</span>
+                        <span class="pix-valor" data-gw-pix="chave"></span>
+                    </div>
+                    <div class="pix-item">
+                        <span class="pix-label">👤 Nome:</span>
+                        <span class="pix-valor" data-gw-pix="nome"></span>
+                    </div>
+                    <div class="pix-item">
+                        <span class="pix-label">🏦 Banco:</span>
+                        <span class="pix-valor" data-gw-pix="banco"></span>
+                    </div>
+                </div>
+                <button type="button" class="btn-copiar-pix" data-gw-copiar-pix>📋 COPIAR CHAVE PIX</button>
+                <div class="pix-aviso">
+                    ⚠️ Após o pagamento, anexe o comprovante abaixo
+                </div>
+            </div>
+
+            <!-- Formulário -->
+            <form id="form-inscricao" class="form-inscricao" novalidate>
+                <div class="gw-campo-unico">
+                    <label for="nome-equipe">🏴 NOME DO CLÃ / EQUIPE</label>
+                    <input type="text" id="nome-equipe" maxlength="40" placeholder="Ex: Gaming World" required>
+                </div>
+
+                <div class="gw-campo-unico">
+                    <label for="capitao">👑 CAPITÃO (nick)</label>
+                    <input type="text" id="capitao" maxlength="40" placeholder="Nick do capitão" required>
+                </div>
+
+                <h3 class="gw-secao-form">⚔️ Jogadores titulares <small>(5 obrigatórios — devem pertencer ao clã)</small></h3>
+                <div class="gw-jogador">
+                    <span class="gw-num">1</span>
+                    <input type="text" id="nick1" maxlength="40" placeholder="NICK titular 1" aria-label="Nick do titular 1" required>
+                    <input type="text" id="id1" maxlength="30" placeholder="ID titular 1" aria-label="ID do titular 1" required>
+                </div>
+                <div class="gw-jogador">
+                    <span class="gw-num">2</span>
+                    <input type="text" id="nick2" maxlength="40" placeholder="NICK titular 2" aria-label="Nick do titular 2" required>
+                    <input type="text" id="id2" maxlength="30" placeholder="ID titular 2" aria-label="ID do titular 2" required>
+                </div>
+                <div class="gw-jogador">
+                    <span class="gw-num">3</span>
+                    <input type="text" id="nick3" maxlength="40" placeholder="NICK titular 3" aria-label="Nick do titular 3" required>
+                    <input type="text" id="id3" maxlength="30" placeholder="ID titular 3" aria-label="ID do titular 3" required>
+                </div>
+                <div class="gw-jogador">
+                    <span class="gw-num">4</span>
+                    <input type="text" id="nick4" maxlength="40" placeholder="NICK titular 4" aria-label="Nick do titular 4" required>
+                    <input type="text" id="id4" maxlength="30" placeholder="ID titular 4" aria-label="ID do titular 4" required>
+                </div>
+                <div class="gw-jogador">
+                    <span class="gw-num">5</span>
+                    <input type="text" id="nick5" maxlength="40" placeholder="NICK titular 5" aria-label="Nick do titular 5" required>
+                    <input type="text" id="id5" maxlength="30" placeholder="ID titular 5" aria-label="ID do titular 5" required>
+                </div>
+
+                <h3 class="gw-secao-form">🛡️ Reservas <small>(opcional — até 2)</small></h3>
+                <div class="gw-jogador reserva">
+                    <span class="gw-num">R1</span>
+                    <input type="text" id="nick6" maxlength="40" placeholder="NICK reserva 1" aria-label="Nick do reserva 1">
+                    <input type="text" id="id6" maxlength="30" placeholder="ID reserva 1" aria-label="ID do reserva 1">
+                </div>
+                <div class="gw-jogador reserva">
+                    <span class="gw-num">R2</span>
+                    <input type="text" id="nick7" maxlength="40" placeholder="NICK reserva 2" aria-label="Nick do reserva 2">
+                    <input type="text" id="id7" maxlength="30" placeholder="ID reserva 2" aria-label="ID do reserva 2">
+                </div>
+
+                <div class="gw-campo-unico">
+                    <label for="contato">📱 WHATSAPP DO CAPITÃO / RESPONSÁVEL</label>
+                    <input type="tel" id="contato" maxlength="25" placeholder="(00) 00000-0000" required>
+                </div>
+
+                <div class="gw-campo-unico">
+                    <label for="info-pagamento">🧾 NOME DO PAGADOR / ID DA TRANSAÇÃO <small>(opcional)</small></label>
+                    <input type="text" id="info-pagamento" maxlength="80" placeholder="Como aparece no comprovante">
+                </div>
+
+                <div class="linha-uploads">
+                    <div class="campo-upload">
+                        <label for="logo-cla">🏴 LOGO DO CLÃ</label>
+                        <div class="upload-area" id="logo-area">
+                            <input type="file" id="logo-cla" accept="image/*" required>
+                            <span class="upload-placeholder">📁 Clique para enviar a logo</span>
+                            <img id="logo-preview" class="preview-img" style="display:none;" alt="Preview da logo">
+                            <div class="aviso-upload">⚠️ Enviar logotipo</div>
+                        </div>
+                    </div>
+
+                    <div class="campo-upload">
+                        <label for="comprovante">🧾 COMPROVANTE DE PAGAMENTO</label>
+                        <div class="upload-area" id="comprovante-area">
+                            <input type="file" id="comprovante" accept="image/*" required>
+                            <span class="upload-placeholder">📁 Clique para enviar o comprovante</span>
+                            <img id="comprovante-preview" class="preview-img" style="display:none;" alt="Preview do comprovante">
+                            <div class="aviso-upload">⚠️ Enviar comprovante</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="gw-msg" class="gw-msg-form" role="status" aria-live="polite"></div>
+
+                <!-- Botão de envio -->
+                <button type="submit" class="btn-enviar" id="btn-enviar">
+                    📤 ENVIAR INSCRIÇÃO
+                </button>
+                <p class="gw-reembolso" style="margin-top:12px;font-size:0.72rem;color:#8a8fa0;text-align:center;">
+                    A taxa de inscrição não é reembolsável após a confirmação do pagamento e da inscrição.
+                </p>
+            </form>
+
+            <div id="gw-fechado" class="gw-fechado" hidden></div>
+
+            <!-- Informação de contato -->
+            <div class="info-contato">
+                <p>📱 Dúvidas? Fale conosco: <strong>(31) 7218-9691</strong></p>
+                <p class="obs">* Após o envio, aguarde a confirmação da inscrição</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="footer">
+        <p>© 2026 Gaming Battle - Todos os direitos reservados</p>
+        <p>Aqui Gaming World 2026</p>
+    </footer>
+
+    <script src="firebase-config.js"></script>
+    <script src="gw-core.js"></script>
+    <script src="inscricao-comum.js"></script>
+    <script src="inscricao5.js"></script>
+</body>
+</html>
