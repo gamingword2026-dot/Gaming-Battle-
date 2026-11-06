@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Regras 2v2 | Gaming World</title>
+    <title>Regras 5v5 | Gaming World</title>
     <style>
         * {
             margin: 0;
@@ -176,6 +176,14 @@
             font-weight: normal;
             margin-top: 5px;
         }
+        
+        .taxa-aviso {
+            font-size: 0.8rem;
+            color: #ff8c00;
+            text-align: center;
+            margin-top: 8px;
+            font-weight: bold;
+        }
 
         .premio-lista {
             list-style: none;
@@ -205,6 +213,14 @@
             text-align: right;
         }
 
+        .nota-patrocinio {
+            font-size: 0.8rem;
+            color: #aaa;
+            text-align: center;
+            margin-top: 15px;
+            font-style: italic;
+        }
+
         /* REGRAS GERAIS */
         .card-regras {
             background: rgba(18, 18, 35, 0.92);
@@ -219,7 +235,7 @@
             color: #ffd700;
             text-transform: uppercase;
             font-size: 1.4rem;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             text-align: center;
             letter-spacing: 2px;
         }
@@ -227,9 +243,15 @@
         .card-regras h3 {
             color: #ff8c00;
             font-size: 1.1rem;
-            margin-top: 20px;
-            margin-bottom: 10px;
+            margin-top: 25px;
+            margin-bottom: 12px;
             text-transform: uppercase;
+            border-bottom: 1px solid rgba(255, 140, 0, 0.2);
+            padding-bottom: 5px;
+        }
+        
+        .card-regras h3:first-of-type {
+            margin-top: 0;
         }
 
         .card-regras ul {
@@ -259,6 +281,7 @@
             line-height: 1.6;
             font-size: 0.95rem;
             margin-bottom: 15px;
+            padding-left: 25px; /* Alinha com a lista */
         }
 
         .destaque {
@@ -301,7 +324,7 @@
             .alert-box { padding: 15px; }
             .premio-lista li { font-size: 0.9rem; }
             .card-regras { padding: 20px; }
-            .card-regras ul li { font-size: 0.85rem; }
+            .card-regras ul li, .card-regras p { font-size: 0.85rem; }
         }
     </style>
 </head>
@@ -312,14 +335,14 @@
     
     <div class="header">
         <img src="logogaming.png" alt="Gaming World" class="logo-principal" onerror="this.style.display='none'">
-        <h1 class="titulo-principal">Regras 2 VS 2</h1>
+        <h1 class="titulo-principal">Regras 5 VS 5</h1>
         <p class="subtitulo">"Aqui Gaming World 2026"</p>
     </div>
 
     <!-- AVISO IMPORTANTE -->
     <div class="alert-box">
         <h3>⚠️ Leia com Atenção!</h3>
-        <p>A taxa de inscrição é para confirmar a vaga da sua dupla. <strong>Não há reembolso</strong> da taxa em caso de desistência, desclassificação, WO ou quebra de regras.</p>
+        <p>A taxa de inscrição é para confirmar a vaga da sua equipe. <strong>Não há reembolso</strong> da taxa em caso de desistência, desclassificação, WO ou quebra de regras.</p>
         <span class="destaque-pequeno">*Não abrimos exceções. Já tivemos muitos problemas no passado por isso.*</span>
         <span class="vagas">🔥 RESTAM POUCAS VAGAS! GARANTA A SUA AGORA!</span>
     </div>
@@ -329,9 +352,10 @@
         <div class="info-card">
             <h3>Taxa de Inscrição</h3>
             <div class="taxa-valor">
-                R$ 20,00
-                <span>por equipe (dupla)</span>
+                R$ 50,00
+                <span>por equipe</span>
             </div>
+            <p class="taxa-aviso">Máx. 7 jogadores (5 titulares + 2 reservas)</p>
         </div>
 
         <div class="info-card">
@@ -339,60 +363,78 @@
             <ul class="premio-lista">
                 <li>
                     <span class="posicao">🥇 1º Lugar</span>
-                    <span class="valor">R$ 140,00</span>
+                    <span class="valor">R$ 700,00</span>
                 </li>
                 <li>
                     <span class="posicao">🥈 2º Lugar</span>
-                    <span class="valor">R$ 60,00</span>
+                    <span class="valor">R$ 300,00</span>
                 </li>
                 <li>
                     <span class="posicao">🥉 3º Lugar</span>
-                    <span class="valor" style="font-size: 0.9rem;">R$ 20,00 + Vaga na próxima edição</span>
+                    <span class="valor">R$ 120,00</span>
                 </li>
             </ul>
+            <p class="nota-patrocinio">Buscamos patrocinadores/investidores para aumentar a premiação!</p>
         </div>
     </div>
 
     <!-- REGRAS DO JOGO -->
     <div class="card-regras">
-        <h2>📜 Regulamento Oficial 2v2</h2>
+        <h2>📜 Regulamento Oficial 5v5</h2>
 
-        <h3>🎧 Comunicação</h3>
+        <h3>1º - Formato das Partidas (MD3 / MD5)</h3>
         <ul>
-            <li>É <span class="destaque">obrigatório</span> o uso do Discord da organização durante todo o confronto. A organização criará a sala, e os jogadores devem permanecer nela.</li>
+            <li><strong>MD3 (Melhor de 3):</strong> Vence o time que ganhar 2 partidas primeiro. (Fase de Grupos/Quartas).</li>
+            <li><strong>MD5 (Melhor de 5):</strong> Vence o time que ganhar 3 partidas primeiro. (Semifinais e Finais).</li>
         </ul>
 
-        <h3>🗺️ Mapa e Movimentação</h3>
+        <h3>2º - Uso Obrigatório do Discord</h3>
         <ul>
-            <li>O combate é restrito <span class="destaque">exclusivamente à rota do meio (Mid-Lane)</span>.</li>
-            <li>É estritamente proibido sair para as rotas laterais (Topo/XP ou Inferior/Gold) ou avançar/destruir as torres laterais.</li>
-            <li>É permitido farmar na selva próxima e invadir a selva inimiga, com exceção de buffs de Lord e Tartaruga.</li>
-            <li><strong>Proibido limpar as rotas laterais.</strong></li>
+            <li>Todos os 5 jogadores devem estar presentes no Discord oficial da organização durante a partida.</li>
+            <li>O link do servidor e a sala obrigatória estarão informados na descrição.</li>
+            <li>Caso seja verificado que um ou mais jogadores não estão presentes, o time será <span class="destaque">desclassificado</span>.</li>
         </ul>
 
-        <h3>⚔️ Itens e Feitiços</h3>
+        <h3>3º - Comprovação de Jogadores do Clã</h3>
         <ul>
-            <li>Todos os feitiços de batalha (Battle Spells) e builds de itens disponíveis no jogo são permitidos.</li>
+            <li>Os 5 jogadores devem obrigatoriamente pertencer ao clã que está jogando, mesmo que utilizem a mesma tag.</li>
+            <li>Antes de iniciar a partida, será verificado os perfis: (Seguindo o jogador > acessem o perfil do clã).</li>
         </ul>
 
-        <h3>🆔 Identificação dos Jogadores</h3>
+        <h3>4º - Empréstimos e "Saidinhas"</h3>
         <ul>
-            <li>Devem fornecer o Nick e ID do jogador, que serão verificados nos jogos.</li>
-            <li>Caso mudem o nick, deverá ser avisado com <span class="destaque">10 dias de antecedência</span> do início do campeonato.</li>
-            <li><strong>Não é permitido</strong> trocar o Nick/ID durante o campeonato.</li>
+            <li><strong>Não é permitido</strong> emprestar jogadores dentro dos campeonatos da organização.</li>
+            <li>Jogadores que saírem do clã e voltarem apenas para jogar partidas serão desclassificados.</li>
+            <li>Havendo comprovação (print ou vídeo), o time será advertido e desclassificado.</li>
         </ul>
 
-        <h3>⏱️ Tolerância e Atrasos</h3>
+        <h3>5º - Remake de Partida</h3>
         <ul>
-            <li>O limite máximo de tolerância é de <span class="destaque">5 minutos acumulados</span> para a dupla no campeonato todo.</li>
-            <li><em>Exemplo: Se em um jogo a dupla atrasar 2 minutos, até o final do campeonato eles só terão mais 3 minutos de tolerância.</em> Ultrapassou, é WO.</li>
+            <li><strong>Limite de Remakes:</strong> Cada equipe terá direito a, no máximo, <span class="destaque">3 solicitações de remake</span> durante todo o campeonato. Após atingir esse limite, quaisquer imprevistos serão tratados conforme o andamento da partida, podendo resultar em derrota por W.O.</li>
+            <li><strong>Solicitação de Remake (Antes do Pick e Ban):</strong> Caso ocorra queda de conexão ou bug antes do início da fase de Pick e Ban, o capitão da equipe deverá notificar imediatamente o grupo oficial do campeonato. Ao começar a partida, os 5 jogadores devem ficar dentro da base (dando recall) caso alguém caia.</li>
+            <li><strong>Comprovação:</strong> Assim que o problema for resolvido, é obrigatório o envio de um print por parte do jogador afetado, comprovando o erro (ex: tela de "tentando conexão" ou ícone de wi-fi sem internet).</li>
+            <li><strong>Validação:</strong> A organização deverá validar a ocorrência. Sendo aprovada, o remake será autorizado e a fase de Pick e Ban será reiniciada a partir do momento do imprevisto.</li>
+            <li><strong>Tempo Máximo para Resolução:</strong> Será concedido um prazo de até 10 minutos, contados a partir do momento da solicitação. Caso o jogador não consiga retornar ou solucionar o erro dentro desse tempo, a vitória será automaticamente atribuída à equipe adversária.</li>
         </ul>
 
-        <h3>🏆 Condições de Vitória</h3>
-        <p>A dupla vence a partida ao atingir <strong>QUALQUER UMA</strong> das condições abaixo:</p>
+        <h3>6º - Proibições de Chat e Comunicação</h3>
         <ul>
-            <li>Destruir a primeira torre externa do meio (Mid).</li>
-            <li>Alcançar <span class="destaque">3 kills</span> em cima da equipe adversária.</li>
+            <li>Proibido usar chat de texto com o time inimigo ou "para todos".</li>
+            <li>Mesmo que a mensagem não seja ofensiva, a equipe será desclassificada.</li>
+            <li><strong>Permitidos:</strong> Emotes e Recall.</li>
+            <li><span class="destaque">Sempre tirem print em caso de irregularidades.</span></li>
+        </ul>
+
+        <h3>7º - Espectadores na Sala</h3>
+        <ul>
+            <li>Proibidos, exceto se: Forem donos da organização; streamers/narrador do campeonato.</li>
+            <li>Donos da organização também estão sujeitos a advertência e punição se infringirem regras.</li>
+        </ul>
+
+        <h3>8º - Horário das Partidas</h3>
+        <ul>
+            <li>Após o horário estipulado (Horário de Brasília), será contado <span class="destaque">10 minutos de tolerância</span> para que o time esteja todos na sala.</li>
+            <li>Após os 10 minutos, será dado <strong>W.O.</strong> naquela partida e começa a contagem para o próximo jogo.</li>
         </ul>
     </div>
 
