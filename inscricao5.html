@@ -63,7 +63,7 @@
                 </div>
                 <button type="button" class="btn-copiar-pix" data-gw-copiar-pix>📋 COPIAR CHAVE PIX</button>
                 <div class="pix-aviso">
-                    ⚠️ Após o pagamento, anexe o comprovante abaixo
+                    ⚠️ Após o pagamento, envie o comprovante pelo WhatsApp
                 </div>
             </div>
 
@@ -128,26 +128,17 @@
                     <input type="text" id="info-pagamento" maxlength="80" placeholder="Como aparece no comprovante">
                 </div>
 
-                <div class="linha-uploads">
-                    <div class="campo-upload">
-                        <label for="logo-cla">🏴 LOGO DO CLÃ</label>
-                        <div class="upload-area" id="logo-area">
-                            <input type="file" id="logo-cla" accept="image/*" required>
-                            <span class="upload-placeholder">📁 Clique para enviar a logo</span>
-                            <img id="logo-preview" class="preview-img" style="display:none;" alt="Preview da logo">
-                            <div class="aviso-upload">⚠️ Enviar logotipo</div>
-                        </div>
-                    </div>
-
-                    <div class="campo-upload">
-                        <label for="comprovante">🧾 COMPROVANTE DE PAGAMENTO</label>
-                        <div class="upload-area" id="comprovante-area">
-                            <input type="file" id="comprovante" accept="image/*" required>
-                            <span class="upload-placeholder">📁 Clique para enviar o comprovante</span>
-                            <img id="comprovante-preview" class="preview-img" style="display:none;" alt="Preview do comprovante">
-                            <div class="aviso-upload">⚠️ Enviar comprovante</div>
-                        </div>
-                    </div>
+                <!-- ✅ NOVO: Aviso para envio via WhatsApp -->
+                <div class="gw-aviso-whatsapp">
+                    <h3>📲 ENVIO DE LOGO E COMPROVANTE VIA WHATSAPP</h3>
+                    <p>Depois de enviar esta inscrição, mande no WhatsApp:</p>
+                    <ul>
+                        <li>🏴 <strong>LOGO DO CLÃ</strong> (imagem)</li>
+                        <li>🧾 <strong>COMPROVANTE DE PAGAMENTO</strong> (imagem ou PDF)</li>
+                    </ul>
+                    <p class="gw-aviso-whatsapp-contato">
+                        📱 WhatsApp: <strong>(31) 7218-9691</strong>
+                    </p>
                 </div>
 
                 <div id="gw-msg" class="gw-msg-form" role="status" aria-live="polite"></div>
