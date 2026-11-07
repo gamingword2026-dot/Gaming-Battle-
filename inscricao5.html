@@ -29,33 +29,32 @@
         <div class="container-inscricao">
             <div class="inscricao-header">
                 <h2>📝 INSCRIÇÃO — CAMPEONATO 5V5</h2>
-                <p class="valor-inscricao">💵 Taxa de inscrição: <strong data-gw="taxa">R$ 50,00</strong> por equipe · até 7 jogadores (5 titulares + 2 reservas)</p>
+                <p class="valor-inscricao">💵 Taxa de inscrição: <strong>R$ 50,00</strong> por equipe · até 7 jogadores (5 titulares + 2 reservas)</p>
                 <p class="info-pagamento">Após preencher, envie o comprovante de pagamento</p>
             </div>
 
-            <div data-gw-aviso style="margin-bottom:18px"></div>
-
+            <!-- INFORMAÇÕES DO PIX (fixas) -->
             <div class="pix-info">
                 <h3>💳 PAGUE COM PIX</h3>
                 <div class="pix-dados">
                     <div class="pix-item">
                         <span class="pix-label">💰 Valor:</span>
-                        <span class="pix-valor pix-valor-destaque" data-gw="taxa">R$ 50,00</span>
+                        <span class="pix-valor pix-valor-destaque">R$ 50,00</span>
                     </div>
                     <div class="pix-item">
-                        <span class="pix-label">🔑 Chave PIX:</span>
-                        <span class="pix-valor" data-gw-pix="chave"></span>
+                        <span class="pix-label">🔑 Chave PIX (e-mail):</span>
+                        <span class="pix-valor">gamingword2026@gmail.com</span>
                     </div>
                     <div class="pix-item">
                         <span class="pix-label">👤 Nome:</span>
-                        <span class="pix-valor" data-gw-pix="nome"></span>
+                        <span class="pix-valor">Gemisson Laion Souza Morais</span>
                     </div>
                     <div class="pix-item">
                         <span class="pix-label">🏦 Banco:</span>
-                        <span class="pix-valor" data-gw-pix="banco"></span>
+                        <span class="pix-valor">Mercado Pago</span>
                     </div>
                 </div>
-                <button type="button" class="btn-copiar-pix" data-gw-copiar-pix>📋 COPIAR CHAVE PIX</button>
+                <button type="button" class="btn-copiar-pix" id="btn-copiar-pix">📋 COPIAR CHAVE PIX</button>
                 <div class="pix-aviso">⚠️ Após o pagamento, envie o comprovante pelo WhatsApp</div>
             </div>
 
@@ -151,15 +150,35 @@
         <p>Aqui Gaming World 2026</p>
     </footer>
 
-    <!-- Mantém apenas o gw-core (PIX dinâmico). Removi firebase/inscricao-comum/inscricao5 antigos -->
     <script src="firebase-config.js"></script>
     <script src="gw-core.js"></script>
 
-    <!-- ✅ Script inline: monta mensagem e envia para o WhatsApp -->
     <script>
     (function () {
         const WHATSAPP_NUMERO = '5531972189691';
+        const CHAVE_PIX = 'gamingword2026@gmail.com';
 
+        // -------- Copiar chave PIX --------
+        const btnPix = document.getElementById('btn-copiar-pix');
+        if (btnPix) {
+            btnPix.addEventListener('click', async () => {
+                const original = btnPix.textContent;
+                try {
+                    await navigator.clipboard.writeText(CHAVE_PIX);
+                } catch (err) {
+                    const ta = document.createElement('textarea');
+                    ta.value = CHAVE_PIX;
+                    document.body.appendChild(ta);
+                    ta.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(ta);
+                }
+                btnPix.textContent = '✅ CHAVE COPIADA!';
+                setTimeout(() => { btnPix.textContent = original; }, 2000);
+            });
+        }
+
+        // -------- Enviar inscrição via WhatsApp --------
         const form = document.getElementById('form-inscricao');
         if (!form) return;
 
@@ -173,7 +192,6 @@
             const contato      = val('contato');
             const infoPagamento= val('info-pagamento');
 
-            // Validação básica
             const obrigatorios = ['nome-equipe', 'capitao', 'contato'];
             for (let i = 1; i <= 5; i++) { obrigatorios.push('nick' + i, 'id' + i); }
 
@@ -183,20 +201,17 @@
                 return;
             }
 
-            // Titulares
             const titulares = [];
             for (let i = 1; i <= 5; i++) {
                 titulares.push(`${i}. ${val('nick' + i)} — ID: ${val('id' + i)}`);
             }
 
-            // Reservas (opcionais)
             const reservas = [];
             for (let i = 6; i <= 7; i++) {
                 const n = val('nick' + i), d = val('id' + i);
                 if (n || d) reservas.push(`${i - 5}. ${n || '—'} — ID: ${d || '—'}`);
             }
 
-            // Mensagem
             let msg = '*INSCRIÇÃO 5V5 — GAMING BATTLE 2026*\n\n';
             msg += `🏴 *Equipe:* ${nomeEquipe}\n`;
             msg += `👑 *Capitão:* ${capitao}\n`;
