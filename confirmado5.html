@@ -4,146 +4,144 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>32 Times Confirmados - Gaming World</title>
-    
-    <!-- ⬇️ COLE A PARTE 2 (CSS) AQUI NO MEIO ⬇️ -->
-<style>
-    body {
-        margin: 0;
-        padding: 0;
-        background-image: url('fundogaming.png');
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-        background-color: #111;
-        color: #fff;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        min-height: 100vh;
-    }
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('fundogaming.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-color: #111;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+        }
 
-    .header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 15px 20px;
-        background-color: rgba(0, 0, 0, 0.8);
-        border-bottom: 2px solid #d4af37;
-        position: sticky;
-        top: 0;
-        z-index: 100;
-    }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-bottom: 2px solid #d4af37;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
 
-    .header img.logo {
-        max-width: 80px;
-    }
+        .header img.logo {
+            max-width: 80px;
+        }
 
-    .btn-back {
-        color: #000;
-        text-decoration: none;
-        font-weight: bold;
-        background: #d4af37;
-        padding: 8px 15px;
-        border-radius: 5px;
-        transition: 0.3s;
-    }
+        .btn-back {
+            color: #000;
+            text-decoration: none;
+            font-weight: bold;
+            background: #d4af37;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
 
-    .btn-back:hover {
-        background: #fff;
-    }
+        .btn-back:hover {
+            background: #fff;
+        }
 
-    .container {
-        padding: 20px;
-        max-width: 1200px;
-        margin: 0 auto;
-    }
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-    h2 {
-        text-align: center;
-        color: #d4af37;
-        text-shadow: 2px 2px 4px #000;
-        margin-bottom: 30px;
-    }
+        h2 {
+            text-align: center;
+            color: #d4af37;
+            text-shadow: 2px 2px 4px #000;
+            margin-bottom: 30px;
+        }
 
-    .grid-times {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
-        gap: 12px;
-        justify-items: stretch;
-    }
+        .grid-times {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
+            gap: 12px;
+            justify-items: stretch;
+        }
 
-    .time-card {
-        background-color: rgba(0, 0, 0, 0.6);
-        border: 2px solid #d4af37;
-        border-radius: 10px;
-        padding: 8px;
-        box-sizing: border-box;
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.5);
-        transition: transform 0.3s;
-    }
+        .time-card {
+            background-color: rgba(0, 0, 0, 0.6);
+            border: 2px solid #d4af37;
+            border-radius: 10px;
+            padding: 8px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+            transition: transform 0.3s;
+        }
 
-    .time-card:hover {
-        transform: scale(1.04);
-        z-index: 10;
-    }
+        .time-card:hover {
+            transform: scale(1.04);
+            z-index: 10;
+        }
 
-    .logo-box {
-        height: 90px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+        .logo-box {
+            height: 90px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-    .logo-box img {
-        max-width: 100%;
-        max-height: 100%;
-        object-fit: contain;
-    }
+        .logo-box img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
 
-    .logo-box .fallback {
-        display: none;
-        color: #d4af37;
-        font-weight: bold;
-        font-size: 1.1rem;
-        text-align: center;
-    }
+        .logo-box .fallback {
+            display: none;
+            color: #d4af37;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-align: center;
+        }
 
-    .time-card.sem-imagem .logo-box img { display: none; }
-    .time-card.sem-imagem .logo-box .fallback { display: block; }
+        .time-card.sem-imagem .logo-box img { display: none; }
+        .time-card.sem-imagem .logo-box .fallback { display: block; }
 
-    .jogadores {
-        display: flex;
-        flex-direction: column;
-        gap: 3px;
-        border-top: 1px solid rgba(212, 175, 55, 0.5);
-        padding-top: 6px;
-    }
+        .jogadores {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            border-top: 1px solid rgba(212, 175, 55, 0.5);
+            padding-top: 6px;
+        }
 
-    .jogador {
-        display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-        gap: 6px;
-        font-size: 0.7rem;
-        line-height: 1.2;
-    }
+        .jogador {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 6px;
+            font-size: 0.7rem;
+            line-height: 1.2;
+        }
 
-    .jogador .nome {
-        font-weight: bold;
-        color: #fff;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        min-width: 0;
-    }
+        .jogador .nome {
+            font-weight: bold;
+            color: #fff;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            min-width: 0;
+        }
 
-    .jogador .id {
-        color: #d4af37;
-        white-space: nowrap;
-        flex-shrink: 0;
-    }
-        </style>
+        .jogador .id {
+            color: #d4af37;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+    </style>
 </head>
 <body>
 
@@ -157,114 +155,112 @@
         <div class="grid-times" id="grid-times"></div>
     </div>
 
-    <!-- ⬇️ COLE A PARTE 3 (JAVASCRIPT) AQUI EMBAIXO ⬇️ -->
-<script>
-    // ==========================================
-    // 1. CONFIGURAÇÕES GERAIS
-    // ==========================================
-    const TOTAL_TIMES = 32;
-    const JOGADORES_POR_TIME = 7;
-    const PASTA = 'style5/';
-    const VERSAO = '1'; 
+    <script>
+        // ==========================================
+        // 1. CONFIGURAÇÕES GERAIS
+        // ==========================================
+        const TOTAL_TIMES = 32;
+        const JOGADORES_POR_TIME = 7;
+        const PASTA = 'style5/';
+        const VERSAO = '1'; 
 
-    // ==========================================
-    // 2. DADOS DOS JOGADORES (EDITE AQUI)
-    // ==========================================
-    // Formato: ["Nome", "ID"]
-    // Para mudar, altere o texto entre as aspas.
-    
-    const dadosTimes = [
-        /* TIME 1 */  [ ["Joy-Boy××","1455001700"], ["Dudahofc","1339499631"], ["SPC Serasa","60204143"], ["Lapu lapu vs MST,"798708750"], ["Sɧʊɳ of Hades","963245427"], ["アスタ","162193539"], ["TTK | CloudBoy","2053787031"] ],
-        /* TIME 2 */  [ ["Jogador 1","00000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
-        /* TIME 3 */  [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
-        /* TIME 4 */  [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
-        /* TIME 5 */  [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
-        /* TIME 6 */  [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
-        /* TIME 7 */  [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
-        /* TIME 8 */  [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
-        /* TIME 9 */  [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
-        /* TIME 10 */ [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
-        /* TIME 11 */ [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
-        /* TIME 12 */ [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
-        /* TIME 13 */ [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
-        /* TIME 14 */ [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
-        /* TIME 15 */ [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
-        /* TIME 16 */ [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
-        /* TIME 17 */ [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
-        /* TIME 18 */ [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
-        /* TIME 19 */ [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
-        /* TIME 20 */ [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
-        /* TIME 21 */ [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
-        /* TIME 22 */ [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
-        /* TIME 23 */ [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
-        /* TIME 24 */ [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
-        /* TIME 25 */ [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
-        /* TIME 26 */ [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
-        /* TIME 27 */ [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
-        /* TIME 28 */ [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
-        /* TIME 29 */ [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
-        /* TIME 30 */ [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
-        /* TIME 31 */ [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
-        /* TIME 32 */ [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ]
-    ];
-
-    // ==========================================
-    // 3. CRIAÇÃO DOS CARDS (NÃO PRECISA MEXER AQUI)
-    // ==========================================
-    const grid = document.getElementById('grid-times');
-
-    for (let i = 1; i <= TOTAL_TIMES; i++) {
-        const card = document.createElement('div');
-        card.className = 'time-card';
-
-        // --- IMAGEM DO TIME ---
-        const logoBox = document.createElement('div');
-        logoBox.className = 'logo-box';
-
-        const img = document.createElement('img');
-        img.alt = 'Time ' + i;
-        img.loading = 'lazy';
-        img.onerror = function () { card.classList.add('sem-imagem'); };
-        img.src = PASTA + 'cla' + i + '.png?v=' + VERSAO;
-
-        const fallback = document.createElement('span');
-        fallback.className = 'fallback';
-        fallback.textContent = 'Time ' + i;
-
-        logoBox.appendChild(img);
-        logoBox.appendChild(fallback);
-        card.appendChild(logoBox);
-
-        // --- JOGADORES ---
-        const lista = document.createElement('div');
-        lista.className = 'jogadores';
+        // ==========================================
+        // 2. DADOS DOS JOGADORES (EDITE AQUI)
+        // ==========================================
+        // Formato: ["Nome", "ID"]
         
-        const timeIndex = i - 1;
-        const jogadoresDoTime = dadosTimes[timeIndex] || [];
+        const dadosTimes = [
+            /* TIME 1 */  [ ["Joy-Boy××","1455001700"], ["Dudahofc","1339499631"], ["SPC Serasa","60204143"], ["Lapu lapu vs MST", "798708750"], ["Sɧʊɳ of Hades","963245427"], ["アスタ","162193539"], ["TTK | CloudBoy","2053787031"] ],
+            /* TIME 2 */  [ ["Jogador 1","00000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
+            /* TIME 3 */  [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
+            /* TIME 4 */  [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
+            /* TIME 5 */  [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
+            /* TIME 6 */  [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
+            /* TIME 7 */  [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
+            /* TIME 8 */  [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
+            /* TIME 9 */  [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
+            /* TIME 10 */ [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
+            /* TIME 11 */ [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
+            /* TIME 12 */ [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
+            /* TIME 13 */ [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
+            /* TIME 14 */ [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
+            /* TIME 15 */ [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
+            /* TIME 16 */ [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
+            /* TIME 17 */ [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
+            /* TIME 18 */ [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
+            /* TIME 19 */ [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
+            /* TIME 20 */ [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
+            /* TIME 21 */ [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
+            /* TIME 22 */ [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
+            /* TIME 23 */ [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
+            /* TIME 24 */ [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
+            /* TIME 25 */ [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
+            /* TIME 26 */ [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
+            /* TIME 27 */ [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
+            /* TIME 28 */ [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
+            /* TIME 29 */ [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
+            /* TIME 30 */ [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
+            /* TIME 31 */ [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ],
+            /* TIME 32 */ [ ["Jogador 1","000000000"], ["Jogador 2","000000000"], ["Jogador 3","000000000"], ["Jogador 4","000000000"], ["Jogador 5","000000000"], ["Jogador 6","000000000"], ["Jogador 7","000000000"] ]
+        ];
 
-        for (let n = 0; n < JOGADORES_POR_TIME; n++) {
-            // Puxa do array simples ["Nome", "ID"]
-            const dado = jogadoresDoTime[n] || ["Jogador " + (n + 1), "000000000"];
+        // ==========================================
+        // 3. CRIAÇÃO DOS CARDS (NÃO PRECISA MEXER AQUI)
+        // ==========================================
+        const grid = document.getElementById('grid-times');
 
-            const linha = document.createElement('div');
-            linha.className = 'jogador';
+        for (let i = 1; i <= TOTAL_TIMES; i++) {
+            const card = document.createElement('div');
+            card.className = 'time-card';
 
-            const nome = document.createElement('span');
-            nome.className = 'nome';
-            nome.textContent = dado[0];
+            // --- IMAGEM DO TIME ---
+            const logoBox = document.createElement('div');
+            logoBox.className = 'logo-box';
 
-            const id = document.createElement('span');
-            id.className = 'id';
-            id.textContent = dado[1];
+            const img = document.createElement('img');
+            img.alt = 'Time ' + i;
+            img.loading = 'lazy';
+            img.onerror = function () { card.classList.add('sem-imagem'); };
+            img.src = PASTA + 'cla' + i + '.png?v=' + VERSAO;
 
-            linha.appendChild(nome);
-            linha.appendChild(id);
-            lista.appendChild(linha);
+            const fallback = document.createElement('span');
+            fallback.className = 'fallback';
+            fallback.textContent = 'Time ' + i;
+
+            logoBox.appendChild(img);
+            logoBox.appendChild(fallback);
+            card.appendChild(logoBox);
+
+            // --- JOGADORES ---
+            const lista = document.createElement('div');
+            lista.className = 'jogadores';
+            
+            const timeIndex = i - 1;
+            const jogadoresDoTime = dadosTimes[timeIndex] || [];
+
+            for (let n = 0; n < JOGADORES_POR_TIME; n++) {
+                // Puxa do array simples ["Nome", "ID"]
+                const dado = jogadoresDoTime[n] || ["Jogador " + (n + 1), "000000000"];
+
+                const linha = document.createElement('div');
+                linha.className = 'jogador';
+
+                const nome = document.createElement('span');
+                nome.className = 'nome';
+                nome.textContent = dado[0];
+
+                const id = document.createElement('span');
+                id.className = 'id';
+                id.textContent = dado[1];
+
+                linha.appendChild(nome);
+                linha.appendChild(id);
+                lista.appendChild(linha);
+            }
+
+            card.appendChild(lista);
+            grid.appendChild(card);
         }
-
-        card.appendChild(lista);
-        grid.appendChild(card);
-    }
-</script>
+    </script>
 </body>
 </html>
