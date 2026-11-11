@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaming World - Confirmados</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            /* Imagem de fundo tamanho Story */
+            background-image: url('fundogaming.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-color: #111;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        /* Logo menor conforme solicitado */
+        .logo {
+            max-width: 150px; 
+            margin-bottom: 30px;
+            filter: drop-shadow(0px 4px 10px rgba(0,0,0,0.8));
+        }
+
+        h1 {
+            color: #d4af37; /* Dourado */
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px #000;
+            margin-bottom: 40px;
+        }
+
+        .menu-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 80%;
+            max-width: 400px;
+        }
+
+        .btn {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #d4af37;
+            padding: 20px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: 2px solid #d4af37;
+            border-radius: 10px;
+            text-transform: uppercase;
+            transition: 0.3s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+        }
+
+        .btn:hover {
+            background-color: #d4af37;
+            color: #000;
+            transform: scale(1.05);
+        }
+
+        /* Estilo novo para o botão de voltar ao index */
+        .btn-voltar {
+            margin-top: 40px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: bold;
+            padding: 10px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            transition: 0.3s;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .btn-voltar:hover {
+            color: #d4af37;
+            border-color: #d4af37;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Substitua o nome do logo se for diferente -->
+    <img src="logogaming.png" alt="Gaming World Logo" class="logo">
+    
+    <h1>Times Confirmados</h1>
+
+    <div class="menu-container">
+        <!-- Link para a aba de 12 times -->
+        <a href="confirmado2.html" class="btn">Sala de 12 Times</a>
+        
+        <!-- Link para a aba de 32 times -->
+        <a href="confirmado5.html" class="btn">Sala de 32 Times</a>
+    </div>
+
+    <!-- Botão para voltar ao index -->
+    <a href="index.html" class="btn-voltar">← Voltar para o Início</a>
+
+</body>
+</html>

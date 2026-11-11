@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12 Times Confirmados - Gaming World</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('fundogaming.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-color: #111;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-bottom: 2px solid #d4af37;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header img.logo {
+            max-width: 80px;
+        }
+
+        .btn-back {
+            color: #000;
+            text-decoration: none;
+            font-weight: bold;
+            background: #d4af37;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .btn-back:hover {
+            background: #fff;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            text-align: center;
+            color: #d4af37;
+            text-shadow: 2px 2px 4px #000;
+            margin-bottom: 30px;
+        }
+
+        .grid-times {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 15px;
+            justify-items: center;
+        }
+
+        .time-card {
+            position: relative;
+            background-color: rgba(0, 0, 0, 0.6);
+            border: 2px solid #d4af37;
+            border-radius: 10px;
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            gap: 6px;
+            aspect-ratio: 1 / 1;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+            transition: transform 0.3s;
+            overflow: hidden;
+        }
+
+        .time-card:hover {
+            transform: scale(1.05);
+        }
+
+        .time-card img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .logo-box {
+            flex: 1;
+            min-height: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .jogadores {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            border-top: 1px solid rgba(212, 175, 55, 0.5);
+            padding-top: 5px;
+        }
+
+        .jogador {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.15;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .jogador .nome {
+            font-size: 0.72rem;
+            font-weight: bold;
+            color: #fff;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .jogador .id {
+            font-size: 0.65rem;
+            color: #d4af37;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Aparece só se nenhuma imagem carregar */
+        .time-card .fallback {
+            display: none;
+            color: #d4af37;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .time-card.sem-imagem img { display: none; }
+        .time-card.sem-imagem .fallback { display: block; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <img src="logogaming.png" alt="Logo" class="logo">
+        <a href="confirmado.html" class="btn-back">Voltar ao Menu</a>
+    </div>
+
+    <div class="container">
+        <h2>12 Times Confirmados</h2>
+        <div class="grid-times" id="grid-times"></div>
+    </div>
+
+    <script>
+        const TOTAL_TIMES = 12;
+        const PASTA_LOCAL = 'style/';
+        const GITHUB_RAW  = 'https://raw.githubusercontent.com/gamingword2026-dot/Gaming-Battle-/main/style/';
+        // Mude a versão quando trocar as imagens, para forçar o navegador a baixar de novo
+        const VERSAO = '1';
+
+        // EDITE AQUI: nome e ID dos 2 jogadores de cada time (na ordem do Time 1 ao 12)
+        const TIMES = [
+            { jogadores: [{ nome: 'Jogador 1', id: '000000001' }, { nome: 'Jogador 2', id: '000000002' }] }, // Time 1
+            { jogadores: [{ nome: 'Jogador 1', id: '000000003' }, { nome: 'Jogador 2', id: '000000004' }] }, // Time 2
+            { jogadores: [{ nome: 'Jogador 1', id: '000000005' }, { nome: 'Jogador 2', id: '000000006' }] }, // Time 3
+            { jogadores: [{ nome: 'Jogador 1', id: '000000007' }, { nome: 'Jogador 2', id: '000000008' }] }, // Time 4
+            { jogadores: [{ nome: 'Jogador 1', id: '000000009' }, { nome: 'Jogador 2', id: '000000010' }] }, // Time 5
+            { jogadores: [{ nome: 'Jogador 1', id: '000000011' }, { nome: 'Jogador 2', id: '000000012' }] }, // Time 6
+            { jogadores: [{ nome: 'Jogador 1', id: '000000013' }, { nome: 'Jogador 2', id: '000000014' }] }, // Time 7
+            { jogadores: [{ nome: 'Jogador 1', id: '000000015' }, { nome: 'Jogador 2', id: '000000016' }] }, // Time 8
+            { jogadores: [{ nome: 'Jogador 1', id: '000000017' }, { nome: 'Jogador 2', id: '000000018' }] }, // Time 9
+            { jogadores: [{ nome: 'Jogador 1', id: '000000019' }, { nome: 'Jogador 2', id: '000000020' }] }, // Time 10
+            { jogadores: [{ nome: 'Jogador 1', id: '000000021' }, { nome: 'Jogador 2', id: '000000022' }] }, // Time 11
+            { jogadores: [{ nome: 'Jogador 1', id: '000000023' }, { nome: 'Jogador 2', id: '000000024' }] }  // Time 12
+        ];
+
+        const grid = document.getElementById('grid-times');
+
+        for (let i = 1; i <= TOTAL_TIMES; i++) {
+            const card = document.createElement('div');
+            card.className = 'time-card';
+
+            const img = document.createElement('img');
+            img.alt = 'Time ' + i;
+            img.loading = 'lazy';
+
+            // Tenta primeiro a pasta local; se falhar, tenta o GitHub; se falhar, mostra "Time X"
+            const fontes = [
+                PASTA_LOCAL + 'cla' + i + '.png?v=' + VERSAO,
+                GITHUB_RAW  + 'cla' + i + '.png?v=' + VERSAO
+            ];
+            let tentativa = 0;
+
+            img.onerror = function () {
+                tentativa++;
+                if (tentativa < fontes.length) {
+                    img.src = fontes[tentativa];
+                } else {
+                    card.classList.add('sem-imagem');
+                }
+            };
+            img.src = fontes[0];
+
+            const fallback = document.createElement('span');
+            fallback.className = 'fallback';
+            fallback.textContent = 'Time ' + i;
+
+            const logoBox = document.createElement('div');
+            logoBox.className = 'logo-box';
+            logoBox.appendChild(img);
+            logoBox.appendChild(fallback);
+            card.appendChild(logoBox);
+
+            // Nome e ID dos 2 jogadores
+            const jogadores = document.createElement('div');
+            jogadores.className = 'jogadores';
+            const dados = TIMES[i - 1] || { jogadores: [] };
+            dados.jogadores.slice(0, 2).forEach(function (j) {
+                const box = document.createElement('div');
+                box.className = 'jogador';
+
+                const nome = document.createElement('span');
+                nome.className = 'nome';
+                nome.textContent = j.nome;
+
+                const id = document.createElement('span');
+                id.className = 'id';
+                id.textContent = 'ID: ' + j.id;
+
+                box.appendChild(nome);
+                box.appendChild(id);
+                jogadores.appendChild(box);
+            });
+            card.appendChild(jogadores);
+
+            grid.appendChild(card);
+        }
+    </script>
+
+</body>
+</html>
+

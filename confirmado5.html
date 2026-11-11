@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>32 Times Confirmados - Gaming World</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('fundogaming.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-color: #111;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-bottom: 2px solid #d4af37;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header img.logo {
+            max-width: 80px;
+        }
+
+        .btn-back {
+            color: #000;
+            text-decoration: none;
+            font-weight: bold;
+            background: #d4af37;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .btn-back:hover {
+            background: #fff;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            text-align: center;
+            color: #d4af37;
+            text-shadow: 2px 2px 4px #000;
+            margin-bottom: 30px;
+        }
+
+        /* Cards maiores para caber 7 jogadores + 7 IDs */
+        .grid-times {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
+            gap: 12px;
+            justify-items: stretch;
+        }
+
+        .time-card {
+            background-color: rgba(0, 0, 0, 0.6);
+            border: 2px solid #d4af37;
+            border-radius: 10px;
+            padding: 8px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+            transition: transform 0.3s;
+        }
+
+        .time-card:hover {
+            transform: scale(1.04);
+            z-index: 10;
+        }
+
+        .logo-box {
+            height: 90px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo-box img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .logo-box .fallback {
+            display: none;
+            color: #d4af37;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .time-card.sem-imagem .logo-box img { display: none; }
+        .time-card.sem-imagem .logo-box .fallback { display: block; }
+
+        .jogadores {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            border-top: 1px solid rgba(212, 175, 55, 0.5);
+            padding-top: 6px;
+        }
+
+        .jogador {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 6px;
+            font-size: 0.7rem;
+            line-height: 1.2;
+        }
+
+        .jogador .nome {
+            font-weight: bold;
+            color: #fff;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            min-width: 0;
+        }
+
+        .jogador .id {
+            color: #d4af37;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <img src="logogaming.png" alt="Logo" class="logo">
+        <a href="confirmado.html" class="btn-back">Voltar ao Menu</a>
+    </div>
+
+    <div class="container">
+        <h2>32 Times Confirmados</h2>
+        <div class="grid-times" id="grid-times"></div>
+    </div>
+
+    <script>
+        const TOTAL_TIMES = 32;
+        const JOGADORES_POR_TIME = 7;
+        const PASTA = 'style5/';
+        // Mude a versão quando trocar as imagens, para forçar o navegador a baixar de novo
+        const VERSAO = '1';
+
+        // EDITE AQUI: nome e ID dos 7 jogadores de cada time.
+        // Formato: TIMES[numero_do_time] = [ ['Nome','ID'], ['Nome','ID'], ... 7 jogadores ];
+        // Time que não for preenchido aparece com nomes/IDs de exemplo.
+        const TIMES = {};
+
+        // Exemplo (apague ou edite):
+        // TIMES[1] = [
+        //     ['Fulano',  '111111111'],
+        //     ['Ciclano', '222222222'],
+        //     ['Beltrano','333333333'],
+        //     ['Jogador 4','444444444'],
+        //     ['Jogador 5','555555555'],
+        //     ['Jogador 6','666666666'],
+        //     ['Jogador 7','777777777']
+        // ];
+
+        const grid = document.getElementById('grid-times');
+
+        for (let i = 1; i <= TOTAL_TIMES; i++) {
+            const card = document.createElement('div');
+            card.className = 'time-card';
+
+            // Logo
+            const logoBox = document.createElement('div');
+            logoBox.className = 'logo-box';
+
+            const img = document.createElement('img');
+            img.alt = 'Time ' + i;
+            img.loading = 'lazy';
+            img.onerror = function () { card.classList.add('sem-imagem'); };
+            img.src = PASTA + 'cla' + i + '.png?v=' + VERSAO;
+
+            const fallback = document.createElement('span');
+            fallback.className = 'fallback';
+            fallback.textContent = 'Time ' + i;
+
+            logoBox.appendChild(img);
+            logoBox.appendChild(fallback);
+            card.appendChild(logoBox);
+
+            // 7 jogadores com ID
+            const lista = document.createElement('div');
+            lista.className = 'jogadores';
+
+            for (let n = 0; n < JOGADORES_POR_TIME; n++) {
+                const dado = (TIMES[i] && TIMES[i][n]) || ['Jogador ' + (n + 1), '000000000'];
+
+                const linha = document.createElement('div');
+                linha.className = 'jogador';
+
+                const nome = document.createElement('span');
+                nome.className = 'nome';
+                nome.textContent = dado[0];
+
+                const id = document.createElement('span');
+                id.className = 'id';
+                id.textContent = dado[1];
+
+                linha.appendChild(nome);
+                linha.appendChild(id);
+                lista.appendChild(linha);
+            }
+
+            card.appendChild(lista);
+            grid.appendChild(card);
+        }
+    </script>
+
+</body>
+</html>
+
