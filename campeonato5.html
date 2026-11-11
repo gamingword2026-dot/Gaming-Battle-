@@ -4,8 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gaming World - Campeonato 5v5</title>
-    <link rel="stylesheet" href="campeonato5.css">
-    <link rel="stylesheet" href="gw-shared.css">
+    
+    <!-- ⬇️ COLE A PARTE 2 (CSS) AQUI NO MEIO ⬇️ -->
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; min-height: 100vh; background: #0a0a0a; color: #fff; position: relative; }
+    .bg-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(ellipse at 20% 50%, rgba(255, 215, 0, 0.05) 0%, transparent 60%), linear-gradient(180deg, #0a0a0a 0%, #111 50%, #0a0a0a 100%); z-index: 0; }
+    .header { position: relative; z-index: 1; text-align: center; padding: 30px 20px 15px; background: linear-gradient(180deg, rgba(0,0,0,0.98) 0%, rgba(0,0,0,0.7) 80%, transparent 100%); }
+    .logo-principal { max-width: 280px; width: 100%; height: auto; }
+    .titulo-principal { font-size: 2.2rem; font-weight: 900; text-transform: uppercase; background: linear-gradient(90deg, #ffd700, #ff8c00, #ffd700); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shineText 4s linear infinite; letter-spacing: 4px; margin-top: 5px; }
+    @keyframes shineText { 0% { background-position: 0% center; } 100% { background-position: 200% center; } }
+    .subtitulo { font-size: 1.1rem; color: #ffd700; font-style: italic; letter-spacing: 1px; margin-top: 4px; opacity: 0.9; }
+    .nav-topo { display: flex; justify-content: center; gap: 15px; margin-top: 20px; flex-wrap: wrap; }
+    .btn-nav { padding: 10px 25px; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; border: 2px solid rgba(255, 215, 0, 0.25); background: rgba(0, 0, 0, 0.5); color: #ffd700; border-radius: 50px; cursor: pointer; transition: all 0.3s ease; text-decoration: none; backdrop-filter: blur(5px); }
+    .btn-nav:hover { background: #ffd700; color: #0a0a0a; border-color: #ffd700; transform: translateY(-2px) scale(1.03); }
+    .nav-rodadas { position: relative; z-index: 1; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; padding: 18px 20px; background: rgba(0, 0, 0, 0.85); border-top: 1px solid rgba(255, 215, 0, 0.08); border-bottom: 1px solid rgba(255, 215, 0, 0.08); margin-bottom: 20px; }
+    .btn-rodada { padding: 10px 30px; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; border: 2px solid rgba(255, 215, 0, 0.2); background: transparent; color: #aaa; border-radius: 50px; cursor: pointer; transition: all 0.3s ease; }
+    .btn-rodada:hover { color: #ffd700; border-color: rgba(255, 215, 0, 0.4); transform: scale(1.05); }
+    .btn-rodada.ativo { background: #ffd700; color: #0a0a0a; border-color: #ffd700; }
+    .gw-pagina { max-width: 1000px; margin: 0 auto; padding: 20px; position: relative; z-index: 1; animation: fadeInUp 0.5s ease; }
+    .gw-titulo-secao { color: #ffd700; font-size: 1.5rem; text-align: center; margin: 20px 0; }
+    .gw-info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 30px; }
+    .gw-info { background: rgba(18, 18, 35, 0.9); border: 1px solid rgba(255, 215, 0, 0.2); padding: 20px; border-radius: 12px; text-align: center; }
+    .gw-info small { color: #aaa; display: block; font-size: 0.8rem; }
+    .gw-info b { display: block; font-size: 1.5rem; color: #fff; margin: 5px 0; }
+    .gw-info span { font-size: 0.8rem; color: #ffd700; }
+    .gw-regra { display: flex; gap: 15px; background: rgba(18, 18, 35, 0.7); padding: 20px; border-radius: 12px; margin-bottom: 15px; border-left: 4px solid #ffd700; }
+    .gw-regra-num { font-size: 2rem; font-weight: 900; color: #ffd700; opacity: 0.5; }
+    .gw-regra-corpo h3 { color: #ffd700; margin-bottom: 10px; }
+    .gw-regra-corpo p, .gw-regra-corpo li { color: #ccc; line-height: 1.6; margin-bottom: 5px; font-size: 0.95rem; }
+    .gw-regra-corpo ul, .gw-regra-corpo ol { margin-left: 20px; margin-bottom: 10px; }
+    .gw-alerta { color: #ff6b6b !important; font-weight: bold; margin-top: 10px; }
+    .container-confrantos { position: relative; z-index: 1; max-width: 1200px; margin: 20px auto 40px; padding: 0 20px; }
+    .grid-jogos { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; animation: fadeInUp 0.5s ease; }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    .card-jogo { background: rgba(18, 18, 35, 0.92); border: 1px solid rgba(255, 215, 0, 0.08); border-radius: 18px; padding: 22px 18px; cursor: pointer; transition: all 0.35s ease; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .card-jogo:hover { transform: translateY(-6px); border-color: rgba(255, 215, 0, 0.3); box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4); background: rgba(25, 25, 45, 0.95); }
+    .time-box { display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1; }
+    .time-box img { width: 60px; height: 60px; border-radius: 50%; border: 2px solid rgba(255, 215, 0, 0.2); object-fit: cover; background: #1a1a2e; }
+    .time-box span { font-size: 0.8rem; font-weight: 700; text-align: center; color: #ddd; text-transform: uppercase; }
+    .vs-box { font-weight: 900; font-size: 1.2rem; color: #ffd700; flex-shrink: 0; }
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(15px); z-index: 1000; justify-content: center; align-items: center; }
+    .modal.mostrar { display: flex; }
+    .modal-content { background: linear-gradient(160deg, #1a1a30, #0a0a0a); border: 2px solid rgba(255, 215, 0, 0.2); border-radius: 24px; padding: 40px 30px 35px; max-width: 480px; width: 92%; position: relative; }
+    .fechar-modal { position: absolute; top: 12px; right: 20px; font-size: 2rem; color: #888; cursor: pointer; }
+    .fechar-modal:hover { color: #ffd700; }
+    #modal-titulo { text-align: center; font-size: 1.3rem; color: #ffd700; }
+    .modal-times { display: flex; align-items: center; justify-content: center; gap: 30px; margin: 25px 0 20px; }
+    .modal-time { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+    .modal-time img { width: 80px; height: 80px; border-radius: 50%; border: 3px solid #ffd700; object-fit: cover; background: #1a1a2e; }
+    .modal-vs { font-size: 1.6rem; font-weight: 900; color: #ffd700; }
+    .modal-info { text-align: center; color: #999; font-size: 0.9rem; border-top: 1px solid rgba(255, 215, 0, 0.1); padding-top: 15px; }
+    .footer { position: relative; z-index: 1; text-align: center; padding: 22px 20px 25px; background: rgba(0, 0, 0, 0.9); border-top: 1px solid rgba(255, 215, 0, 0.05); color: #666; font-size: 0.85rem; margin-top: 40px; }
+    @media (max-width: 768px) { .titulo-principal { font-size: 1.5rem; } .grid-jogos { grid-template-columns: 1fr; } .card-jogo { padding: 15px 12px; } .time-box img { width: 45px; height: 45px; } .gw-regra { flex-direction: column; gap: 5px; } }
+</style>
 </head>
 <body>
 <div class="bg-overlay"></div>
@@ -25,35 +77,30 @@
     </nav>
 </header>
 
-<!-- Abas da página -->
 <nav class="nav-rodadas nav-paginas" aria-label="Seções do campeonato 5v5">
     <button class="btn-rodada ativo" data-pagina="info">INFORMAÇÕES</button>
     <button class="btn-rodada" data-pagina="regras">REGRAS</button>
     <button class="btn-rodada" data-pagina="confrontos">CONFRONTOS</button>
 </nav>
 
-<!-- ================= INFORMAÇÕES ================= -->
-<section id="pagina-info" class="gw-pagina gw-painel" aria-label="Informações do campeonato 5v5">
-    <div data-gw-aviso></div>
-
+<section id="pagina-info" class="gw-pagina" aria-label="Informações do campeonato 5v5">
     <div class="gw-info-grid">
-        <div class="gw-info"><small>Inscrição por equipe</small><b data-gw="taxa">R$ 50,00</b><span>via PIX</span></div>
+        <div class="gw-info"><small>Inscrição por equipe</small><b>R$ 50,00</b><span>via PIX</span></div>
         <div class="gw-info"><small>Jogadores por equipe</small><b>até 7</b><span>5 titulares + 2 reservas</span></div>
-        <div class="gw-info"><small>Equipes</small><b data-gw="numEquipes">32</b><span>chave eliminatória</span></div>
-        <div class="gw-info"><small>Horário padrão</small><b data-gw="horarioPadrao" style="font-size:1.1rem">A definir</b><span>definido pela organização</span></div>
+        <div class="gw-info"><small>Equipes</small><b>32</b><span>chave eliminatória</span></div>
+        <div class="gw-info"><small>Horário padrão</small><b style="font-size:1.1rem">A definir</b><span>definido pela organização</span></div>
     </div>
 
     <h2 class="gw-titulo-secao">🏆 PREMIAÇÃO</h2>
-    <div class="gw-premios" data-gw-premios></div>
-    <p class="gw-obs" data-gw="obsPremios"></p>
+    <div class="gw-premios">
+        <p>🥇 1º Lugar: A definir</p>
+        <p>🥈 2º Lugar: A definir</p>
+    </div>
 
-    <p class="gw-discord">💬 Discord oficial: <span data-gw-discord>será informado na descrição do campeonato</span></p>
-
-    <a class="btn-nav btn-cta" href="inscricao5.html">📝 INSCREVA SUA EQUIPE</a>
+    <a class="btn-nav btn-cta" href="inscricao5.html" style="margin-top:20px; display:inline-block;">📝 INSCREVA SUA EQUIPE</a>
 </section>
 
-<!-- ================= REGRAS ================= -->
-<section id="pagina-regras" class="gw-pagina gw-regras" hidden aria-label="Regras oficiais do campeonato 5v5">
+<section id="pagina-regras" class="gw-pagina" hidden aria-label="Regras oficiais do campeonato 5v5">
     <h2 class="gw-titulo-secao">📜 REGRAS OFICIAIS — CAMPEONATO 5V5</h2>
 
     <article class="gw-regra">
@@ -75,7 +122,6 @@
         <div class="gw-regra-corpo">
             <h3>Uso obrigatório do Discord</h3>
             <p>Todos os <strong>5 jogadores titulares</strong> devem estar presentes no Discord oficial da organização durante a partida.</p>
-            <p>O link do servidor e a sala obrigatória estarão informados na descrição do campeonato: <span data-gw-discord>será informado na descrição do campeonato</span>.</p>
             <p class="gw-alerta">Caso seja verificado que um ou mais jogadores não estão presentes, a equipe será <strong>desclassificada</strong>.</p>
         </div>
     </article>
@@ -85,108 +131,17 @@
         <div class="gw-regra-corpo">
             <h3>Comprovação de jogadores do clã</h3>
             <p>Os 5 jogadores titulares devem obrigatoriamente <strong>pertencer ao clã que está representando</strong>, mesmo que utilizem a mesma tag.</p>
-            <p>Antes de iniciar a partida, será feita a verificação dos perfis:</p>
-            <ol>
-                <li>Acessar o perfil do jogador.</li>
-                <li>Seguir o jogador.</li>
-                <li>Acessar o perfil do clã.</li>
-                <li>Conferir se ele realmente pertence à equipe inscrita.</li>
-            </ol>
         </div>
     </article>
-
-    <article class="gw-regra">
-        <div class="gw-regra-num">4</div>
-        <div class="gw-regra-corpo">
-            <h3>Empréstimos e saidinhas</h3>
-            <ul>
-                <li>Não é permitido <strong>emprestar jogadores</strong> dentro dos campeonatos da organização.</li>
-                <li>Jogadores que saírem do clã e voltarem apenas para disputar partidas serão <strong>desclassificados</strong>.</li>
-            </ul>
-            <p class="gw-alerta">Havendo comprovação por print ou vídeo, a equipe será advertida e desclassificada.</p>
-        </div>
-    </article>
-
-    <article class="gw-regra">
-        <div class="gw-regra-num">5</div>
-        <div class="gw-regra-corpo">
-            <h3>Remake de partida</h3>
-            <p>Cada equipe terá direito a, no máximo, <strong>3 solicitações de remake</strong> durante todo o campeonato.</p>
-            <p>Após atingir esse limite, quaisquer imprevistos serão tratados conforme o andamento da partida, podendo resultar em <strong>derrota por W.O.</strong></p>
-
-            <h4>Solicitação de remake antes do Pick e Ban</h4>
-            <p>Caso ocorra queda de conexão ou bug antes do início da fase de Pick e Ban:</p>
-            <ol>
-                <li>O capitão deverá notificar imediatamente o grupo oficial do campeonato.</li>
-                <li>Ao começar a partida, os 5 jogadores deverão permanecer dentro da base.</li>
-                <li>Caso algum jogador caia, os demais deverão ficar dando recall.</li>
-                <li>Após resolver o problema, o jogador afetado deverá enviar um print comprovando o erro, como tela de tentativa de conexão ou ícone de Wi-Fi sem internet.</li>
-                <li>A organização deverá validar a ocorrência.</li>
-                <li>Sendo aprovada, o remake será autorizado e o Pick e Ban será reiniciado.</li>
-            </ol>
-
-            <h4>Tempo máximo para resolução</h4>
-            <p>Será concedido um prazo de até <strong>10 minutos</strong> a partir da solicitação.</p>
-            <p class="gw-alerta">Caso o jogador não consiga retornar ou solucionar o problema dentro desse tempo, a vitória será automaticamente atribuída à equipe adversária.</p>
-        </div>
-    </article>
-
-    <article class="gw-regra">
-        <div class="gw-regra-num">6</div>
-        <div class="gw-regra-corpo">
-            <h3>Proibições de chat e comunicação</h3>
-            <p>É proibido utilizar o <strong>chat de texto com a equipe inimiga</strong> ou o <strong>chat para todos</strong>.</p>
-            <p class="gw-alerta">Mesmo que a mensagem não seja ofensiva, a equipe será desclassificada.</p>
-            <p><strong>Permitidos:</strong></p>
-            <ul>
-                <li>Emotes.</li>
-                <li>Recall.</li>
-            </ul>
-            <p>Sempre tirem prints em caso de irregularidades.</p>
-        </div>
-    </article>
-
-    <article class="gw-regra">
-        <div class="gw-regra-num">7</div>
-        <div class="gw-regra-corpo">
-            <h3>Espectadores na sala</h3>
-            <p>É proibida a presença de espectadores, exceto:</p>
-            <ul>
-                <li>Donos da organização.</li>
-                <li>Streamers autorizados.</li>
-                <li>Narradores do campeonato.</li>
-            </ul>
-            <p>Os donos da organização também estão sujeitos a advertências e punições caso infrinjam as regras.</p>
-        </div>
-    </article>
-
-    <article class="gw-regra">
-        <div class="gw-regra-num">8</div>
-        <div class="gw-regra-corpo">
-            <h3>Horário das partidas</h3>
-            <p>Após o horário oficial divulgado pela organização, será concedida uma <strong>tolerância de 10 minutos</strong> para que todos os jogadores estejam na sala.</p>
-            <p class="gw-alerta">Após os 10 minutos, será aplicado W.O. naquela partida e iniciada a contagem para o próximo jogo.</p>
-        </div>
-    </article>
-
-    <article class="gw-regra">
-        <div class="gw-regra-num">9</div>
-        <div class="gw-regra-corpo">
-            <h3>Taxa de inscrição e reembolso</h3>
-            <p>A taxa de inscrição é de <strong data-gw="taxa">R$ 50,00</strong> por equipe.</p>
-        </div>
-    </article>
-
-    <p class="gw-nota-pequena">
-        <strong>Reembolso:</strong> a taxa de inscrição não é reembolsável após a confirmação do pagamento e da inscrição,
-        inclusive em caso de desistência ou desclassificação por descumprimento das regras.
-    </p>
 </section>
 
-<!-- ================= CONFRONTOS ================= -->
 <section id="pagina-confrontos" class="gw-pagina" hidden aria-label="Confrontos do campeonato 5v5">
-    <div id="gw-campeao" hidden></div>
-    <nav class="nav-rodadas nav-chave" aria-label="Rodadas"></nav>
+    <nav class="nav-rodadas nav-chave" aria-label="Rodadas">
+        <button class="btn-rodada ativo" data-rodada="1">OITAVAS</button>
+        <button class="btn-rodada" data-rodada="2">QUARTAS</button>
+        <button class="btn-rodada" data-rodada="3">SEMI</button>
+        <button class="btn-rodada" data-rodada="4">FINAL</button>
+    </nav>
     <div id="container-confrantos" class="container-confrantos"></div>
 </section>
 
@@ -204,9 +159,136 @@
     <p>Aqui Gaming World 2026</p>
 </footer>
 
-<script src="firebase-config.js"></script>
-<script src="gw-core.js"></script>
-<script src="gw-chave.js"></script>
-<script src="campeonato5.js"></script>
+<!-- ⬇️ COLE A PARTE 3 (JAVASCRIPT) AQUI EMBAIXO ⬇️ -->
+<script>
+    // 1. ABAS (INFORMAÇÕES, REGRAS, CONFRONTOS)
+    const botoesPaginas = document.querySelectorAll('.nav-paginas .btn-rodada');
+    const secoes = document.querySelectorAll('.gw-pagina');
+    botoesPaginas.forEach(btn => {
+        btn.addEventListener('click', () => {
+            botoesPaginas.forEach(b => b.classList.remove('ativo'));
+            btn.classList.add('ativo');
+            secoes.forEach(sec => sec.hidden = true);
+            document.getElementById(`pagina-${btn.dataset.pagina}`).hidden = false;
+        });
+    });
+
+    // 2. DADOS DOS TIMES (COLOQUE OS 32 TIMES AQUI)
+    const times = [
+        { id: 1, nome: 'TIME 1', img: 'style/time1.png' }, { id: 2, nome: 'TIME 2', img: 'style/time2.png' },
+        { id: 3, nome: 'TIME 3', img: 'style/time3.png' }, { id: 4, nome: 'TIME 4', img: 'style/time4.png' },
+        { id: 5, nome: 'TIME 5', img: 'style/time5.png' }, { id: 6, nome: 'TIME 6', img: 'style/time6.png' },
+        { id: 7, nome: 'TIME 7', img: 'style/time7.png' }, { id: 8, nome: 'TIME 8', img: 'style/time8.png' },
+        { id: 9, nome: 'TIME 9', img: 'style/time9.png' }, { id: 10, nome: 'TIME 10', img: 'style/time10.png' },
+        { id: 11, nome: 'TIME 11', img: 'style/time11.png' }, { id: 12, nome: 'TIME 12', img: 'style/time12.png' },
+        { id: 13, nome: 'TIME 13', img: 'style/time13.png' }, { id: 14, nome: 'TIME 14', img: 'style/time14.png' },
+        { id: 15, nome: 'TIME 15', img: 'style/time15.png' }, { id: 16, nome: 'TIME 16', img: 'style/time16.png' },
+        { id: 17, nome: 'TIME 17', img: 'style/time17.png' }, { id: 18, nome: 'TIME 18', img: 'style/time18.png' },
+        { id: 19, nome: 'TIME 19', img: 'style/time19.png' }, { id: 20, nome: 'TIME 20', img: 'style/time20.png' },
+        { id: 21, nome: 'TIME 21', img: 'style/time21.png' }, { id: 22, nome: 'TIME 22', img: 'style/time22.png' },
+        { id: 23, nome: 'TIME 23', img: 'style/time23.png' }, { id: 24, nome: 'TIME 24', img: 'style/time24.png' },
+        { id: 25, nome: 'TIME 25', img: 'style/time25.png' }, { id: 26, nome: 'TIME 26', img: 'style/time26.png' },
+        { id: 27, nome: 'TIME 27', img: 'style/time27.png' }, { id: 28, nome: 'TIME 28', img: 'style/time28.png' },
+        { id: 29, nome: 'TIME 29', img: 'style/time29.png' }, { id: 30, nome: 'TIME 30', img: 'style/time30.png' },
+        { id: 31, nome: 'TIME 31', img: 'style/time31.png' }, { id: 32, nome: 'TIME 32', img: 'style/time32.png' }
+    ];
+
+    // 3. CONFRONTOS (MUDE OS NÚMEROS DOS IDs AQUI)
+    const rodadas = {
+        1: [ // 16 jogos (32 times)
+            { timeA: 1, timeB: 2 }, { timeA: 3, timeB: 4 }, { timeA: 5, timeB: 6 }, { timeA: 7, timeB: 8 },
+            { timeA: 9, timeB: 10 }, { timeA: 11, timeB: 12 }, { timeA: 13, timeB: 14 }, { timeA: 15, timeB: 16 },
+            { timeA: 17, timeB: 18 }, { timeA: 19, timeB: 20 }, { timeA: 21, timeB: 22 }, { timeA: 23, timeB: 24 },
+            { timeA: 25, timeB: 26 }, { timeA: 27, timeB: 28 }, { timeA: 29, timeB: 30 }, { timeA: 31, timeB: 32 }
+        ],
+        2: [ // 8 jogos (Oitavas)
+            { timeA: 1, timeB: 3 }, { timeA: 5, timeB: 7 }, { timeA: 9, timeB: 11 }, { timeA: 13, timeB: 15 },
+            { timeA: 17, timeB: 19 }, { timeA: 21, timeB: 23 }, { timeA: 25, timeB: 27 }, { timeA: 29, timeB: 31 }
+        ],
+        3: [ // 4 jogos (Quartas)
+            { timeA: 1, timeB: 5 }, { timeA: 9, timeB: 13 }, { timeA: 17, timeB: 21 }, { timeA: 25, timeB: 29 }
+        ],
+        4: [ // 2 jogos (Semi)
+            { timeA: 1, timeB: 9 }, { timeA: 17, timeB: 25 }
+        ],
+        5: [ // 1 jogo (Final)
+            { timeA: 1, timeB: 17 }
+        ]
+    };
+
+    // 4. FUNÇÕES DE RENDERIZAÇÃO
+    function getTime(id) {
+        return times.find(t => t.id === id) || { nome: 'A Definir', img: '' };
+    }
+
+    function renderizarRodada(numero) {
+        const container = document.getElementById('container-confrantos');
+        const confrontos = rodadas[numero];
+        if (!confrontos || confrontos.length === 0) {
+            container.innerHTML = '<p style="text-align:center;color:#888;padding:40px 0;">Nenhum confronto disponível</p>';
+            return;
+        }
+        let html = '<div class="grid-jogos">';
+        confrontos.forEach((conf, index) => {
+            const timeA = getTime(conf.timeA);
+            const timeB = getTime(conf.timeB);
+            html += `
+                <div class="card-jogo" data-rodada="${numero}" data-jogo="${index}">
+                    <div class="time-box">
+                        <img src="${timeA.img}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2260%22 height=%2260%22%3E%3Crect width=%2260%22 height=%2260%22 fill=%22%23333%22/%3E%3C/svg%3E'">
+                        <span>${timeA.nome}</span>
+                    </div>
+                    <div class="vs-box">⚔️</div>
+                    <div class="time-box">
+                        <img src="${timeB.img}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2260%22 height=%2260%22%3E%3Crect width=%2260%22 height=%2260%22 fill=%22%23333%22/%3E%3C/svg%3E'">
+                        <span>${timeB.nome}</span>
+                    </div>
+                </div>
+            `;
+        });
+        html += '</div>';
+        container.innerHTML = html;
+        document.querySelectorAll('#container-confrantos .card-jogo').forEach(card => {
+            card.addEventListener('click', function() {
+                abrirModal(parseInt(this.dataset.rodada), parseInt(this.dataset.jogo));
+            });
+        });
+    }
+
+    function abrirModal(rodadaNum, jogoIndex) {
+        const modal = document.getElementById('modal-confronto');
+        const confronto = rodadas[rodadaNum][jogoIndex];
+        if (!confronto) return;
+        const timeA = getTime(confronto.timeA);
+        const timeB = getTime(confronto.timeB);
+        document.getElementById('modal-titulo').textContent = `⚔️ CONFRONTO ${jogoIndex + 1}`;
+        document.getElementById('modal-times').innerHTML = `
+            <div class="modal-time"><img src="${timeA.img}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2280%22 height=%2280%22%3E%3Crect width=%2280%22 height=%2280%22 fill=%22%23333%22/%3E%3C/svg%3E'"><span>${timeA.nome}</span></div>
+            <div class="modal-vs">VS</div>
+            <div class="modal-time"><img src="${timeB.img}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2280%22 height=%2280%22%3E%3Crect width=%2280%22 height=%2280%22 fill=%22%23333%22/%3E%3C/svg%3E'"><span>${timeB.nome}</span></div>
+        `;
+        document.getElementById('modal-info').innerHTML = `<p>📅 Data a definir</p><p>🏟️ Arena Gaming World</p>`;
+        modal.classList.add('mostrar');
+    }
+
+    // 5. CONTROLES DE CLIQUES
+    document.querySelectorAll('.nav-chave .btn-rodada').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.nav-chave .btn-rodada').forEach(b => b.classList.remove('ativo'));
+            this.classList.add('ativo');
+            renderizarRodada(parseInt(this.dataset.rodada));
+        });
+    });
+
+    document.querySelector('.fechar-modal').addEventListener('click', () => {
+        document.getElementById('modal-confronto').classList.remove('mostrar');
+    });
+    document.getElementById('modal-confronto').addEventListener('click', function(e) {
+        if (e.target === this) this.classList.remove('mostrar');
+    });
+
+    // Inicia mostrando a primeira rodada
+    renderizarRodada(1);
+</script>
 </body>
 </html>
