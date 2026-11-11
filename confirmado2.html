@@ -63,85 +63,43 @@
 
         .grid-times {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-            gap: 15px;
-            justify-items: center;
+            grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
+            gap: 12px;
+            justify-items: stretch;
         }
 
         .time-card {
-            position: relative;
             background-color: rgba(0, 0, 0, 0.6);
             border: 2px solid #d4af37;
             border-radius: 10px;
-            padding: 10px;
-            width: 100%;
+            padding: 8px;
             box-sizing: border-box;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
             gap: 6px;
-            aspect-ratio: 1 / 1;
             box-shadow: 0 4px 8px rgba(0,0,0,0.5);
             transition: transform 0.3s;
-            overflow: hidden;
         }
 
         .time-card:hover {
-            transform: scale(1.05);
-        }
-
-        .time-card img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
+            transform: scale(1.04);
+            z-index: 10;
         }
 
         .logo-box {
-            flex: 1;
-            min-height: 0;
-            width: 100%;
+            height: 90px;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        .jogadores {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
-            border-top: 1px solid rgba(212, 175, 55, 0.5);
-            padding-top: 5px;
+        .logo-box img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
         }
 
-        .jogador {
-            display: flex;
-            flex-direction: column;
-            line-height: 1.15;
-            text-align: center;
-            overflow: hidden;
-        }
-
-        .jogador .nome {
-            font-size: 0.72rem;
-            font-weight: bold;
-            color: #fff;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .jogador .id {
-            font-size: 0.65rem;
-            color: #d4af37;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        /* Aparece só se nenhuma imagem carregar */
-        .time-card .fallback {
+        .logo-box .fallback {
             display: none;
             color: #d4af37;
             font-weight: bold;
@@ -149,14 +107,46 @@
             text-align: center;
         }
 
-        .time-card.sem-imagem img { display: none; }
-        .time-card.sem-imagem .fallback { display: block; }
+        .time-card.sem-imagem .logo-box img { display: none; }
+        .time-card.sem-imagem .logo-box .fallback { display: block; }
+
+        .jogadores {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            border-top: 1px solid rgba(212, 175, 55, 0.5);
+            padding-top: 6px;
+        }
+
+        .jogador {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 6px;
+            font-size: 0.75rem;
+            line-height: 1.4;
+        }
+
+        .jogador .nome {
+            font-weight: bold;
+            color: #fff;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            min-width: 0;
+        }
+
+        .jogador .id {
+            color: #d4af37;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <img src="logogaming.png" alt="Logo" class="logo">
+        <img src="logogaming.png" alt="Logo" class="logo" onerror="this.style.display='none'">
         <a href="confirmado.html" class="btn-back">Voltar ao Menu</a>
     </div>
 
@@ -166,91 +156,91 @@
     </div>
 
     <script>
+        // ==========================================
+        // 1. CONFIGURAÇÕES GERAIS
+        // ==========================================
         const TOTAL_TIMES = 12;
-        const PASTA_LOCAL = 'style/';
-        const GITHUB_RAW  = 'https://raw.githubusercontent.com/gamingword2026-dot/Gaming-Battle-/main/style/';
-        // Mude a versão quando trocar as imagens, para forçar o navegador a baixar de novo
-        const VERSAO = '1';
+        const JOGADORES_POR_TIME = 2; // Agora são apenas 2 jogadores
+        const PASTA = 'style/';        // Puxando da pasta 'style'
+        const VERSAO = '1'; 
 
-        // EDITE AQUI: nome e ID dos 2 jogadores de cada time (na ordem do Time 1 ao 12)
-        const TIMES = [
-            { jogadores: [{ nome: 'Jogador 1', id: '000000001' }, { nome: 'Jogador 2', id: '000000002' }] }, // Time 1
-            { jogadores: [{ nome: 'Jogador 1', id: '000000003' }, { nome: 'Jogador 2', id: '000000004' }] }, // Time 2
-            { jogadores: [{ nome: 'Jogador 1', id: '000000005' }, { nome: 'Jogador 2', id: '000000006' }] }, // Time 3
-            { jogadores: [{ nome: 'Jogador 1', id: '000000007' }, { nome: 'Jogador 2', id: '000000008' }] }, // Time 4
-            { jogadores: [{ nome: 'Jogador 1', id: '000000009' }, { nome: 'Jogador 2', id: '000000010' }] }, // Time 5
-            { jogadores: [{ nome: 'Jogador 1', id: '000000011' }, { nome: 'Jogador 2', id: '000000012' }] }, // Time 6
-            { jogadores: [{ nome: 'Jogador 1', id: '000000013' }, { nome: 'Jogador 2', id: '000000014' }] }, // Time 7
-            { jogadores: [{ nome: 'Jogador 1', id: '000000015' }, { nome: 'Jogador 2', id: '000000016' }] }, // Time 8
-            { jogadores: [{ nome: 'Jogador 1', id: '000000017' }, { nome: 'Jogador 2', id: '000000018' }] }, // Time 9
-            { jogadores: [{ nome: 'Jogador 1', id: '000000019' }, { nome: 'Jogador 2', id: '000000020' }] }, // Time 10
-            { jogadores: [{ nome: 'Jogador 1', id: '000000021' }, { nome: 'Jogador 2', id: '000000022' }] }, // Time 11
-            { jogadores: [{ nome: 'Jogador 1', id: '000000023' }, { nome: 'Jogador 2', id: '000000024' }] }  // Time 12
+        // ==========================================
+        // 2. DADOS DOS JOGADORES (EDITE AQUI)
+        // ==========================================
+        // Formato: ["Nome", "ID"]
+        
+        const dadosTimes = [
+            /* TIME 1 */  [ ["Joy-Boy××","1455001700"], ["Dudahofc","1339499631"] ],
+            /* TIME 2 */  [ ["Jogador 1","00000000"], ["Jogador 2","000000000"] ],
+            /* TIME 3 */  [ ["Jogador 1","00000000"], ["Jogador 2","000000000"] ],
+            /* TIME 4 */  [ ["Jogador 1","00000000"], ["Jogador 2","000000000"] ],
+            /* TIME 5 */  [ ["Jogador 1","00000000"], ["Jogador 2","000000000"] ],
+            /* TIME 6 */  [ ["Jogador 1","00000000"], ["Jogador 2","000000000"] ],
+            /* TIME 7 */  [ ["Jogador 1","00000000"], ["Jogador 2","000000000"] ],
+            /* TIME 8 */  [ ["Jogador 1","00000000"], ["Jogador 2","000000000"] ],
+            /* TIME 9 */  [ ["Jogador 1","00000000"], ["Jogador 2","000000000"] ],
+            /* TIME 10 */ [ ["Jogador 1","00000000"], ["Jogador 2","000000000"] ],
+            /* TIME 11 */ [ ["Jogador 1","00000000"], ["Jogador 2","000000000"] ],
+            /* TIME 12 */ [ ["Jogador 1","00000000"], ["Jogador 2","000000000"] ]
         ];
 
+        // ==========================================
+        // 3. CRIAÇÃO DOS CARDS (NÃO PRECISA MEXER AQUI)
+        // ==========================================
         const grid = document.getElementById('grid-times');
 
         for (let i = 1; i <= TOTAL_TIMES; i++) {
             const card = document.createElement('div');
             card.className = 'time-card';
 
+            // --- IMAGEM DO TIME ---
+            const logoBox = document.createElement('div');
+            logoBox.className = 'logo-box';
+
             const img = document.createElement('img');
             img.alt = 'Time ' + i;
             img.loading = 'lazy';
-
-            // Tenta primeiro a pasta local; se falhar, tenta o GitHub; se falhar, mostra "Time X"
-            const fontes = [
-                PASTA_LOCAL + 'cla' + i + '.png?v=' + VERSAO,
-                GITHUB_RAW  + 'cla' + i + '.png?v=' + VERSAO
-            ];
-            let tentativa = 0;
-
-            img.onerror = function () {
-                tentativa++;
-                if (tentativa < fontes.length) {
-                    img.src = fontes[tentativa];
-                } else {
-                    card.classList.add('sem-imagem');
-                }
-            };
-            img.src = fontes[0];
+            img.onerror = function () { card.classList.add('sem-imagem'); };
+            img.src = PASTA + 'cla' + i + '.png?v=' + VERSAO;
 
             const fallback = document.createElement('span');
             fallback.className = 'fallback';
             fallback.textContent = 'Time ' + i;
 
-            const logoBox = document.createElement('div');
-            logoBox.className = 'logo-box';
             logoBox.appendChild(img);
             logoBox.appendChild(fallback);
             card.appendChild(logoBox);
 
-            // Nome e ID dos 2 jogadores
-            const jogadores = document.createElement('div');
-            jogadores.className = 'jogadores';
-            const dados = TIMES[i - 1] || { jogadores: [] };
-            dados.jogadores.slice(0, 2).forEach(function (j) {
-                const box = document.createElement('div');
-                box.className = 'jogador';
+            // --- JOGADORES ---
+            const lista = document.createElement('div');
+            lista.className = 'jogadores';
+            
+            const timeIndex = i - 1;
+            const jogadoresDoTime = dadosTimes[timeIndex] || [];
+
+            for (let n = 0; n < JOGADORES_POR_TIME; n++) {
+                // Puxa do array simples ["Nome", "ID"]
+                const dado = jogadoresDoTime[n] || ["Jogador " + (n + 1), "000000000"];
+
+                const linha = document.createElement('div');
+                linha.className = 'jogador';
 
                 const nome = document.createElement('span');
                 nome.className = 'nome';
-                nome.textContent = j.nome;
+                nome.textContent = dado[0];
 
                 const id = document.createElement('span');
                 id.className = 'id';
-                id.textContent = 'ID: ' + j.id;
+                id.textContent = dado[1];
 
-                box.appendChild(nome);
-                box.appendChild(id);
-                jogadores.appendChild(box);
-            });
-            card.appendChild(jogadores);
+                linha.appendChild(nome);
+                linha.appendChild(id);
+                lista.appendChild(linha);
+            }
 
+            card.appendChild(lista);
             grid.appendChild(card);
         }
     </script>
-
 </body>
 </html>
-
